@@ -1,0 +1,560 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    android:layout_weight="1"
+    tools:context="com.example.asm.resources.main_screen"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/special_rage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:gravity="top"
+        android:keepScreenOn="true"
+        android:text="@string/rage"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage1"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage2"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage3"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2"
+            android:checked="false" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage4"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage5"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage6"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_button_clicked"
+            android:id="@+id/radio_button_rage7"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage8"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_rage9"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_button_clicked"
+            android:id="@+id/radio_button_rage10"
+            android:layout_weight=".2" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_rage1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_rage2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_rage3" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_rage4" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_rage5" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_rage6" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_rage7" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_rage8" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_rage9" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_rage10" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="-"
+            android:onClick="minus_button"
+            android:id="@+id/rage_minus_b" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="@string/reset"
+            android:onClick="reset_button"
+            android:id="@+id/rage_reset_b" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:onClick="plus_button"
+            android:text="+"
+            android:id="@+id/rage_plus_b" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/special_faith"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:gravity="top|start"
+        android:keepScreenOn="true"
+        android:text="@string/faith"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_faith1"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_faith2"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_button_clicked"
+            android:id="@+id/radio_button_faith3"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_button_clicked"
+            android:id="@+id/radio_button_faith4"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_button_clicked"
+            android:id="@+id/radio_button_faith5"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_button_clicked"
+            android:id="@+id/radio_button_faith6"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_button_clicked"
+            android:id="@+id/radio_button_faith7"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_faith8"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_faith9"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_faith10"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+            </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_faith1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_faith2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_faith3" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_faith4" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_faith5" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_faith6" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_faith7" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_faith8" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_faith9" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_faith10" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="-"
+            android:onClick="minus_button"
+            android:id="@+id/faith_minus_b" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:onClick="reset_button"
+            android:text="@string/reset"
+            android:id="@+id/faith_reset_b" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="+"
+            android:onClick="plus_button"
+            android:id="@+id/faith_plus_b" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/special_willpower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:gravity="top"
+        android:keepScreenOn="true"
+        android:text="@string/willpower"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp1"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp2"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp3"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp4"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp5"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp6"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp7"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp8"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp9"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_button_wp10"
+            android:onClick="radio_button_clicked"
+            android:layout_weight=".2" />
+            </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_wp1" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_wp2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_wp3" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_wp4" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_wp5" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:layout_weight=".2"
+            android:id="@+id/image_wp6" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_wp7" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_wp8" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_wp9" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:src="@drawable/ic_crop_din_black_24dp"
+            android:id="@+id/image_wp10" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:background="#0099cc"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="-"
+            android:onClick="minus_button"
+            android:id="@+id/wp_minus_b" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:onClick="reset_button"
+            android:text="@string/reset"
+            android:id="@+id/wp_reset_b" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="+"
+            android:onClick="plus_button"
+            android:id="@+id/wp_plus_b" />
+
+    </LinearLayout>
+
+</LinearLayout>

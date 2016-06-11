@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Resources</string>
+    <string name="rage">Ярость</string>
+    <string name="faith">Вера</string>
+    <string name="willpower">Сила Воли</string>
+    <string name="reset">Установить по умолчанию</string>
+</resources>
