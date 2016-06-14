@@ -3,5 +3,6 @@
     <string name="rage">Ярость</string>
     <string name="faith">Вера</string>
     <string name="willpower">Сила Воли</string>
-    <string name="reset">Установить по умолчанию</string>
+    <string name="reset">По умолчанию</string>
+    <string name="health">Здоровье</string>
 </resources>

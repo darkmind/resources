@@ -1,15 +1,24 @@
 package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -20,17 +29,69 @@ import java.util.regex.Pattern;
 public class main_screen extends AppCompatActivity {
     private Map<String, Integer> sp_resources = new HashMap<String,Integer>();
 
+    private boolean mVisible;
+    private final Handler mHideHandler = new Handler();
+    private View mContentView;
+    private final Runnable mHidePart2Runnable = new Runnable() {
+        @SuppressLint("InlinedApi")
+        @Override
+        public void run() {
+            // Delayed removal of status and navigation bar
+
+            // Note that some of these constants are new as of API 16 (Jelly Bean)
+            // and API 19 (KitKat). It is safe to use them, as they are inlined
+            // at compile-time and do nothing on earlier devices.
+            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        }
+    };
+
+    public void switch_full_screen() {
+        if (mVisible) {
+            hide();
+        } else {
+            show();
+        }
+    }
+
+    private void hide() {
+        mHideHandler.postDelayed(mHidePart2Runnable, 0);
+        mVisible = false;
+    }
+
+    @SuppressLint("InlinedApi")
+    private void show() {
+        // Show the system bar
+        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        mVisible = true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_screen);
+
         fill_map();
+
+        mVisible = true;
+    }
+
+    public void switch_screen(View view) {
+        mContentView = view;
+        switch_full_screen();
     }
 
     private void fill_map() {
         sp_resources.put("rage", 1);
         sp_resources.put("faith", 0);
         sp_resources.put("wp", 0);
+        sp_resources.put("health", 0);
         sp_resources.put("perm_rage", 1);
         sp_resources.put("perm_faith", 0);
         sp_resources.put("perm_wp", 0);
@@ -114,6 +175,46 @@ public class main_screen extends AppCompatActivity {
         String special_resource = m.group(1);
 
         Integer sp_value = sp_resources.get( special_resource );
+
+        if ( special_resource.equals("health") ) {
+            sp_value++;
+            if ( sp_value > 14 ) {
+                sp_value = 14;
+                return ;
+            }
+            sp_resources.put(special_resource, sp_value);
+
+            String id_ref = String.format("image_%s%d", special_resource, sp_value);
+            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+            ImageView img = (ImageView) findViewById(resID);
+            img.setImageResource(R.drawable.ic_check_box_black_24dp);
+
+            TextView t = (TextView)findViewById(R.id.special_limit_health);
+            if ( sp_value <= 2 ) {
+                return ;
+            }
+            else if ( 2 < sp_value && sp_value < 7 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-1" );
+                return ;
+            }
+            else if ( 6 < sp_value && sp_value < 11 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-2" );
+                return ;
+            }
+            else if ( 10 < sp_value && sp_value < 13 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-5" );
+                return ;
+            }
+            else if ( 12 < sp_value && sp_value <= 14 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-10" );
+                return ;
+            }
+        }
+
         Integer limit = sp_resources.get( "perm_" + special_resource );
         if ( (special_resource.equals("faith")) || (sp_value < limit) ) {
             sp_value++;
@@ -133,6 +234,48 @@ public class main_screen extends AppCompatActivity {
         m.find();
         String special_resource = m.group(1);
         Integer sp_value = sp_resources.get( special_resource );
+
+        if ( special_resource.equals("health") ) {
+            if ( sp_value == 0 ) {
+                return ;
+            }
+
+            String id_ref = String.format("image_%s%d", special_resource, sp_value);
+            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+            ImageView img = (ImageView) findViewById(resID);
+            img.setImageResource(R.drawable.ic_crop_din_black_24dp);
+
+            sp_value--;
+            sp_resources.put(special_resource, sp_value);
+
+            TextView t = (TextView)findViewById(R.id.special_limit_health);
+            if ( sp_value <= 2 ) {
+                t.setTextColor( Color.parseColor("#33b5e5") );
+                t.setText( "0" );
+                return ;
+            }
+            else if ( 2 < sp_value && sp_value < 7 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-1" );
+                return ;
+            }
+            else if ( 6 < sp_value && sp_value < 11 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-2" );
+                return ;
+            }
+            else if ( 10 < sp_value && sp_value < 13 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-5" );
+                return ;
+            }
+            else if ( 12 < sp_value && sp_value <= 14 ) {
+                t.setTextColor(Color.RED);
+                t.setText( "-10" );
+                return ;
+            }
+        }
+
         if ( sp_value > 0 ) {
             String id_ref = String.format("image_%s%d", special_resource, sp_value);
             int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
@@ -150,6 +293,24 @@ public class main_screen extends AppCompatActivity {
         Matcher m = p.matcher(IdAsString);
         m.find();
         String special_resource = m.group(1);
+
+        if ( special_resource.equals("health") ) {
+            Integer sp_value = sp_resources.get(special_resource);
+
+            TextView t = (TextView)findViewById(R.id.special_limit_health);
+            t.setTextColor( Color.parseColor("#33b5e5") );
+            t.setText( "0" );
+
+            while ( sp_value > 0 ) {
+                String id_ref = String.format("image_%s%d", special_resource, sp_value);
+                int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+                ImageView img = (ImageView) findViewById(resID);
+                img.setImageResource(R.drawable.ic_crop_din_black_24dp);
+                sp_value--;
+            }
+            sp_resources.put(special_resource, 0);
+            return ;
+        }
 
         if ( special_resource.equals("rage") ) {
             sp_resources.put(special_resource, 1);
@@ -178,5 +339,4 @@ public class main_screen extends AppCompatActivity {
             }
         }
     }
-
 }
