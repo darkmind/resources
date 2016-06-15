@@ -14,6 +14,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -337,6 +338,27 @@ public class main_screen extends AppCompatActivity {
                 ImageView img = (ImageView) findViewById(resID);
                 img.setImageResource(R.drawable.ic_crop_din_black_24dp);
             }
+        }
+    }
+
+    public void onCheckboxClicked_sp_resources(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        String IdAsString = view.getResources().getResourceName(view.getId());
+        Pattern p = Pattern.compile("_(\\p{Lower}+)$");
+        Matcher m = p.matcher(IdAsString);
+        m.find();
+        String special_resource = m.group(1);
+
+        String id_ref = String.format("sp_%s", special_resource);
+        int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+        View sp_view = findViewById(resID);
+
+        if( checked ){
+            sp_view.setVisibility(View.GONE);
+        }
+        else {
+            sp_view.setVisibility(View.VISIBLE);
         }
     }
 }
