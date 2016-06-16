@@ -16,4 +16,8 @@
     <string name="char_m_10">-10</string>
     <string name="char_minus">-</string>
     <string name="char_plus">+</string>
+    <string name="title_activity_greeting_screen">greeting_screen</string>
+    <string name="title_activity_enter_name">enter_name</string>
+    <string name="name_hint">Введите имя персонажа</string>
+    <string name="title_activity_load_char">load_char</string>
 </resources>

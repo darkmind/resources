@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_save"
+        android:title="@string/save"
+        android:onClick="save_char"/>
+    <item android:id="@+id/action_load"
+        android:title="@string/load"/>
+    <item android:id="@+id/action_exit"
+        android:title="@string/exit_app"
+        android:onClick="exit_app"/>
 </menu>

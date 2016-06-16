@@ -1,25 +1,28 @@
 package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class main_screen extends AppCompatActivity {
-    private final Map<String, Integer> sp_resources = new HashMap<>();
+    private Map<String, Integer> sp_resources;
 
     private boolean mVisible;
 
@@ -61,22 +64,23 @@ public class main_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        System.out.println( "ASM main staetred" );
         setContentView(R.layout.activity_main_screen);
-
+        character char_o = character.getInstance();
+        sp_resources = char_o.get_sp_res();
         fill_map();
 
         mVisible = true;
     }
 
-    private void fill_map() {
-        sp_resources.put("rage", 1);
-        sp_resources.put("faith", 0);
-        sp_resources.put("wp", 0);
-        sp_resources.put("health", 0);
-        sp_resources.put("perm_rage", 1);
-        sp_resources.put("perm_faith", 0);
-        sp_resources.put("perm_wp", 0);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.action_bar_menu, menu);
+        return true;
+    }
 
+    private void fill_map() {
         ImageView first_rage_point = (ImageView) findViewById(R.id.image_rage1);
         assert first_rage_point != null;
         first_rage_point.setImageResource(R.drawable.ic_check_box_black_24dp);
@@ -391,5 +395,18 @@ public class main_screen extends AppCompatActivity {
             assert sp_view != null;
             sp_view.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void exit_app(MenuItem item) {
+        System.exit(0);
+    }
+
+    public void save_char(MenuItem item) {
+        character char_o = character.getInstance();
+        Context context = this;
+        char_o.flush( context );
+    }
+
+    public void run_load_screen(View view) {
     }
 }
