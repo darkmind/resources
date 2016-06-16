@@ -5,4 +5,8 @@
     <string name="willpower">Сила Воли</string>
     <string name="reset">По умолчанию</string>
     <string name="health">Здоровье</string>
+    <string name="save">Сохранить</string>
+    <string name="load">Загрузить</string>
+    <string name="new_char">Новый персонаж</string>
+    <string name="exit_app">Выход</string>
 </resources>

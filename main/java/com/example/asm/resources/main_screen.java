@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -13,12 +12,13 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class main_screen extends AppCompatActivity {
-    private Map<String, Integer> sp_resources = new HashMap<String,Integer>();
+    private final Map<String, Integer> sp_resources = new HashMap<String,Integer>();
 
     private boolean mVisible;
 
@@ -75,9 +75,11 @@ public class main_screen extends AppCompatActivity {
         sp_resources.put("perm_wp", 0);
 
         ImageView first_rage_point = (ImageView) findViewById(R.id.image_rage1);
+        assert first_rage_point != null;
         first_rage_point.setImageResource(R.drawable.ic_check_box_black_24dp);
 
         RadioButton first_perm_rage = (RadioButton) findViewById(R.id.radio_button_rage1);
+        assert first_perm_rage != null;
         first_perm_rage.setChecked(true);
     }
 
@@ -98,9 +100,10 @@ public class main_screen extends AppCompatActivity {
         String id_ref;
         int resID;
         while ( id > 0 ) {
-            id_ref = String.format("%s%d", name, id);
+            id_ref = String.format(Locale.getDefault(), "%s%d", name, id);
             resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             b = (RadioButton) findViewById(resID);
+            assert b != null;
             b.setChecked(true);
             id--;
         }
@@ -112,9 +115,10 @@ public class main_screen extends AppCompatActivity {
         int resID;
         id++;
         while ( id <= 10 ) {
-            id_ref = String.format("%s%d", name, id);
+            id_ref = String.format(Locale.getDefault(), "%s%d", name, id);
             resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             b = (RadioButton) findViewById(resID);
+            assert b != null;
             b.setChecked(false);
             id++;
         }
@@ -135,9 +139,10 @@ public class main_screen extends AppCompatActivity {
         if ( id < tmp_val ) {
             sp_resources.put( sp_name, id );
             while ( tmp_val > id ) {
-                String id_ref = String.format("image_%s%d", sp_name, tmp_val);
+                String id_ref = String.format(Locale.getDefault(), "image_%s%d", sp_name, tmp_val);
                 int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
                 ImageView img = (ImageView) findViewById(resID);
+                assert img != null;
                 img.setImageResource(R.drawable.ic_crop_din_black_24dp);
                 tmp_val--;
             }
@@ -162,12 +167,14 @@ public class main_screen extends AppCompatActivity {
             }
             sp_resources.put(special_resource, sp_value);
 
-            String id_ref = String.format("image_%s%d", special_resource, sp_value);
+            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
             int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             ImageView img = (ImageView) findViewById(resID);
+            assert img != null;
             img.setImageResource(R.drawable.ic_check_box_black_24dp);
 
             TextView t = (TextView)findViewById(R.id.special_limit_health);
+            assert t != null;
             if ( sp_value <= 2 ) {
                 return ;
             }
@@ -198,9 +205,10 @@ public class main_screen extends AppCompatActivity {
             sp_value++;
             sp_resources.put(special_resource, sp_value);
 
-            String id_ref = String.format("image_%s%d", special_resource, sp_value);
+            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
             int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             ImageView img = (ImageView) findViewById(resID);
+            assert img != null;
             img.setImageResource(R.drawable.ic_check_box_black_24dp);
         }
     }
@@ -218,15 +226,17 @@ public class main_screen extends AppCompatActivity {
                 return ;
             }
 
-            String id_ref = String.format("image_%s%d", special_resource, sp_value);
+            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
             int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             ImageView img = (ImageView) findViewById(resID);
+            assert img != null;
             img.setImageResource(R.drawable.ic_crop_din_black_24dp);
 
             sp_value--;
             sp_resources.put(special_resource, sp_value);
 
             TextView t = (TextView)findViewById(R.id.special_limit_health);
+            assert t != null;
             if ( sp_value <= 2 ) {
                 t.setTextColor( Color.parseColor("#33b5e5") );
                 t.setText( "0" );
@@ -255,9 +265,10 @@ public class main_screen extends AppCompatActivity {
         }
 
         if ( sp_value > 0 ) {
-            String id_ref = String.format("image_%s%d", special_resource, sp_value);
+            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
             int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             ImageView img = (ImageView) findViewById(resID);
+            assert img != null;
             img.setImageResource(R.drawable.ic_crop_din_black_24dp);
 
             sp_value--;
@@ -276,13 +287,15 @@ public class main_screen extends AppCompatActivity {
             Integer sp_value = sp_resources.get(special_resource);
 
             TextView t = (TextView)findViewById(R.id.special_limit_health);
+            assert t != null;
             t.setTextColor( Color.parseColor("#33b5e5") );
             t.setText( "0" );
 
             while ( sp_value > 0 ) {
-                String id_ref = String.format("image_%s%d", special_resource, sp_value);
+                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
                 int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
                 ImageView img = (ImageView) findViewById(resID);
+                assert img != null;
                 img.setImageResource(R.drawable.ic_crop_din_black_24dp);
                 sp_value--;
             }
@@ -293,9 +306,10 @@ public class main_screen extends AppCompatActivity {
         if ( special_resource.equals("rage") ) {
             sp_resources.put(special_resource, 1);
             for ( Integer i = 2; i <= 10; i++ ) {
-                String id_ref = String.format("image_%s%d", special_resource, i);
+                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, i);
                 int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
                 ImageView img = (ImageView) findViewById(resID);
+                assert img != null;
                 img.setImageResource(R.drawable.ic_crop_din_black_24dp);
             }
         }
@@ -303,16 +317,18 @@ public class main_screen extends AppCompatActivity {
             Integer perm_val = sp_resources.get( "perm_" + special_resource );
             sp_resources.put( special_resource, perm_val );
             for ( Integer i = 1; i <= perm_val; i++ ) {
-                String id_ref = String.format("image_%s%d", special_resource, i);
+                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, i);
                 int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
                 ImageView img = (ImageView) findViewById(resID);
+                assert img != null;
                 img.setImageResource(R.drawable.ic_check_box_black_24dp);
             }
             perm_val++;
             for ( Integer i = perm_val; i <= 10; i++ ) {
-                String id_ref = String.format("image_%s%d", special_resource, i);
+                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, i);
                 int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
                 ImageView img = (ImageView) findViewById(resID);
+                assert img != null;
                 img.setImageResource(R.drawable.ic_crop_din_black_24dp);
             }
         }
@@ -327,14 +343,16 @@ public class main_screen extends AppCompatActivity {
         m.find();
         String special_resource = m.group(1);
 
-        String id_ref = String.format("sp_%s", special_resource);
+        String id_ref = String.format(Locale.getDefault(), "sp_%s", special_resource);
         int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
         View sp_view = findViewById(resID);
 
         if( checked ){
+            assert sp_view != null;
             sp_view.setVisibility(View.GONE);
         }
         else {
+            assert sp_view != null;
             sp_view.setVisibility(View.VISIBLE);
         }
     }

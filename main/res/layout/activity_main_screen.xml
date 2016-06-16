@@ -2,31 +2,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.asm.resources.main_screen">
-    <LinearLayout
+    <include layout="@layout/check_boxes"/>
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/main_screen"
-        android:orientation="vertical">
-        <include layout="@layout/check_boxes"/>
-        <ScrollView
+        android:layout_height="0dp"
+        android:background="#0099cc"
+        android:layout_weight=".2"
+        android:orientation="vertical"
+        android:id="@+id/sp_screen">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#0099cc"
-            android:layout_weight=".2"
-            android:orientation="vertical"
-            android:id="@+id/sp_screen">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/inside_layout"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <include layout="@layout/rage"/>
-                <include layout="@layout/faith"/>
-                <include layout="@layout/willpower"/>
-                <include layout="@layout/health"/>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:id="@+id/inside_layout"
+            android:orientation="vertical">
+            <include layout="@layout/rage"/>
+            <include layout="@layout/faith"/>
+            <include layout="@layout/willpower"/>
+            <include layout="@layout/health"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
