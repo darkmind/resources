@@ -9,4 +9,11 @@
     <string name="load">Загрузить</string>
     <string name="new_char">Новый персонаж</string>
     <string name="exit_app">Выход</string>
+    <string name="char_0">0</string>
+    <string name="char_m_1">-1</string>
+    <string name="char_m_2">-2</string>
+    <string name="char_m_5">-5</string>
+    <string name="char_m_10">-10</string>
+    <string name="char_minus">-</string>
+    <string name="char_plus">+</string>
 </resources>

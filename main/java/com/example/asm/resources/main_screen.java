@@ -2,6 +2,7 @@ package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class main_screen extends AppCompatActivity {
-    private final Map<String, Integer> sp_resources = new HashMap<String,Integer>();
+    private final Map<String, Integer> sp_resources = new HashMap<>();
 
     private boolean mVisible;
 
@@ -35,12 +36,14 @@ public class main_screen extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LOW_PROFILE
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        }
         mVisible = false;
     }
 
@@ -87,9 +90,15 @@ public class main_screen extends AppCompatActivity {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("^(\\D+)(\\d+)$");
         Matcher m = p.matcher(IdAsString);
-        m.find();
-        String name = m.group(1);
-        int id = Integer.parseInt(m.group(2));
+        String name;
+        int id;
+        if( m.find() ){
+            name = m.group(1);
+            id = Integer.parseInt(m.group(2));
+        }
+        else {
+            throw new RuntimeException( "Can't fine resource and value in " + IdAsString );
+        }
         set_range( name, id );
         unset_upper_range( name, id );
         refresh_sp( name, id );
@@ -127,8 +136,13 @@ public class main_screen extends AppCompatActivity {
     private void refresh_sp ( String name, int id ) {
         Pattern p = Pattern.compile("_(\\p{Lower}+)$");
         Matcher m = p.matcher(name);
-        m.find();
-        String sp_name = m.group(1);
+        String sp_name;
+        if( m.find() ) {
+            sp_name = m.group(1);
+        }
+        else {
+            throw new RuntimeException( "Can't fine resource in " + name );
+        }
 
         sp_resources.put( "perm_" + sp_name, id );
         if ( sp_name.equals("faith") ) {
@@ -154,14 +168,20 @@ public class main_screen extends AppCompatActivity {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("/(\\p{Lower}+)_");
         Matcher m = p.matcher(IdAsString);
-        m.find();
-        String special_resource = m.group(1);
+        String special_resource;
+        if( m.find() ){
+            special_resource = m.group(1);
+        }
+        else {
+            throw new RuntimeException( "Can't fine resource in " + IdAsString );
+        }
 
         Integer sp_value = sp_resources.get( special_resource );
 
         if ( special_resource.equals("health") ) {
             sp_value++;
             if ( sp_value > 14 ) {
+                //noinspection UnusedAssignment
                 sp_value = 14;
                 return ;
             }
@@ -180,22 +200,22 @@ public class main_screen extends AppCompatActivity {
             }
             else if ( 2 < sp_value && sp_value < 7 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-1" );
+                t.setText( R.string.char_m_1 );
                 return ;
             }
             else if ( 6 < sp_value && sp_value < 11 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-2" );
+                t.setText( R.string.char_m_2 );
                 return ;
             }
             else if ( 10 < sp_value && sp_value < 13 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-5" );
+                t.setText( R.string.char_m_5 );
                 return ;
             }
             else if ( 12 < sp_value && sp_value <= 14 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-10" );
+                t.setText( R.string.char_m_10 );
                 return ;
             }
         }
@@ -217,8 +237,14 @@ public class main_screen extends AppCompatActivity {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("/(\\p{Lower}+)_");
         Matcher m = p.matcher(IdAsString);
-        m.find();
-        String special_resource = m.group(1);
+        String special_resource;
+        if( m.find() ){
+            special_resource = m.group(1);
+        }
+        else {
+            throw new RuntimeException( "Can't fine resource in " + IdAsString );
+        }
+
         Integer sp_value = sp_resources.get( special_resource );
 
         if ( special_resource.equals("health") ) {
@@ -239,27 +265,27 @@ public class main_screen extends AppCompatActivity {
             assert t != null;
             if ( sp_value <= 2 ) {
                 t.setTextColor( Color.parseColor("#33b5e5") );
-                t.setText( "0" );
+                t.setText( R.string.char_0 );
                 return ;
             }
             else if ( 2 < sp_value && sp_value < 7 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-1" );
+                t.setText( R.string.char_m_1 );
                 return ;
             }
             else if ( 6 < sp_value && sp_value < 11 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-2" );
+                t.setText( R.string.char_m_2 );
                 return ;
             }
             else if ( 10 < sp_value && sp_value < 13 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-5" );
+                t.setText( R.string.char_m_5 );
                 return ;
             }
             else if ( 12 < sp_value && sp_value <= 14 ) {
                 t.setTextColor(Color.RED);
-                t.setText( "-10" );
+                t.setText( R.string.char_m_10 );
                 return ;
             }
         }
@@ -280,8 +306,13 @@ public class main_screen extends AppCompatActivity {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("/(\\p{Lower}+)_");
         Matcher m = p.matcher(IdAsString);
-        m.find();
-        String special_resource = m.group(1);
+        String special_resource;
+        if( m.find() ) {
+            special_resource = m.group(1);
+        }
+        else {
+            throw new RuntimeException( "Can't fine resource in " + IdAsString );
+        }
 
         if ( special_resource.equals("health") ) {
             Integer sp_value = sp_resources.get(special_resource);
@@ -340,8 +371,13 @@ public class main_screen extends AppCompatActivity {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("_(\\p{Lower}+)$");
         Matcher m = p.matcher(IdAsString);
-        m.find();
-        String special_resource = m.group(1);
+        String special_resource;
+        if( m.find() ){
+            special_resource = m.group(1);
+        }
+        else {
+            throw new RuntimeException( "Can't find resource name in " + IdAsString );
+        }
 
         String id_ref = String.format(Locale.getDefault(), "sp_%s", special_resource);
         int resID = getResources().getIdentifier(id_ref, "id", getPackageName());

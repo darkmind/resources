@@ -162,7 +162,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:text="-"
+            android:text="@string/char_minus"
             android:onClick="minus_button"
             android:id="@+id/faith_minus_b" />
         <Button
@@ -176,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:text="+"
+            android:text="@string/char_plus"
             android:onClick="plus_button"
             android:id="@+id/faith_plus_b" />
     </LinearLayout>
