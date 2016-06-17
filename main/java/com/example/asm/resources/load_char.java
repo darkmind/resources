@@ -37,8 +37,13 @@ public class load_char extends ListActivity {
     private void ListDir(File f){
         File[] files = f.listFiles();
         fileList.clear();
+        String file_name;
         for (File file : files){
-            fileList.add(file.getName());
+            file_name = file.getName();
+            if( file_name.equals("instant-run") ){
+                continue;
+            }
+            fileList.add(file_name);
         }
 
         ArrayAdapter<String> directoryList
