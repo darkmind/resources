@@ -13,14 +13,11 @@ import java.util.Properties;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class load_char extends ListActivity {
 
@@ -52,9 +49,7 @@ public class load_char extends ListActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println("Going read");
                 String filename = (String) adapterView.getItemAtPosition(i);
-                System.out.println("Going read from " + filename );
                 load_char_file(filename);
             }
         });
@@ -64,12 +59,9 @@ public class load_char extends ListActivity {
         Context context = this;
         Properties properties = new Properties();
         FileInputStream handler;
-        System.out.println("Going to try");
         try {
             handler = new FileInputStream( context.getFilesDir().getAbsolutePath() + "/" +  filename);
-            System.out.println("Going to open");
             properties.load(handler);
-            System.out.println("Going to fill");
             for (String key : properties.stringPropertyNames()) {
                 Integer val = Integer.parseInt( properties.get(key).toString() );
                 sp_res.put(key, val);
@@ -78,17 +70,14 @@ public class load_char extends ListActivity {
             char_o.char_name = filename;
             char_o.set_sp_res( sp_res );
 
-            System.out.println("Going to main");
             Intent intent = new Intent(this, main_screen.class);
             startActivity(intent);
         }
         catch ( FileNotFoundException e ) {
-            e.printStackTrace();
-            System.exit(0);
+            throw new RuntimeException( "File not found" );
         }
         catch ( IOException e ) {
-            e.printStackTrace();
-            System.exit(0);
+            throw new RuntimeException( "Can't read file" );
         }
     }
 }

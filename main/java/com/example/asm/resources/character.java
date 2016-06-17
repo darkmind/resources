@@ -65,4 +65,14 @@ public class character  {
             }
         }
     }
+
+    public void reset() {
+        sp_resources.put("rage", 1);
+        sp_resources.put("faith", 0);
+        sp_resources.put("wp", 0);
+        sp_resources.put("health", 0);
+        sp_resources.put("perm_rage", 1);
+        sp_resources.put("perm_faith", 0);
+        sp_resources.put("perm_wp", 0);
+    }
 }

@@ -2,6 +2,7 @@ package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -64,7 +65,6 @@ public class main_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        System.out.println( "ASM main staetred" );
         setContentView(R.layout.activity_main_screen);
         character char_o = character.getInstance();
         sp_resources = char_o.get_sp_res();
@@ -81,18 +81,57 @@ public class main_screen extends AppCompatActivity {
     }
 
     private void fill_map() {
-        ImageView first_rage_point = (ImageView) findViewById(R.id.image_rage1);
-        assert first_rage_point != null;
-        first_rage_point.setImageResource(R.drawable.ic_check_box_black_24dp);
+        Pattern p = Pattern.compile("perm_(\\p{Lower}+)");
+        Matcher m;
+        String res;
+        Integer val;
+        for (String resource : sp_resources.keySet()) {
+            val = sp_resources.get(resource);
+            m = p.matcher(resource);
+            if (m.find()) {
+                res = m.group(1);
+                set_range( res, val );
+                unset_upper_range( res, val );
+            }
+            else {
+                set_free_range( resource, val );
+                unset_free_upper_range( resource, val );
+            }
+        }
 
-        RadioButton first_perm_rage = (RadioButton) findViewById(R.id.radio_button_rage1);
-        assert first_perm_rage != null;
-        first_perm_rage.setChecked(true);
+        // calculate health penalty
+        Integer health_val = sp_resources.get("health");
+        if ( health_val == 0 ) {
+            return ;
+        }
+
+        TextView t = (TextView)findViewById(R.id.special_limit_health);
+        assert t != null;
+        if ( health_val <= 2 ) {
+            t.setTextColor( Color.parseColor("#33b5e5") );
+            t.setText( R.string.char_0 );
+            return ;
+        }
+
+        t.setTextColor(Color.RED);
+        if ( 2 < health_val && health_val < 7 ) {
+            t.setText( R.string.char_m_1 );
+        }
+        else if ( 6 < health_val && health_val < 11 ) {
+            t.setText( R.string.char_m_2 );
+        }
+        else if ( 10 < health_val && health_val < 13 ) {
+            t.setText( R.string.char_m_5 );
+        }
+        else if ( 12 < health_val && health_val <= 14 ) {
+            t.setText( R.string.char_m_10 );
+        }
+        return ;
     }
 
     public void radio_button_clicked(View view) {
         String IdAsString = view.getResources().getResourceName(view.getId());
-        Pattern p = Pattern.compile("^(\\D+)(\\d+)$");
+        Pattern p = Pattern.compile("radio_button_(\\p{Lower}+)(\\d+)$");
         Matcher m = p.matcher(IdAsString);
         String name;
         int id;
@@ -113,7 +152,7 @@ public class main_screen extends AppCompatActivity {
         String id_ref;
         int resID;
         while ( id > 0 ) {
-            id_ref = String.format(Locale.getDefault(), "%s%d", name, id);
+            id_ref = String.format(Locale.getDefault(), "radio_button_%s%d", name, id);
             resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             b = (RadioButton) findViewById(resID);
             assert b != null;
@@ -128,7 +167,7 @@ public class main_screen extends AppCompatActivity {
         int resID;
         id++;
         while ( id <= 10 ) {
-            id_ref = String.format(Locale.getDefault(), "%s%d", name, id);
+            id_ref = String.format(Locale.getDefault(), "radio_button_%s%d", name, id);
             resID = getResources().getIdentifier(id_ref, "id", getPackageName());
             b = (RadioButton) findViewById(resID);
             assert b != null;
@@ -137,34 +176,51 @@ public class main_screen extends AppCompatActivity {
         }
     }
 
-    private void refresh_sp ( String name, int id ) {
-        Pattern p = Pattern.compile("_(\\p{Lower}+)$");
-        Matcher m = p.matcher(name);
-        String sp_name;
-        if( m.find() ) {
-            sp_name = m.group(1);
+    private void set_free_range( String name, int id ) {
+        while( id > 0 ){
+            String id_ref = String.format(Locale.getDefault(), "image_%s%d", name, id);
+            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+            ImageView img = (ImageView) findViewById(resID);
+            assert img != null;
+            img.setImageResource(R.drawable.ic_check_box_black_24dp);
+            id--;
         }
-        else {
-            throw new RuntimeException( "Can't fine resource in " + name );
-        }
+    }
 
-        sp_resources.put( "perm_" + sp_name, id );
-        if ( sp_name.equals("faith") ) {
+    private void unset_free_upper_range( String name, int id ) {
+        Integer limit = 10;
+        if ( name.equals("health") ) {
+            limit = 14;
+        }
+        id++;
+        while( id <= limit ) {
+            String id_ref = String.format(Locale.getDefault(), "image_%s%d", name, id);
+            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+            ImageView img = (ImageView) findViewById(resID);
+            assert img != null;
+            img.setImageResource(R.drawable.ic_crop_din_black_24dp);
+            id++;
+        }
+    }
+
+    private void refresh_sp ( String name, int id ) {
+        sp_resources.put( "perm_" + name, id );
+        if ( name.equals("faith") ) {
             return ;
         }
 
-        Integer tmp_val = sp_resources.get( sp_name );
+        Integer tmp_val = sp_resources.get( name );
         if ( id < tmp_val ) {
-            sp_resources.put( sp_name, id );
+            sp_resources.put( name, id );
             while ( tmp_val > id ) {
-                String id_ref = String.format(Locale.getDefault(), "image_%s%d", sp_name, tmp_val);
+                String id_ref = String.format(Locale.getDefault(), "image_%s%d", name, tmp_val);
                 int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
                 ImageView img = (ImageView) findViewById(resID);
                 assert img != null;
                 img.setImageResource(R.drawable.ic_crop_din_black_24dp);
                 tmp_val--;
             }
-            sp_resources.put( sp_name, tmp_val );
+            sp_resources.put( name, tmp_val );
         }
     }
 
@@ -397,16 +453,20 @@ public class main_screen extends AppCompatActivity {
         }
     }
 
-    public void exit_app(MenuItem item) {
-        System.exit(0);
-    }
-
     public void save_char(MenuItem item) {
         character char_o = character.getInstance();
         Context context = this;
         char_o.flush( context );
     }
 
-    public void run_load_screen(View view) {
+    public void run_load_screen(MenuItem item) {
+
+        Intent intent = new Intent(this, load_char.class);
+        startActivity(intent);
+    }
+
+    public void new_char(MenuItem item) {
+        Intent intent = new Intent(this, enter_name.class);
+        startActivity(intent);
     }
 }

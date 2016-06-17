@@ -16,6 +16,8 @@ public class enter_name extends Activity {
         setContentView(R.layout.activity_enter_name);
 
         final character char_o = character.getInstance();
+        char_o.reset();
+        char_o.char_name = "";
 
         final EditText enter_char_name = (EditText) findViewById(R.id.char_name);
 
