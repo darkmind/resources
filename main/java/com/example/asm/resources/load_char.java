@@ -21,8 +21,8 @@ import android.widget.ListView;
 
 public class load_char extends ListActivity {
 
-    private List<String> fileList = new ArrayList<String>();
-    Map<String, Integer> sp_res = new HashMap<>();
+    final private List<String> fileList = new ArrayList<>();
+    final private Map<String, Integer> sp_res = new HashMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class load_char extends ListActivity {
         }
 
         ArrayAdapter<String> directoryList
-                = new ArrayAdapter<String>(this, R.layout.activity_load_char, fileList);
+                = new ArrayAdapter<>(this, R.layout.activity_load_char, fileList);
         setListAdapter(directoryList);
         ListView lv = getListView();
 

@@ -9,9 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-/**
- * Created by asm on 6/16/16.
- */
 public class character  {
     private static final character instance = new character();
     private Map<String, Integer> sp_resources = new HashMap<>();
@@ -32,20 +29,17 @@ public class character  {
         return instance;
     }
 
-    public Map get_sp_res() {
+    public Map<String, Integer> get_sp_res() {
         return sp_resources;
     }
 
-    public void set_sp_res( Map sp_res ) {
+    public void set_sp_res( Map<String, Integer> sp_res ) {
         sp_resources = sp_res;
     }
 
-    public boolean isExternalStorageWritable() {
+    private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     public void flush( Context context ) {

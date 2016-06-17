@@ -126,7 +126,6 @@ public class main_screen extends AppCompatActivity {
         else if ( 12 < health_val && health_val <= 14 ) {
             t.setText( R.string.char_m_10 );
         }
-        return ;
     }
 
     public void radio_button_clicked(View view) {

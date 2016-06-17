@@ -26,10 +26,10 @@
         <activity
             android:name=".enter_name"
             android:label="@string/title_activity_enter_name"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".load_char"
-            android:label="@string/title_activity_load_char"></activity>
+            android:label="@string/title_activity_load_char"/>
     </application>
 
 </manifest>
