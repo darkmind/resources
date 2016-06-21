@@ -402,6 +402,9 @@ public class main_screen extends AppCompatActivity {
                 assert img != null;
                 img.setImageResource(R.drawable.ic_crop_din_black_24dp);
             }
+            ImageView img = (ImageView) findViewById(R.id.image_rage1);
+            assert img != null;
+            img.setImageResource(R.drawable.ic_check_box_black_24dp);
         }
         else {
             Integer perm_val = sp_resources.get( "perm_" + special_resource );
