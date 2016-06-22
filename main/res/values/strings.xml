@@ -20,4 +20,84 @@
     <string name="title_activity_enter_name">enter_name</string>
     <string name="name_hint">Введите имя персонажа</string>
     <string name="title_activity_load_char">load_char</string>
+
+    <string name="charlist_master_name_hint">Мастер</string>
+    <string name="charlist_chronic_name_hint">Хроника</string>
+
+    <string name="charlist_alignment_hint">Мировоззрение</string>
+    <string name="alignment_LG">Законопослушный-Добрый</string>
+    <string name="alignment_NG">Нейтральный-Добрый</string>
+    <string name="alignment_CG">Хаотичный-Добрый</string>
+    <string name="alignment_LN">Законопослушный-Нейтральный</string>
+    <string name="alignment_NN">Нейтральный</string>
+    <string name="alignment_CN">Хаотичный-Нейтральный</string>
+    <string name="alignment_LE">Законопослушный-Злой</string>
+    <string name="alignment_NE">Нейтральный-Злой</string>
+    <string name="alignment_CE">Хаотичный-Злой</string>
+
+    <string name="charlist_class_hint">Класс</string>
+    <string name="class_warrior">Воин</string>
+    <string name="class_mage">Маг</string>
+    <string name="class_priest">Жрец</string>
+
+    <string name="attrs">Атрибуты</string>
+
+    <string name="attr_physical">Физические</string>
+    <string name="attr_strength">Сила</string>
+    <string name="attr_dexterity">Ловкость</string>
+    <string name="attr_stamina">Выносливость</string>
+
+    <string name="attr_social">Социальные</string>
+    <string name="attr_charisma">Харизма</string>
+    <string name="attr_manipulation">Манипуляция</string>
+    <string name="attr_appearance">Внешность</string>
+
+    <string name="attr_mental">Ментальные</string>
+    <string name="attr_perception">Восприятие</string>
+    <string name="attr_intelligence">Интеллект</string>
+    <string name="attr_wits">Сообразительность</string>
+
+    <string name="abilities">Умения</string>
+
+    <string name="abl_talents">Таланты</string>
+    <string name="abl_alertness">Осторожность</string>
+    <string name="abl_athletics">Атлетика</string>
+    <string name="abl_brawl">Рукопашная</string>
+    <string name="abl_subterfuge">Хитрость</string>
+    <string name="abl_ambidexter">Амбидекстер</string>
+    <string name="abl_leadership">Лидерство</string>
+    <string name="abl_intimidation">Запугивание</string>
+    <string name="abl_persuasion">Убеждение</string>
+    <string name="abl_streetwise">Знание улиц</string>
+
+    <string name="abl_skills">Навыки</string>
+    <string name="abl_security">Безопасность</string>
+    <string name="abl_craft">Ремесло</string>
+    <string name="abl_blind_fight">Бой вслепую</string>
+    <string name="abl_etiquete">Этикет</string>
+    <string name="abl_firearms">Дальнобойное</string>
+    <string name="abl_survival">Выживание</string>
+    <string name="abl_melee">Холодное</string>
+    <string name="abl_herbalism">Гербализм</string>
+    <string name="abl_stealth">Скрытность</string>
+
+    <string name="abl_knowledges">Знания</string>
+    <string name="abl_alchemistry">Алхимия</string>
+    <string name="abl_logic">Логика</string>
+    <string name="abl_investigation">Расследование</string>
+    <string name="abl_religion">Религия</string>
+    <string name="abl_linguistics">Языки</string>
+    <string name="abl_medecine">Медицина</string>
+    <string name="abl_occult">Оккультизм</string>
+    <string name="abl_politics">Политика</string>
+    <string name="abl_science">Наука</string>
+
+    <string name="backgrounds">Дополнения</string>
+    <string name="bkg_allies">Союзники</string>
+    <string name="bkg_contacts">Связи</string>
+    <string name="bkg_fame">Слава</string>
+    <string name="bkg_resources">Ресурсы</string>
+    <string name="bkg_dignity">Титул</string>
+    <string name="bkg_artifact">Артефакт</string>
+
 </resources>
