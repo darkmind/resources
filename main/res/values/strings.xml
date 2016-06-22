@@ -24,6 +24,127 @@
     <string name="charlist_master_name_hint">Мастер</string>
     <string name="charlist_chronic_name_hint">Хроника</string>
 
+    <string-array name="alignments_array">
+        <item>Законопослушный-Добрый</item>
+        <item>Нейтральный-Добрый</item>
+        <item>Хаотичный-Добрый</item>
+        <item>Законопослушный-Нейтральный</item>
+        <item>Нейтральный</item>
+        <item>Хаотичный-Нейтральный</item>
+        <item>Законопослушный-Злой</item>
+        <item>Нейтральный-Злой</item>
+        <item>Хаотичный-Злой</item>
+    </string-array>
+
+    <string-array name="classes_array">
+        <item>Воин</item>
+        <item>Маг</item>
+        <item>Жрец</item>
+    </string-array>
+
+    <string name="charlist_gods_hint">Бог</string>
+    <string-array name="gods_array">
+        <item>Акади</item>
+        <item>Грумбар</item>
+        <item>Истишия</item>
+        <item>Келемвор</item>
+        <item>Коссут</item>
+        <item>Латандер</item>
+        <item>Мистра</item>
+        <item>Огма</item>
+        <item>Сайрик</item>
+        <item>Суне</item>
+        <item>Сильванус</item>
+        <item>Талос</item>
+        <item>Темпус</item>
+        <item>Тир</item>
+        <item>Чонти</item>
+        <item>Шар</item>
+        <item>Бэйн</item>
+    </string-array>
+
+    <string-array name="gods_lg_array">
+        <item>Келемвор</item>
+        <item>Коссут</item>
+        <item>Латандер</item>
+        <item>Мистра</item>
+        <item>Суне</item>
+        <item>Тир</item>
+        <item>Чонти</item>
+    </string-array>
+    <string-array name="gods_ng_array">
+        <item>Грумбар</item>
+        <item>Истишия</item>
+        <item>Коссут</item>
+        <item>Латандер</item>
+        <item>Мистра</item>
+        <item>Суне</item>
+        <item>Сильванус</item>
+        <item>Тир</item>
+        <item>Чонти</item>
+    </string-array>
+    <string-array name="gods_cg_array">
+        <item>Латандер</item>
+        <item>Мистра</item>
+        <item>Суне</item>
+        <item>Темпус</item>
+        <item>Чонти</item>
+    </string-array>
+    <string-array name="gods_ln_array">
+        <item>Акади</item>
+        <item>Грумбар</item>
+        <item>Истишия</item>
+        <item>Келемвор</item>
+        <item>Коссут</item>
+        <item>Мистра</item>
+        <item>Сильванус</item>
+        <item>Тир</item>
+        <item>Бэйн</item>
+    </string-array>
+    <string-array name="gods_nn_array">
+        <item>Грумбар</item>
+        <item>Истишия</item>
+        <item>Коссут</item>
+        <item>Огма</item>
+        <item>Сильванус</item>
+        <item>Чонти</item>
+    </string-array>
+    <string-array name="gods_cn_array">
+        <item>Акади</item>
+        <item>Грумбар</item>
+        <item>Истишия</item>
+        <item>Коссут</item>
+        <item>Сайрик</item>
+        <item>Суне</item>
+        <item>Сильванус</item>
+        <item>Талос</item>
+        <item>Темпус</item>
+    </string-array>
+    <string-array name="gods_le_array">
+        <item>Келемвор</item>
+        <item>Коссут</item>
+        <item>Мистра</item>
+        <item>Шар</item>
+        <item>Бэйн</item>
+    </string-array>
+    <string-array name="gods_ne_array">
+        <item>Акади</item>
+        <item>Грумбар</item>
+        <item>Истишия</item>
+        <item>Коссут</item>
+        <item>Сайрик</item>
+        <item>Сильванус</item>
+        <item>Талос</item>
+        <item>Шар</item>
+        <item>Бэйн</item>
+    </string-array>
+    <string-array name="gods_ce_array">
+        <item>Сайрик</item>
+        <item>Талос</item>
+        <item>Темпус</item>
+        <item>Шар</item>
+    </string-array>
+
     <string name="charlist_alignment_hint">Мировоззрение</string>
     <string name="alignment_LG">Законопослушный-Добрый</string>
     <string name="alignment_NG">Нейтральный-Добрый</string>
@@ -73,7 +194,7 @@
     <string name="abl_skills">Навыки</string>
     <string name="abl_security">Безопасность</string>
     <string name="abl_craft">Ремесло</string>
-    <string name="abl_blind_fight">Бой вслепую</string>
+    <string name="abl_blindfight">Бой вслепую</string>
     <string name="abl_etiquete">Этикет</string>
     <string name="abl_firearms">Дальнобойное</string>
     <string name="abl_survival">Выживание</string>
@@ -99,5 +220,51 @@
     <string name="bkg_resources">Ресурсы</string>
     <string name="bkg_dignity">Титул</string>
     <string name="bkg_artifact">Артефакт</string>
+
+    <string name="spheres">Сферы</string>
+    <string name="sph_time">Время</string>
+    <string name="sph_spirit">Дух</string>
+    <string name="sph_life">Жизнь</string>
+    <string name="sph_matter">Материя</string>
+    <string name="sph_prime">Основы</string>
+    <string name="sph_mind">Разум</string>
+    <string name="sph_connection">Связь</string>
+    <string name="sph_forces">Силы</string>
+    <string name="sph_entropy">Энтропия</string>
+
+    <string name="disciplines">Дисциплины</string>
+    <string name="dis_animalism">Анимализм</string>
+    <string name="dis_auspex">Прорицание</string>
+    <string name="dis_celerity">Стремительность</string>
+    <string name="dis_chimerstry">Химерия</string>
+    <string name="dis_daimoinon">Демонизм</string>
+    <string name="dis_dementation">Помешательство</string>
+    <string name="dis_dominate">Доминирование</string>
+    <string name="dis_fortitude">Стойкость</string>
+    <string name="dis_melpominee">Мельпомения</string>
+    <string name="dis_obfuscate">Затемнение</string>
+    <string name="dis_obtenebration">Власть над Тенью</string>
+    <string name="dis_potence">Могущество</string>
+    <string name="dis_presence">Очарование</string>
+    <string name="dis_protean">Превращение</string>
+    <string name="dis_quietus">Смертоносность</string>
+    <string name="dis_serpentis">Серпентис</string>
+    <string name="dis_temporis">Темпорис</string>
+    <string name="dis_thanatosis">Танатозис</string>
+    <string name="dis_vicissitude">Изменчивость</string>
+    <string name="dis_alchemistry">Алхимия</string>
+    <string name="dis_conveyance">Перемещение</string>
+    <string name="dis_enchantment">Зачарование</string>
+    <string name="dis_healing">Исцеление</string>
+    <string name="dis_hellfire">Адское Пламя</string>
+    <string name="dis_weathercraft">Управление Погодой</string>
+
+    <string name="gifts">Сферы</string>
+    <string name="gft_common">Общие</string>
+    <string name="gft_monk">Монах</string>
+    <string name="gft_warlord">Полководец</string>
+    <string name="gft_assassin">Ассасин</string>
+    <string name="gft_mageslayer">Убийца магов</string>
+    <string name="gft_shapeshifter">Оборотень</string>
 
 </resources>

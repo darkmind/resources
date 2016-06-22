@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight=".3"
+    android:visibility="gone"
+    android:id="@+id/gifts"
     android:background="#0099cc">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_skills"
+        android:text="@string/gifts"
         android:gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_security"
+        android:text="@string/gft_common"
         android:gravity="left"/>
     <LinearLayout
         android:orientation="horizontal"
@@ -22,38 +22,38 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_security1"
+            android:id="@+id/rb_gft_common1"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_security2"
+            android:id="@+id/rb_gft_common2"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_security3"
+            android:id="@+id/rb_gft_common3"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_security4"
+            android:id="@+id/rb_gft_common4"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_security5"
+            android:id="@+id/rb_gft_common5"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_craft"
+        android:text="@string/gft_monk"
         android:gravity="left"/>
     <LinearLayout
         android:orientation="horizontal"
@@ -62,38 +62,38 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_craft1"
+            android:id="@+id/rb_gft_monk1"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_craft2"
+            android:id="@+id/rb_gft_monk2"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_craft3"
+            android:id="@+id/rb_gft_monk3"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_craft4"
+            android:id="@+id/rb_gft_monk4"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_craft5"
+            android:id="@+id/rb_gft_monk5"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_blindfight"
+        android:text="@string/gft_warlord"
         android:gravity="left"/>
     <LinearLayout
         android:orientation="horizontal"
@@ -102,38 +102,38 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_blindfight1"
+            android:id="@+id/rb_gft_warlord1"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_blindfight2"
+            android:id="@+id/rb_gft_warlord2"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_blindfight3"
+            android:id="@+id/rb_gft_warlord3"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_blindfight4"
+            android:id="@+id/rb_gft_warlord4"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_blindfight5"
+            android:id="@+id/rb_gft_warlord5"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_etiquete"
+        android:text="@string/gft_assassin"
         android:gravity="left"/>
     <LinearLayout
         android:orientation="horizontal"
@@ -142,38 +142,38 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_etiquete1"
+            android:id="@+id/rb_gft_assassin1"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_etiquete2"
+            android:id="@+id/rb_gft_assassin2"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_etiquete3"
+            android:id="@+id/rb_gft_assassin3"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_etiquete4"
+            android:id="@+id/rb_gft_assassin4"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_etiquete5"
+            android:id="@+id/rb_gft_assassin5"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_firearms"
+        android:text="@string/gft_mageslayer"
         android:gravity="left"/>
     <LinearLayout
         android:orientation="horizontal"
@@ -182,38 +182,38 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_firearms1"
+            android:id="@+id/rb_gft_mageslayer1"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_firearms2"
+            android:id="@+id/rb_gft_mageslayer2"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_firearms3"
+            android:id="@+id/rb_gft_mageslayer3"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_firearms4"
+            android:id="@+id/rb_gft_mageslayer4"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_firearms5"
+            android:id="@+id/rb_gft_mageslayer5"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_survival"
+        android:text="@string/gft_shapeshifter"
         android:gravity="left"/>
     <LinearLayout
         android:orientation="horizontal"
@@ -222,151 +222,31 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_survival1"
+            android:id="@+id/rb_gft_shapeshifter1"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_survival2"
+            android:id="@+id/rb_gft_shapeshifter2"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_survival3"
+            android:id="@+id/rb_gft_shapeshifter3"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_survival4"
+            android:id="@+id/rb_gft_shapeshifter4"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/rb_abl_survival5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_melee"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_melee1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_melee2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_melee3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_melee4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_melee5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_herbalism"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_herbalism1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_herbalism2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_herbalism3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_herbalism4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_herbalism5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_stealth"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_stealth1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_stealth2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_stealth3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_stealth4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_stealth5"
+            android:id="@+id/rb_gft_shapeshifter5"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:onClick="radio_button_clicked"/>
     </LinearLayout>

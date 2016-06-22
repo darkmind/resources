@@ -35,20 +35,33 @@
         android:layout_width="wrap_content"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
-        <ListView
+        <Spinner
             android:id="@+id/charlist_alignment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
             android:hint="@string/charlist_alignment_hint"
             android:layout_centerVertical="true"
             android:gravity="left"/>
-        <ListView
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <Spinner
             android:id="@+id/charlist_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:hint="@string/charlist_class_hint"
+            android:layout_centerVertical="true"
+            android:gravity="right"/>
+        <Spinner
+            android:id="@+id/charlist_gods"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:hint="@string/charlist_gods_hint"
             android:layout_centerVertical="true"
             android:gravity="right"/>
     </LinearLayout>
