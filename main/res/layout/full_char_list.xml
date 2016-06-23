@@ -3,11 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/names"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/attrs"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,7 +19,15 @@
                 <include layout="@layout/abl_skills"/>
                 <include layout="@layout/abl_knowleges"/>
             </LinearLayout>
-            <include layout="@layout/backgrounds"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include layout="@layout/backgrounds"/>
+                <include layout="@layout/disciplines"/>
+                <include layout="@layout/gifts"/>
+                <include layout="@layout/spheres"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
