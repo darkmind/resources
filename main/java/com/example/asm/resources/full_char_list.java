@@ -141,13 +141,13 @@ public class full_char_list extends Activity {
 
     private void set_range( String group, String name, Integer number ) {
         for ( Integer i = 1; i <= number; i++ ){
-            mark_dots( group, name, number, R.drawable.ic_fiber_manual_record_black_24dp );
+            mark_dots( group, name, i, R.drawable.ic_fiber_manual_record_black_24dp );
         }
     }
 
     private void unset_upper_range( String group, String name, Integer number ) {
         for ( Integer i = (number + 1); i <= 5; i++ ){
-            mark_dots( group, name, number, R.drawable.ic_radio_button_unchecked_black_24dp );
+            mark_dots( group, name, i, R.drawable.ic_radio_button_unchecked_black_24dp );
         }
     }
 
