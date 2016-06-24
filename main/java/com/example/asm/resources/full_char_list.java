@@ -1,12 +1,12 @@
 package com.example.asm.resources;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -15,7 +15,11 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class full_char_list extends Activity {
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+
+
+public class full_char_list extends FragmentActivity {
     View gifts;
     View spheres;
     View disciplines;
@@ -33,7 +37,10 @@ public class full_char_list extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.full_char_list);
+        setContentView(R.layout.main_swipe);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(new SampleFragmentPagerAdapter());
 
         gifts       = findViewById(R.id.gifts);
         spheres     = findViewById(R.id.spheres);
@@ -299,4 +306,45 @@ public class full_char_list extends Activity {
             disc.setVisibility(View.VISIBLE);
         }
     }
+
+
+    public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+        final int PAGE_COUNT = 2;
+
+        public SampleFragmentPagerAdapter() {
+            super(getSupportFragmentManager());
+        }
+
+        @Override
+        public int getCount() {
+            return PAGE_COUNT;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return PageFragment.create(position + 1);
+        }
+    }
+
+
+    public static class PageFragment extends Fragment {
+        public static final String ARG_PAGE = "ARG_PAGE";
+
+        private int mPage;
+
+        public static PageFragment create(int page) {
+            Bundle args = new Bundle();
+            args.putInt(ARG_PAGE, page);
+            PageFragment fragment = new PageFragment();
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mPage = getArguments().getInt(ARG_PAGE);
+        }
+    }
+
 }

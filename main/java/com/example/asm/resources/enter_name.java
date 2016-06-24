@@ -36,7 +36,7 @@ public class enter_name extends Activity {
     }
 
     private void go_main_screen() {
-        Intent intent = new Intent(this, main_screen.class);
+        Intent intent = new Intent(this, full_char_list.class);
         startActivity(intent);
     }
 }
