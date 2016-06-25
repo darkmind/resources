@@ -8,28 +8,16 @@
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/charlist_char_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_weight=".5"
             android:text="Name"/>
-        <EditText
-            android:id="@+id/charlist_master_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/charlist_master_name_hint"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:inputType="text"
-            android:imeOptions="actionDone"/>
-        <EditText
+        <TextView
             android:id="@+id/charlist_chronic_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/charlist_chronic_name_hint"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:inputType="text"
-            android:imeOptions="actionDone"/>
+            android:layout_weight=".5"
+            android:text="Chronic"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

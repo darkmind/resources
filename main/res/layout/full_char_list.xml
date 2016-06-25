@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:onClick="switch_screen"
     android:layout_height="match_parent">
     <include layout="@layout/names"/>
     <ScrollView
@@ -9,25 +10,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="switch_screen"
             android:orientation="vertical">
             <include layout="@layout/attributes"/>
+            <include layout="@layout/abilities"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <include layout="@layout/abl_talents"/>
-                <include layout="@layout/abl_skills"/>
-                <include layout="@layout/abl_knowleges"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:onClick="switch_screen"
                 android:orientation="horizontal">
                 <include layout="@layout/backgrounds"/>
                 <include layout="@layout/disciplines"/>
                 <include layout="@layout/gifts"/>
                 <include layout="@layout/spheres"/>
             </LinearLayout>
+            <include layout="@layout/activity_main_screen"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

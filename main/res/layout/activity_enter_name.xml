@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
+    android:orientation="vertical"
     tools:context="com.example.asm.resources.enter_name">
     <EditText
         android:id="@+id/char_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".3"
         android:hint="@string/name_hint"
         android:layout_centerVertical="true"
         android:gravity="center"
         android:inputType="text"
         android:imeOptions="actionDone"/>
-</RelativeLayout>
+    <EditText
+        android:id="@+id/chronic_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".3"
+        android:hint="@string/charlist_chronic_name_hint"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:inputType="text"
+        android:imeOptions="actionDone"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".3"
+        android:gravity="center"
+        android:text="@string/create_character"
+        android:onClick="create_character"/>
+</LinearLayout>

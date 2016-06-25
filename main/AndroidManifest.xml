@@ -23,10 +23,6 @@
             android:label="full_char_list">
         </activity>
         <activity
-            android:name=".main_screen"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"></activity>
-        <activity
             android:name=".enter_name"
             android:label="@string/title_activity_enter_name"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

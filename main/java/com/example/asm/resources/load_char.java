@@ -61,7 +61,7 @@ public class load_char extends ListActivity {
     }
 
     private void load_char_file ( String filename ){
-        Context context = this;
+/*        Context context = this;
         Properties properties = new Properties();
         FileInputStream handler;
         try {
@@ -71,12 +71,14 @@ public class load_char extends ListActivity {
                 Integer val = Integer.parseInt( properties.get(key).toString() );
                 sp_res.put(key, val);
             }
-            character char_o = character.getInstance();
-            char_o.char_name = filename;
+            String chronic_name = sp_res.get( (String) "chronic_name" );
+            character char_o = new character( filename, "" );
             char_o.set_sp_res( sp_res );
 
-            Intent intent = new Intent(this, main_screen.class);
+            Intent intent = new Intent(this, full_char_list.class);
             startActivity(intent);
+            intent.putExtra( "CHAR", char_o );
+            finish();
         }
         catch ( FileNotFoundException e ) {
             throw new RuntimeException( "File not found" );
@@ -84,5 +86,6 @@ public class load_char extends ListActivity {
         catch ( IOException e ) {
             throw new RuntimeException( "Can't read file" );
         }
+        */
     }
 }

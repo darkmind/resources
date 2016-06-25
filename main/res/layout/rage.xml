@@ -29,61 +29,61 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:id="@+id/radio_button_rage1"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radio_button_rage2"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radio_button_rage3"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2"
             android:checked="false" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radio_button_rage4"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radio_button_rage5"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radio_button_rage6"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:id="@+id/radio_button_rage7"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radio_button_rage8"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radio_button_rage9"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:layout_weight=".2" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="radio_button_clicked"
+            android:onClick="sp_radio_button_clicked"
             android:id="@+id/radio_button_rage10"
             android:layout_weight=".2" />
     </LinearLayout>
