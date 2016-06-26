@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -45,6 +46,8 @@ public class full_char_list extends AppCompatActivity {
             "dis_quietus", "dis_serpentis", "dis_temporis", "dis_thanatosis", "dis_vicissitude",
             "dis_alchemistry", "dis_conveyance", "dis_enchantment", "dis_healing", "dis_hellfire",
             "dis_weathercraft" };
+
+    private String[] resources = { "rage", "faith", "wp" };
 
     public void switch_screen(View view) {
         if (mVisible) {
@@ -101,6 +104,11 @@ public class full_char_list extends AppCompatActivity {
 
         fill_map();
 
+        TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
+        attr_helper.setText( Arrays.toString(char_o.attr) );
+        TextView abl_helper = (TextView) findViewById(R.id.abl_show_helper);
+        abl_helper.setText( Arrays.toString(char_o.abl) );
+
         gifts       = findViewById(R.id.gifts);
         spheres     = findViewById(R.id.spheres);
         disciplines = findViewById(R.id.disciplines);
@@ -152,18 +160,21 @@ public class full_char_list extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String c_class = spinner_cl.getSelectedItem().toString();
                 if( c_class.equals("Воин") ) {
+                    show_sp("rage");
                     gifts.setVisibility(View.VISIBLE);
                     spheres.setVisibility(View.GONE);
                     disciplines.setVisibility(View.GONE);
                     spinner_gd.setVisibility(View.GONE);
                 }
                 else if( c_class.equals("Маг") ) {
+                    show_sp("wp");
                     gifts.setVisibility(View.GONE);
                     spheres.setVisibility(View.VISIBLE);
                     disciplines.setVisibility(View.GONE);
                     spinner_gd.setVisibility(View.GONE);
                 }
                 else if( c_class.equals("Жрец") ) {
+                    show_sp("faith");
                     gifts.setVisibility(View.GONE);
                     spheres.setVisibility(View.GONE);
                     disciplines.setVisibility(View.VISIBLE);
@@ -185,6 +196,32 @@ public class full_char_list extends AppCompatActivity {
         return true;
     }
 
+    private void show_sp( String resource ) {
+        String id_ref;
+        int resID;
+        CheckBox res;
+        View sp_view;
+
+        for ( String r : resources ) {
+            id_ref = String.format(Locale.getDefault(), "checkBox_%s", r);
+            resID  = getResources().getIdentifier(id_ref, "id", getPackageName());
+            res    = (CheckBox) findViewById(resID);
+
+            id_ref  = String.format(Locale.getDefault(), "sp_%s", r);
+            resID   = getResources().getIdentifier(id_ref, "id", getPackageName());
+            sp_view = findViewById(resID);
+
+            if ( r.equals(resource) ) {
+                sp_view.setVisibility(View.VISIBLE);
+                res.setChecked(false);
+            }
+            else {
+                sp_view.setVisibility(View.GONE);
+                res.setChecked(true);
+            }
+        }
+    }
+
     public void radio_button_clicked(View view) {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("_(\\p{Lower}+)_(\\p{Lower}+)(\\d+)$");
@@ -201,14 +238,73 @@ public class full_char_list extends AppCompatActivity {
             throw new RuntimeException( "Can't fine resource and value in " + IdAsString );
         }
 
-        if( save_new_values( group, name, number )) {
+        if ( save_new_values( group, name, number )) {
             set_range( group, name, number );
             unset_upper_range( group, name, number );
         }
     }
 
     private boolean save_new_values( String group, String name, Integer number ) {
-        return true;
+        boolean rc = false;
+        Integer prev_num;
+        Integer diff_num = 0;
+        if ( group.equals("attr") ) {
+            if ( name.equals("strength") || name.equals("dexterity") || name.equals("stamina") ) {
+                if ( char_o.main_attr.equals("NULL") ) {
+                    char_o.main_attr = "phis";
+                }
+                else if ( char_o.scnd_attr.equals("NULL") ) {
+                    char_o.main_attr = "phis";
+                }
+                else if ( char_o.thrd_attr.equals("NULL") ) {
+                    char_o.main_attr = "phis";
+                }
+
+                prev_num = char_o.phis_attr.get(name);
+                rc = check_diff(number - prev_num);
+                if ( rc ) {
+                    char_o.phis_attr.put(name, number);
+                }
+            }
+            else if ( name.equals("charisma") || name.equals("manipulation") || name.equals("appearance") ) {
+                prev_num = char_o.soc_attr.get(name);
+                rc = check_diff(number - prev_num);
+                if ( rc ) {
+                    char_o.soc_attr.put(name, number);
+                }
+            }
+            else {
+                prev_num = char_o.men_attr.get(name);
+                rc = check_diff(number - prev_num);
+                if ( rc ) {
+                    char_o.soc_attr.put(name, number);
+                }
+            }
+        }
+        return rc;
+    }
+
+    private boolean check_diff ( Integer diff ) {
+        if ( char_o.attr[0] - diff >= 0 ) {
+            char_o.attr[0] -= diff;
+            TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
+            attr_helper.setText( Arrays.toString(char_o.attr) );
+            return true;
+        }
+        else if ( char_o.attr[1] - diff >= 0 ) {
+            char_o.attr[1] -= diff;
+            TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
+            attr_helper.setText( Arrays.toString(char_o.attr) );
+            return true;
+        }
+        else if ( char_o.attr[2] - diff >= 0 ) {
+            char_o.attr[2] -= diff;
+            TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
+            attr_helper.setText( Arrays.toString(char_o.attr) );
+            return true;
+        }
+
+        return false;
     }
 
     private void set_range( String group, String name, Integer number ) {
