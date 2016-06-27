@@ -96,11 +96,10 @@ public class full_char_list extends AppCompatActivity {
 
         String c_name = char_o.char_name;
         TextView name = (TextView) findViewById(R.id.charlist_char_name);
-        name.setText( "Имя игрока: " + c_name );
-
+        name.setText( String.format(Locale.getDefault(), "Имя игрока: %s", c_name) );
         String cr_name = char_o.chronic_name;
         TextView chronic = (TextView) findViewById(R.id.charlist_chronic_name);
-        chronic.setText(  "Хроника: " + cr_name );
+        chronic.setText( String.format(Locale.getDefault(), "Хроника: %s", cr_name) );
 
         fill_map();
 
