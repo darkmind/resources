@@ -201,13 +201,13 @@ public class character implements Serializable {
                 }
             }
         }
+        if (group.equals("button")) {
+            sp_resources.put( "perm_" + name, number );
+        }
+
         return number;
     }
 
-
-    public Map<String, Integer> get_sp_res() {
-        return sp_resources;
-    }
 
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();

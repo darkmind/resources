@@ -495,37 +495,21 @@ public class full_char_list extends AppCompatActivity {
             }
         }
 
-        // calculate health penalty
-        TextView t = (TextView)findViewById(R.id.special_limit_health);
-        t.setTextColor( Color.RED );
-        Integer pen = char_o.get_health_pen();
-        switch (pen) {
-            case 0:
-                t.setTextColor(Color.parseColor("#33b5e5"));
-                t.setText(R.string.char_0);
-                break;
-            case 1:
-                t.setText(R.string.char_m_1);
-                break;
-            case 2:
-                t.setText(R.string.char_m_2);
-                break;
-            case 5:
-                t.setText(R.string.char_m_5);
-                break;
-            case 10:
-                t.setText(R.string.char_m_10);
-                break;
-        }
+        set_health_pen();
+    }
+
+    private void mark_checkboxes( String name, int id, int pic ) {
+        String id_ref = String.format(Locale.getDefault(), "image_%s%d", name, id);
+        int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+        ImageView img = (ImageView) findViewById(resID);
+        assert img != null;
+        img.setImageResource(pic);
+
     }
 
     private void set_free_range( String name, int id ) {
-        while( id > 0 ){
-            String id_ref = String.format(Locale.getDefault(), "image_%s%d", name, id);
-            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-            ImageView img = (ImageView) findViewById(resID);
-            assert img != null;
-            img.setImageResource(R.drawable.ic_check_box_black_24dp);
+        while ( id > 0 ) {
+            mark_checkboxes( name, id, R.drawable.ic_check_box_black_24dp );
             id--;
         }
     }
@@ -537,11 +521,7 @@ public class full_char_list extends AppCompatActivity {
         }
         id++;
         while( id <= limit ) {
-            String id_ref = String.format(Locale.getDefault(), "image_%s%d", name, id);
-            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-            ImageView img = (ImageView) findViewById(resID);
-            assert img != null;
-            img.setImageResource(R.drawable.ic_crop_din_black_24dp);
+            mark_checkboxes( name, id, R.drawable.ic_crop_din_black_24dp );
             id++;
         }
     }
@@ -568,50 +548,16 @@ public class full_char_list extends AppCompatActivity {
                 return ;
             }
             char_o.sp_resources.put(special_resource, sp_value);
-
-            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
-            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-            ImageView img = (ImageView) findViewById(resID);
-            assert img != null;
-            img.setImageResource(R.drawable.ic_check_box_black_24dp);
-
-            TextView t = (TextView)findViewById(R.id.special_limit_health);
-            assert t != null;
-            if ( sp_value <= 2 ) {
-                return ;
-            }
-            else if ( 2 < sp_value && sp_value < 7 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_1 );
-                return ;
-            }
-            else if ( 6 < sp_value && sp_value < 11 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_2 );
-                return ;
-            }
-            else if ( 10 < sp_value && sp_value < 13 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_5 );
-                return ;
-            }
-            else if ( 12 < sp_value && sp_value <= 14 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_10 );
-                return ;
-            }
+            mark_checkboxes( special_resource, sp_value, R.drawable.ic_check_box_black_24dp );
+            set_health_pen();
+            return ;
         }
 
         Integer limit = char_o.sp_resources.get( "perm_" + special_resource );
         if ( (special_resource.equals("faith")) || (sp_value < limit) ) {
             sp_value++;
             char_o.sp_resources.put(special_resource, sp_value);
-
-            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
-            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-            ImageView img = (ImageView) findViewById(resID);
-            assert img != null;
-            img.setImageResource(R.drawable.ic_check_box_black_24dp);
+            mark_checkboxes( special_resource, sp_value, R.drawable.ic_check_box_black_24dp );
         }
     }
 
@@ -633,54 +579,43 @@ public class full_char_list extends AppCompatActivity {
             if ( sp_value == 0 ) {
                 return ;
             }
-
-            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
-            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-            ImageView img = (ImageView) findViewById(resID);
-            assert img != null;
-            img.setImageResource(R.drawable.ic_crop_din_black_24dp);
-
+            mark_checkboxes( special_resource, sp_value, R.drawable.ic_crop_din_black_24dp );
             sp_value--;
             char_o.sp_resources.put(special_resource, sp_value);
-
-            TextView t = (TextView)findViewById(R.id.special_limit_health);
-            assert t != null;
-            if ( sp_value <= 2 ) {
-                t.setTextColor( Color.parseColor("#33b5e5") );
-                t.setText( R.string.char_0 );
-                return ;
-            }
-            else if ( 2 < sp_value && sp_value < 7 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_1 );
-                return ;
-            }
-            else if ( 6 < sp_value && sp_value < 11 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_2 );
-                return ;
-            }
-            else if ( 10 < sp_value && sp_value < 13 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_5 );
-                return ;
-            }
-            else if ( 12 < sp_value && sp_value <= 14 ) {
-                t.setTextColor(Color.RED);
-                t.setText( R.string.char_m_10 );
-                return ;
-            }
+            set_health_pen();
+            return ;
         }
 
         if ( sp_value > 0 ) {
-            String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
-            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-            ImageView img = (ImageView) findViewById(resID);
-            assert img != null;
-            img.setImageResource(R.drawable.ic_crop_din_black_24dp);
-
+            mark_checkboxes( special_resource, sp_value, R.drawable.ic_crop_din_black_24dp );
             sp_value--;
             char_o.sp_resources.put(special_resource, sp_value);
+
+        }
+    }
+
+    private void set_health_pen() {
+        TextView t = (TextView)findViewById(R.id.special_limit_health);
+        assert t != null;
+        t.setTextColor( Color.RED );
+        Integer pen = char_o.get_health_pen();
+        switch (pen) {
+            case 0:
+                t.setTextColor(Color.parseColor("#33b5e5"));
+                t.setText(R.string.char_0);
+                break;
+            case 1:
+                t.setText(R.string.char_m_1);
+                break;
+            case 2:
+                t.setText(R.string.char_m_2);
+                break;
+            case 5:
+                t.setText(R.string.char_m_5);
+                break;
+            case 10:
+                t.setText(R.string.char_m_10);
+                break;
         }
     }
 
@@ -705,11 +640,7 @@ public class full_char_list extends AppCompatActivity {
             t.setText( "0" );
 
             while ( sp_value > 0 ) {
-                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, sp_value);
-                int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-                ImageView img = (ImageView) findViewById(resID);
-                assert img != null;
-                img.setImageResource(R.drawable.ic_crop_din_black_24dp);
+                mark_checkboxes( special_resource, sp_value, R.drawable.ic_crop_din_black_24dp );
                 sp_value--;
             }
             char_o.sp_resources.put(special_resource, 0);
@@ -719,33 +650,19 @@ public class full_char_list extends AppCompatActivity {
         if ( special_resource.equals("rage") ) {
             char_o.sp_resources.put(special_resource, 1);
             for ( Integer i = 2; i <= 10; i++ ) {
-                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, i);
-                int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-                ImageView img = (ImageView) findViewById(resID);
-                assert img != null;
-                img.setImageResource(R.drawable.ic_crop_din_black_24dp);
+                mark_checkboxes( special_resource, i, R.drawable.ic_crop_din_black_24dp );
             }
-            ImageView img = (ImageView) findViewById(R.id.image_rage1);
-            assert img != null;
-            img.setImageResource(R.drawable.ic_check_box_black_24dp);
+            mark_checkboxes( special_resource, 1, R.drawable.ic_check_box_black_24dp );
         }
         else {
             Integer perm_val = char_o.sp_resources.get( "perm_" + special_resource );
             char_o.sp_resources.put( special_resource, perm_val );
             for ( Integer i = 1; i <= perm_val; i++ ) {
-                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, i);
-                int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-                ImageView img = (ImageView) findViewById(resID);
-                assert img != null;
-                img.setImageResource(R.drawable.ic_check_box_black_24dp);
+                mark_checkboxes( special_resource, i, R.drawable.ic_check_box_black_24dp );
             }
             perm_val++;
             for ( Integer i = perm_val; i <= 10; i++ ) {
-                String id_ref = String.format(Locale.getDefault(), "image_%s%d", special_resource, i);
-                int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-                ImageView img = (ImageView) findViewById(resID);
-                assert img != null;
-                img.setImageResource(R.drawable.ic_crop_din_black_24dp);
+                mark_checkboxes( special_resource, i, R.drawable.ic_crop_din_black_24dp );
             }
         }
     }
