@@ -103,6 +103,8 @@ public class full_char_list extends AppCompatActivity {
         attr_helper.setText( Arrays.toString(char_o.attr) );
         TextView abl_helper = (TextView) findViewById(R.id.abl_show_helper);
         abl_helper.setText( Arrays.toString(char_o.abl) );
+        TextView bkg_helper = (TextView) findViewById(R.id.bkg_show_helper);
+        bkg_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.bkg.get("gen_points")));
 
         gifts       = findViewById(R.id.gifts);
         spheres     = findViewById(R.id.spheres);
@@ -245,6 +247,10 @@ public class full_char_list extends AppCompatActivity {
         else if ( group.equals("abl") ) {
             TextView abl_helper = (TextView) findViewById(R.id.abl_show_helper);
             abl_helper.setText( Arrays.toString(char_o.abl) );
+        }
+        else if ( group.equals("bkg") ) {
+            TextView helper = (TextView) findViewById(R.id.bkg_show_helper);
+            helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.bkg.get("gen_points")) );
         }
     }
 
@@ -456,6 +462,9 @@ public class full_char_list extends AppCompatActivity {
 
         // backgrounds
         for ( String resource : char_o.bkg.keySet() ) {
+            if ( resource.equals("gen_points") ) {
+                continue;
+            }
             val = char_o.bkg.get(resource);
             set_range( "bkg", resource, val );
             unset_upper_range( "bkg", resource, val );
