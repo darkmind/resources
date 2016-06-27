@@ -16,16 +16,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -244,6 +241,10 @@ public class full_char_list extends AppCompatActivity {
         if ( group.equals("attr") ) {
             TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
             attr_helper.setText( Arrays.toString(char_o.attr) );
+        }
+        else if ( group.equals("abl") ) {
+            TextView abl_helper = (TextView) findViewById(R.id.abl_show_helper);
+            abl_helper.setText( Arrays.toString(char_o.abl) );
         }
     }
 
