@@ -32,22 +32,22 @@ import java.util.regex.Pattern;
 public class full_char_list extends AppCompatActivity {
     private boolean mVisible;
 
-    View gifts;
-    View spheres;
-    View disciplines;
-    Spinner spinner_gd;
-    character char_o;
+    private View gifts;
+    private View spheres;
+    private View disciplines;
+    private Spinner spinner_gd;
+    private character char_o;
     private Map<String, Integer> sp_resources = new HashMap<>();
-    ArrayAdapter<CharSequence> adapter_gd;
+    private ArrayAdapter<CharSequence> adapter_gd;
 
-    private String[] discs = { "dis_animalism", "dis_auspex", "dis_celerity", "dis_chimerstry",
+    private final String[] discs = { "dis_animalism", "dis_auspex", "dis_celerity", "dis_chimerstry",
             "dis_daimoinon", "dis_dementation", "dis_dominate", "dis_fortitude", "dis_melpominee",
             "dis_obfuscate", "dis_obtenebration", "dis_potence", "dis_presence", "dis_protean",
             "dis_quietus", "dis_serpentis", "dis_temporis", "dis_thanatosis", "dis_vicissitude",
             "dis_alchemistry", "dis_conveyance", "dis_enchantment", "dis_healing", "dis_hellfire",
             "dis_weathercraft" };
 
-    private String[] resources = { "rage", "faith", "wp" };
+    private final String[] resources = { "rage", "faith", "wp" };
 
     public void switch_screen(View view) {
         if (mVisible) {
@@ -158,26 +158,28 @@ public class full_char_list extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String c_class = spinner_cl.getSelectedItem().toString();
-                if( c_class.equals("Воин") ) {
-                    show_sp("rage");
-                    gifts.setVisibility(View.VISIBLE);
-                    spheres.setVisibility(View.GONE);
-                    disciplines.setVisibility(View.GONE);
-                    spinner_gd.setVisibility(View.GONE);
-                }
-                else if( c_class.equals("Маг") ) {
-                    show_sp("wp");
-                    gifts.setVisibility(View.GONE);
-                    spheres.setVisibility(View.VISIBLE);
-                    disciplines.setVisibility(View.GONE);
-                    spinner_gd.setVisibility(View.GONE);
-                }
-                else if( c_class.equals("Жрец") ) {
-                    show_sp("faith");
-                    gifts.setVisibility(View.GONE);
-                    spheres.setVisibility(View.GONE);
-                    disciplines.setVisibility(View.VISIBLE);
-                    spinner_gd.setVisibility(View.VISIBLE);
+                switch (c_class) {
+                    case "Воин":
+                        show_sp("rage");
+                        gifts.setVisibility(View.VISIBLE);
+                        spheres.setVisibility(View.GONE);
+                        disciplines.setVisibility(View.GONE);
+                        spinner_gd.setVisibility(View.GONE);
+                        break;
+                    case "Маг":
+                        show_sp("wp");
+                        gifts.setVisibility(View.GONE);
+                        spheres.setVisibility(View.VISIBLE);
+                        disciplines.setVisibility(View.GONE);
+                        spinner_gd.setVisibility(View.GONE);
+                        break;
+                    case "Жрец":
+                        show_sp("faith");
+                        gifts.setVisibility(View.GONE);
+                        spheres.setVisibility(View.GONE);
+                        disciplines.setVisibility(View.VISIBLE);
+                        spinner_gd.setVisibility(View.VISIBLE);
+                        break;
                 }
             }
 
@@ -267,41 +269,43 @@ public class full_char_list extends AppCompatActivity {
     }
 
     private void fix_gods_list( String algmnt ) {
-        if( algmnt.equals("Законопослушный-Добрый") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_lg_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Нейтральный-Добрый") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_ng_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Хаотичный-Добрый") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_cg_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Законопослушный-Нейтральный") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_ln_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Нейтральный") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_nn_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Хаотичный-Нейтральный") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_cn_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Законопослушный-Злой") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_le_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Нейтральный-Злой") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_ne_array, android.R.layout.simple_spinner_item);
-        }
-        else if( algmnt.equals("Хаотичный-Злой") ) {
-            adapter_gd = ArrayAdapter.createFromResource(this,
-                    R.array.gods_ce_array, android.R.layout.simple_spinner_item);
+        switch (algmnt) {
+            case "Законопослушный-Добрый":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_lg_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Нейтральный-Добрый":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_ng_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Хаотичный-Добрый":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_cg_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Законопослушный-Нейтральный":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_ln_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Нейтральный":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_nn_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Хаотичный-Нейтральный":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_cn_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Законопослушный-Злой":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_le_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Нейтральный-Злой":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_ne_array, android.R.layout.simple_spinner_item);
+                break;
+            case "Хаотичный-Злой":
+                adapter_gd = ArrayAdapter.createFromResource(this,
+                        R.array.gods_ce_array, android.R.layout.simple_spinner_item);
+                break;
         }
         adapter_gd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_gd.setAdapter(adapter_gd);
@@ -314,89 +318,91 @@ public class full_char_list extends AppCompatActivity {
             disc.setVisibility(View.GONE);
         }
 
-        List<String> g_discs = new ArrayList<String>();
-        if( god_name.equals("Акади") ) {
-            g_discs.add( "dis_celerity" );
-            g_discs.add( "dis_conveyance" );
-            g_discs.add( "dis_weathercraft" );
-        }
-        else if( god_name.equals("Грумбар") ) {
-            g_discs.add( "dis_fortitude" );
-            g_discs.add( "dis_temporis" );
-        }
-        else if( god_name.equals("Истишия") ) {
-            g_discs.add( "dis_potence" );
-            g_discs.add( "dis_alchemistry" );
-            g_discs.add( "dis_melpominee" );
-        }
-        else if( god_name.equals("Келемвор") ) {
-            g_discs.add( "dis_conveyance" );
-            g_discs.add( "dis_auspex" );
-            g_discs.add( "dis_temporis" );
-        }
-        else if( god_name.equals("Коссут") ) {
-            g_discs.add( "dis_potence" );
-            g_discs.add( "dis_hellfire" );
-            g_discs.add( "dis_dominate" );
-        }
-        else if( god_name.equals("Латандер") ) {
-            g_discs.add( "dis_healing" );
-            g_discs.add( "dis_potence" );
-            g_discs.add( "dis_presence" );
-        }
-        else if( god_name.equals("Мистра") ) {
-            g_discs.add( "dis_hellfire" );
-            g_discs.add( "dis_alchemistry" );
-            g_discs.add( "dis_enchantment" );
-        }
-        else if( god_name.equals("Огма") ) {
-            g_discs.add( "dis_conveyance" );
-            g_discs.add( "dis_alchemistry" );
-            g_discs.add( "dis_enchantment" );
-        }
-        else if( god_name.equals("Сайрик") ) {
-            g_discs.add( "dis_dominate" );
-            g_discs.add( "dis_chimerstry" );
-            g_discs.add( "dis_dementation" );
-        }
-        else if( god_name.equals("Суне") ) {
-            g_discs.add( "dis_presence" );
-            g_discs.add( "dis_healing" );
-            g_discs.add( "dis_celerity" );
-        }
-        else if( god_name.equals("Сильванус") ) {
-            g_discs.add( "dis_animalism" );
-            g_discs.add( "dis_protean" );
-            g_discs.add( "dis_serpentis" );
-        }
-        else if( god_name.equals("Талос") ) {
-            g_discs.add( "dis_hellfire" );
-            g_discs.add( "dis_weathercraft" );
-            g_discs.add( "dis_dominate" );
-        }
-        else if( god_name.equals("Темпус") ) {
-            g_discs.add( "dis_potence" );
-            g_discs.add( "dis_healing" );
-            g_discs.add( "dis_fortitude" );
-        }
-        else if( god_name.equals("Тир") ) {
-            g_discs.add( "dis_auspex" );
-            g_discs.add( "dis_fortitude" );
-        }
-        else if( god_name.equals("Чонти") ) {
-            g_discs.add( "dis_weathercraft" );
-            g_discs.add( "dis_healing" );
-            g_discs.add( "dis_animalism" );
-        }
-        else if( god_name.equals("Шар") ) {
-            g_discs.add( "dis_dominate" );
-            g_discs.add( "dis_obtenebration" );
-            g_discs.add( "dis_obfuscate" );
-        }
-        else if( god_name.equals("Бэйн") ) {
-            g_discs.add( "dis_quietus" );
-            g_discs.add( "dis_dominate" );
-            g_discs.add( "dis_daimoinon" );
+        List<String> g_discs = new ArrayList<>();
+        switch (god_name) {
+            case "Акади":
+                g_discs.add("dis_celerity");
+                g_discs.add("dis_conveyance");
+                g_discs.add("dis_weathercraft");
+                break;
+            case "Грумбар":
+                g_discs.add("dis_fortitude");
+                g_discs.add("dis_temporis");
+                break;
+            case "Истишия":
+                g_discs.add("dis_potence");
+                g_discs.add("dis_alchemistry");
+                g_discs.add("dis_melpominee");
+                break;
+            case "Келемвор":
+                g_discs.add("dis_conveyance");
+                g_discs.add("dis_auspex");
+                g_discs.add("dis_temporis");
+                break;
+            case "Коссут":
+                g_discs.add("dis_potence");
+                g_discs.add("dis_hellfire");
+                g_discs.add("dis_dominate");
+                break;
+            case "Латандер":
+                g_discs.add("dis_healing");
+                g_discs.add("dis_potence");
+                g_discs.add("dis_presence");
+                break;
+            case "Мистра":
+                g_discs.add("dis_hellfire");
+                g_discs.add("dis_alchemistry");
+                g_discs.add("dis_enchantment");
+                break;
+            case "Огма":
+                g_discs.add("dis_conveyance");
+                g_discs.add("dis_alchemistry");
+                g_discs.add("dis_enchantment");
+                break;
+            case "Сайрик":
+                g_discs.add("dis_dominate");
+                g_discs.add("dis_chimerstry");
+                g_discs.add("dis_dementation");
+                break;
+            case "Суне":
+                g_discs.add("dis_presence");
+                g_discs.add("dis_healing");
+                g_discs.add("dis_celerity");
+                break;
+            case "Сильванус":
+                g_discs.add("dis_animalism");
+                g_discs.add("dis_protean");
+                g_discs.add("dis_serpentis");
+                break;
+            case "Талос":
+                g_discs.add("dis_hellfire");
+                g_discs.add("dis_weathercraft");
+                g_discs.add("dis_dominate");
+                break;
+            case "Темпус":
+                g_discs.add("dis_potence");
+                g_discs.add("dis_healing");
+                g_discs.add("dis_fortitude");
+                break;
+            case "Тир":
+                g_discs.add("dis_auspex");
+                g_discs.add("dis_fortitude");
+                break;
+            case "Чонти":
+                g_discs.add("dis_weathercraft");
+                g_discs.add("dis_healing");
+                g_discs.add("dis_animalism");
+                break;
+            case "Шар":
+                g_discs.add("dis_dominate");
+                g_discs.add("dis_obtenebration");
+                g_discs.add("dis_obfuscate");
+                break;
+            case "Бэйн":
+                g_discs.add("dis_quietus");
+                g_discs.add("dis_dominate");
+                g_discs.add("dis_daimoinon");
+                break;
         }
 
         for( String d: g_discs ) {

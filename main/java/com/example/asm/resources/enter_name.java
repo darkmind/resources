@@ -1,21 +1,19 @@
 package com.example.asm.resources;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class enter_name extends Activity {
-    String char_name;
-    String chronic_name;
-    EditText enter_char_name;
-    EditText enter_chronic_name;
+    private String char_name;
+    private String chronic_name;
+    private EditText enter_char_name;
+    private EditText enter_chronic_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -16,28 +16,28 @@ public class character implements Serializable {
 
     private Map<String, Integer> sp_resources = new HashMap<>();
 
-    public Map<String, Integer> phis_attr = new HashMap<>();
-    public Map<String, Integer> soc_attr  = new HashMap<>();
-    public Map<String, Integer> men_attr  = new HashMap<>();
+    public final Map<String, Integer> phis_attr = new HashMap<>();
+    public final Map<String, Integer> soc_attr  = new HashMap<>();
+    public final Map<String, Integer> men_attr  = new HashMap<>();
 
-    public Map<String, Integer> tal_abl = new HashMap<>();
-    public Map<String, Integer> skl_abl = new HashMap<>();
-    public Map<String, Integer> kng_abl = new HashMap<>();
+    public final Map<String, Integer> tal_abl = new HashMap<>();
+    public final Map<String, Integer> skl_abl = new HashMap<>();
+    public final Map<String, Integer> kng_abl = new HashMap<>();
 
-    private Map<String, Integer> bkg = new HashMap<>();
+    private final Map<String, Integer> bkg = new HashMap<>();
     private Map<String, Integer> sph = new HashMap<>();
     private Map<String, Integer> gft = new HashMap<>();
     private Map<String, Integer> dis = new HashMap<>();
 
-    public String char_name;
-    public String chronic_name;
+    public final String char_name;
+    public final String chronic_name;
 
     public String main_attr = "NULL";
     public String scnd_attr = "NULL";
     public String thrd_attr = "NULL";
 
-    public Integer[] attr = new Integer[3];
-    public Integer[] abl  = new Integer[3];
+    public final Integer[] attr = new Integer[3];
+    public final Integer[] abl  = new Integer[3];
 
     public character( String name, String chronic ) {
         char_name    = name;
@@ -144,14 +144,16 @@ public class character implements Serializable {
                     attr[0] = 0;
                 }
 
-                if ( type.equals("phis") ) {
-                    phis_attr.put(name, number);
-                }
-                else if ( type.equals("soc") ) {
-                    soc_attr.put(name, number);
-                }
-                else {
-                    men_attr.put(name, number);
+                switch (type) {
+                    case "phis":
+                        phis_attr.put(name, number);
+                        break;
+                    case "soc":
+                        soc_attr.put(name, number);
+                        break;
+                    case "men":
+                        men_attr.put(name, number);
+                        break;
                 }
             }
 
@@ -164,14 +166,16 @@ public class character implements Serializable {
                     attr[1] = 0;
                 }
 
-                if ( type.equals("phis") ) {
-                    phis_attr.put(name, number);
-                }
-                else if ( type.equals("soc") ) {
-                    soc_attr.put(name, number);
-                }
-                else {
-                    men_attr.put(name, number);
+                switch (type) {
+                    case "phis":
+                        phis_attr.put(name, number);
+                        break;
+                    case "soc":
+                        soc_attr.put(name, number);
+                        break;
+                    case "men":
+                        men_attr.put(name, number);
+                        break;
                 }
             }
 
@@ -184,14 +188,16 @@ public class character implements Serializable {
                     attr[2] = 0;
                 }
 
-                if ( type.equals("phis") ) {
-                    phis_attr.put(name, number);
-                }
-                else if ( type.equals("soc") ) {
-                    soc_attr.put(name, number);
-                }
-                else {
-                    men_attr.put(name, number);
+                switch (type) {
+                    case "phis":
+                        phis_attr.put(name, number);
+                        break;
+                    case "soc":
+                        soc_attr.put(name, number);
+                        break;
+                    case "men":
+                        men_attr.put(name, number);
+                        break;
                 }
             }
         }
