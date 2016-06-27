@@ -14,7 +14,7 @@ import java.util.Properties;
 public class character implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Map<String, Integer> sp_resources = new HashMap<>();
+    public final Map<String, Integer> sp_resources = new HashMap<>();
 
     public final Map<String, Integer> phis_attr = new HashMap<>();
     public final Map<String, Integer> soc_attr  = new HashMap<>();
@@ -24,17 +24,17 @@ public class character implements Serializable {
     public final Map<String, Integer> skl_abl = new HashMap<>();
     public final Map<String, Integer> kng_abl = new HashMap<>();
 
-    private final Map<String, Integer> bkg = new HashMap<>();
-    private Map<String, Integer> sph = new HashMap<>();
-    private Map<String, Integer> gft = new HashMap<>();
-    private Map<String, Integer> dis = new HashMap<>();
+    public final Map<String, Integer> bkg = new HashMap<>();
+    public final Map<String, Integer> sph = new HashMap<>();
+    public final Map<String, Integer> gft = new HashMap<>();
+    public final Map<String, Integer> dis = new HashMap<>();
 
     public final String char_name;
     public final String chronic_name;
 
-    public String main_attr = "NULL";
-    public String scnd_attr = "NULL";
-    public String thrd_attr = "NULL";
+    private String main_attr = "NULL";
+    private String scnd_attr = "NULL";
+    private String thrd_attr = "NULL";
 
     public final Integer[] attr = new Integer[3];
     public final Integer[] abl  = new Integer[3];
@@ -209,10 +209,6 @@ public class character implements Serializable {
         return sp_resources;
     }
 
-    public void set_sp_res( Map<String, Integer> sp_res ) {
-        sp_resources = sp_res;
-    }
-
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
@@ -244,5 +240,24 @@ public class character implements Serializable {
         sp_resources.put("perm_rage", 1);
         sp_resources.put("perm_faith", 0);
         sp_resources.put("perm_wp", 0);
+    }
+
+    public Integer get_health_pen() {
+        Integer pen = 0;
+        Integer health_val = sp_resources.get("health");
+        if ( 2 < health_val && health_val < 7 ) {
+            pen = 1;
+        }
+        else if ( 6 < health_val && health_val < 11 ) {
+            pen = 2;
+        }
+        else if ( 10 < health_val && health_val < 13 ) {
+            pen = 5;
+        }
+        else if ( 12 < health_val && health_val <= 14 ) {
+            pen = 10;
+        }
+
+        return pen;
     }
 }
