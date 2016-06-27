@@ -237,73 +237,13 @@ public class full_char_list extends AppCompatActivity {
             throw new RuntimeException( "Can't fine resource and value in " + IdAsString );
         }
 
-        if ( save_new_values( group, name, number )) {
-            set_range( group, name, number );
-            unset_upper_range( group, name, number );
-        }
-    }
-
-    private boolean save_new_values( String group, String name, Integer number ) {
-        boolean rc = false;
-        Integer prev_num;
-        Integer diff_num = 0;
+        number = char_o.save_new_values( group, name, number );
+        set_range( group, name, number );
+        unset_upper_range( group, name, number );
         if ( group.equals("attr") ) {
-            if ( name.equals("strength") || name.equals("dexterity") || name.equals("stamina") ) {
-                if ( char_o.main_attr.equals("NULL") ) {
-                    char_o.main_attr = "phis";
-                }
-                else if ( char_o.scnd_attr.equals("NULL") ) {
-                    char_o.main_attr = "phis";
-                }
-                else if ( char_o.thrd_attr.equals("NULL") ) {
-                    char_o.main_attr = "phis";
-                }
-
-                prev_num = char_o.phis_attr.get(name);
-                rc = check_diff(number - prev_num);
-                if ( rc ) {
-                    char_o.phis_attr.put(name, number);
-                }
-            }
-            else if ( name.equals("charisma") || name.equals("manipulation") || name.equals("appearance") ) {
-                prev_num = char_o.soc_attr.get(name);
-                rc = check_diff(number - prev_num);
-                if ( rc ) {
-                    char_o.soc_attr.put(name, number);
-                }
-            }
-            else {
-                prev_num = char_o.men_attr.get(name);
-                rc = check_diff(number - prev_num);
-                if ( rc ) {
-                    char_o.soc_attr.put(name, number);
-                }
-            }
-        }
-        return rc;
-    }
-
-    private boolean check_diff ( Integer diff ) {
-        if ( char_o.attr[0] - diff >= 0 ) {
-            char_o.attr[0] -= diff;
             TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
             attr_helper.setText( Arrays.toString(char_o.attr) );
-            return true;
         }
-        else if ( char_o.attr[1] - diff >= 0 ) {
-            char_o.attr[1] -= diff;
-            TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
-            attr_helper.setText( Arrays.toString(char_o.attr) );
-            return true;
-        }
-        else if ( char_o.attr[2] - diff >= 0 ) {
-            char_o.attr[2] -= diff;
-            TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
-            attr_helper.setText( Arrays.toString(char_o.attr) );
-            return true;
-        }
-
-        return false;
     }
 
     private void set_range( String group, String name, Integer number ) {

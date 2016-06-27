@@ -39,7 +39,6 @@ public class character implements Serializable {
     public Integer[] attr = new Integer[3];
     public Integer[] abl  = new Integer[3];
 
-    // Private constructor prevents instantiation from other classes
     public character( String name, String chronic ) {
         char_name    = name;
         chronic_name = chronic;
@@ -108,6 +107,97 @@ public class character implements Serializable {
         sp_resources.put("perm_faith", 0);
         sp_resources.put("perm_wp", 0);
     }
+
+    public Integer save_new_values( String group, String name, Integer number ) {
+        String type;
+        Integer prev_num;
+        if (group.equals("attr")) {
+            if (name.equals("strength") || name.equals("dexterity") || name.equals("stamina")) {
+                type = "phis";
+                prev_num = phis_attr.get(name);
+            }
+            else if (name.equals("charisma") || name.equals("manipulation") || name.equals("appearance")) {
+                type = "soc";
+                prev_num = soc_attr.get(name);
+            }
+            else {
+                type = "men";
+                prev_num = men_attr.get(name);
+            }
+
+            if ( main_attr.equals("NULL") || main_attr.equals(type) ) {
+                main_attr = type;
+            }
+            else if ( scnd_attr.equals("NULL") || scnd_attr.equals(type) ) {
+                scnd_attr = type;
+            }
+            else if ( thrd_attr.equals("NULL") || thrd_attr.equals(type) ) {
+                thrd_attr = type;
+            }
+
+            if ( main_attr.equals(type) ) {
+                if ( (number - prev_num) <= attr[0] ) {
+                    attr[0] -= (number - prev_num);
+                }
+                else {
+                    number = prev_num + attr[0];
+                    attr[0] = 0;
+                }
+
+                if ( type.equals("phis") ) {
+                    phis_attr.put(name, number);
+                }
+                else if ( type.equals("soc") ) {
+                    soc_attr.put(name, number);
+                }
+                else {
+                    men_attr.put(name, number);
+                }
+            }
+
+            else if ( scnd_attr.equals(type) ) {
+                if ( (number - prev_num) <= attr[1] ) {
+                    attr[1] -= (number - prev_num);
+                }
+                else {
+                    number = prev_num + attr[1];
+                    attr[1] = 0;
+                }
+
+                if ( type.equals("phis") ) {
+                    phis_attr.put(name, number);
+                }
+                else if ( type.equals("soc") ) {
+                    soc_attr.put(name, number);
+                }
+                else {
+                    men_attr.put(name, number);
+                }
+            }
+
+            else if ( thrd_attr.equals(type) ) {
+                if ( (number - prev_num) <= attr[2] ) {
+                    attr[2] -= (number - prev_num);
+                }
+                else {
+                    number = prev_num + attr[2];
+                    attr[2] = 0;
+                }
+
+                if ( type.equals("phis") ) {
+                    phis_attr.put(name, number);
+                }
+                else if ( type.equals("soc") ) {
+                    soc_attr.put(name, number);
+                }
+                else {
+                    men_attr.put(name, number);
+                }
+            }
+        }
+        return number;
+    }
+
 
     public Map<String, Integer> get_sp_res() {
         return sp_resources;
