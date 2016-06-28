@@ -5,11 +5,22 @@
     android:id="@+id/disciplines"
     android:visibility="gone"
     android:background="#0099cc">
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/disciplines"
-        android:gravity="center"/>
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/disciplines"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/dis_show_helper"
+            android:text=""/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -499,7 +510,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/rb_dis_obtenebrationy3"
+                android:id="@+id/rb_dis_obtenebration3"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
                 android:onClick="radio_button_clicked"/>
             <ImageView
@@ -1109,7 +1120,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/rb_dis_hellfireg5"
+                android:id="@+id/rb_dis_hellfire5"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
                 android:onClick="radio_button_clicked"/>
         </LinearLayout>

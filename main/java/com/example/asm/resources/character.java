@@ -40,12 +40,21 @@ public class character implements Serializable {
     private String scnd_abl = "NULL";
     private String thrd_abl = "NULL";
 
+    private Integer attr_gen_limit;
+    private Integer abl_gen_limit;
+    public  Integer bkg_gen_points;
+    public  Integer cf_gen_points;
+    private Integer cf_gen_limit;
+
     public final Integer[] attr = new Integer[3];
     public final Integer[] abl  = new Integer[3];
+
+    public Integer Generated;
 
     public character( String name, String chronic ) {
         char_name    = name;
         chronic_name = chronic;
+        Generated = 0;
 
         attr[0] = 7;
         attr[1] = 5;
@@ -53,6 +62,11 @@ public class character implements Serializable {
         abl[0]  = 13;
         abl[1]  = 9;
         abl[2]  = 5;
+        attr_gen_limit = 4;
+        abl_gen_limit  = 3;
+        bkg_gen_points = 5;
+        cf_gen_points  = 5;
+        cf_gen_limit   = 3;
 
         phis_attr.put("strength", 1);
         phis_attr.put("dexterity", 1);
@@ -96,7 +110,6 @@ public class character implements Serializable {
         kng_abl.put("politics", 0);
         kng_abl.put("science", 0);
 
-        bkg.put("gen_points", 5);
         bkg.put("allies", 0);
         bkg.put("contacts", 0);
         bkg.put("fame", 0);
@@ -104,11 +117,54 @@ public class character implements Serializable {
         bkg.put("dignity", 0);
         bkg.put("artifact", 0);
 
-        sp_resources.put("rage", 1);
+        sph.put("time", 0);
+        sph.put("spirit", 0);
+        sph.put("life", 0);
+        sph.put("matter", 0);
+        sph.put("prime", 0);
+        sph.put("mind", 0);
+        sph.put("connection", 0);
+        sph.put("forces", 0);
+        sph.put("entropy", 0);
+
+        dis.put("animalism", 0);
+        dis.put("auspex", 0);
+        dis.put("celerity", 0);
+        dis.put("chimerstry", 0);
+        dis.put("daimoinon", 0);
+        dis.put("dementation", 0);
+        dis.put("dominate", 0);
+        dis.put("fortitude", 0);
+        dis.put("melpominee", 0);
+        dis.put("obfuscate", 0);
+        dis.put("obtenebration", 0);
+        dis.put("potence", 0);
+        dis.put("presence", 0);
+        dis.put("protean", 0);
+        dis.put("quietus", 0);
+        dis.put("serpentis", 0);
+        dis.put("temporis", 0);
+        dis.put("thanatosis", 0);
+        dis.put("vicissitude", 0);
+        dis.put("alchemistry", 0);
+        dis.put("conveyance", 0);
+        dis.put("enchantment", 0);
+        dis.put("healing", 0);
+        dis.put("hellfire", 0);
+        dis.put("weathercraft", 0);
+
+        gft.put("common", 0);
+        gft.put("monk", 0);
+        gft.put("warlord", 0);
+        gft.put("assassin", 0);
+        gft.put("mageslayer", 0);
+        gft.put("shapeshifter", 0);
+
+        sp_resources.put("rage", 0);
         sp_resources.put("faith", 0);
         sp_resources.put("wp", 0);
         sp_resources.put("health", 0);
-        sp_resources.put("perm_rage", 1);
+        sp_resources.put("perm_rage", 0);
         sp_resources.put("perm_faith", 0);
         sp_resources.put("perm_wp", 0);
     }
@@ -117,7 +173,11 @@ public class character implements Serializable {
         String type;
         Integer prev_num;
         if (group.equals("attr")) {
-            if ( number > 4 ) { number = 4; }
+            if ( Generated == 0 ) {
+                if (number > attr_gen_limit) {
+                    number = attr_gen_limit;
+                }
+            }
             if (name.equals("strength") || name.equals("dexterity") || name.equals("stamina")) {
                 type = "phis";
                 prev_num = phis_attr.get(name);
@@ -209,7 +269,11 @@ public class character implements Serializable {
         }
 
         if (group.equals("abl")) {
-            if ( number > 3 ) { number = 3; }
+            if ( Generated == 0 ) {
+                if (number > abl_gen_limit) {
+                    number = abl_gen_limit;
+                }
+            }
             Integer gen_points;
             if ( tal_abl.get(name) != null ) {
                 prev_num = tal_abl.get(name);
@@ -323,16 +387,65 @@ public class character implements Serializable {
 
         if (group.equals("bkg")) {
             prev_num = bkg.get(name);
-            Integer gen_points = bkg.get( "gen_points" );
-            if ( (number - prev_num) <= gen_points ) {
-                gen_points -= (number - prev_num);
+            if ( (number - prev_num) <= bkg_gen_points ) {
+                bkg_gen_points -= (number - prev_num);
             }
             else {
-                number = prev_num + gen_points;
-                gen_points = 0;
+                number = prev_num + bkg_gen_points;
+                bkg_gen_points = 0;
             }
             bkg.put(name, number);
-            bkg.put( "gen_points", gen_points );
+        }
+
+        if (group.equals("sph")) {
+            if ( Generated == 0 ) {
+                if (number > cf_gen_limit) {
+                    number = cf_gen_limit;
+                }
+            }
+            prev_num = sph.get(name);
+            if ( (number - prev_num) <= cf_gen_points ) {
+                cf_gen_points -= (number - prev_num);
+            }
+            else {
+                number = prev_num + cf_gen_points;
+                cf_gen_points = 0;
+            }
+            sph.put(name, number);
+        }
+
+        if (group.equals("dis")) {
+            if ( Generated == 0 ) {
+                if (number > cf_gen_limit) {
+                    number = cf_gen_limit;
+                }
+            }
+            prev_num = dis.get(name);
+            if ( (number - prev_num) <= cf_gen_points ) {
+                cf_gen_points -= (number - prev_num);
+            }
+            else {
+                number = prev_num + cf_gen_points;
+                cf_gen_points = 0;
+            }
+            dis.put(name, number);
+        }
+
+        if (group.equals("gft")) {
+            if ( Generated == 0 ) {
+                if (number > cf_gen_limit) {
+                    number = cf_gen_limit;
+                }
+            }
+            prev_num = gft.get(name);
+            if ( (number - prev_num) <= cf_gen_points ) {
+                cf_gen_points -= (number - prev_num);
+            }
+            else {
+                number = prev_num + cf_gen_points;
+                cf_gen_points = 0;
+            }
+            gft.put(name, number);
         }
 
         if (group.equals("button")) {
@@ -340,6 +453,22 @@ public class character implements Serializable {
         }
 
         return number;
+    }
+
+    public boolean check_gen_points() {
+        if ( Generated == 0 ) {
+            Integer sum = 0;
+            for (int e : attr) sum += e;
+            for (int e : abl) sum += e;
+            sum += bkg_gen_points;
+            sum += cf_gen_points;
+
+            if (sum > 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private boolean isExternalStorageWritable() {

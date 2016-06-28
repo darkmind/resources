@@ -1,8 +1,11 @@
 package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +37,12 @@ public class full_char_list extends AppCompatActivity {
     private View disciplines;
     private Spinner spinner_gd;
     private character char_o;
+    private TextView attr_helper;
+    private TextView abl_helper;
+    private TextView bkg_helper;
+    private TextView sph_helper;
+    private TextView dis_helper;
+    private TextView gft_helper;
 
     private ArrayAdapter<CharSequence> adapter_gd;
 
@@ -97,14 +106,16 @@ public class full_char_list extends AppCompatActivity {
         TextView chronic = (TextView) findViewById(R.id.charlist_chronic_name);
         chronic.setText( String.format(Locale.getDefault(), "Хроника: %s", cr_name) );
 
-        fill_map();
+        attr_helper = (TextView) findViewById(R.id.attr_show_helper);
+        abl_helper  = (TextView) findViewById(R.id.abl_show_helper);
+        bkg_helper  = (TextView) findViewById(R.id.bkg_show_helper);
+        sph_helper  = (TextView) findViewById(R.id.sph_show_helper);
+        dis_helper  = (TextView) findViewById(R.id.dis_show_helper);
+        gft_helper  = (TextView) findViewById(R.id.gft_show_helper);
 
-        TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
-        attr_helper.setText( Arrays.toString(char_o.attr) );
-        TextView abl_helper = (TextView) findViewById(R.id.abl_show_helper);
-        abl_helper.setText( Arrays.toString(char_o.abl) );
-        TextView bkg_helper = (TextView) findViewById(R.id.bkg_show_helper);
-        bkg_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.bkg.get("gen_points")));
+
+        fill_map();
+        update_helpers();
 
         gifts       = findViewById(R.id.gifts);
         spheres     = findViewById(R.id.spheres);
@@ -195,6 +206,16 @@ public class full_char_list extends AppCompatActivity {
         return true;
     }
 
+    private void update_helpers() {
+        attr_helper.setText( Arrays.toString(char_o.attr) );
+        abl_helper.setText( Arrays.toString(char_o.abl) );
+        bkg_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points) );
+        sph_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points) );
+        dis_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points) );
+        gft_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points) );
+
+    }
+
     private void show_sp( String resource ) {
         String id_ref;
         int resID;
@@ -240,18 +261,48 @@ public class full_char_list extends AppCompatActivity {
         number = char_o.save_new_values( group, name, number );
         set_range( group, name, number );
         unset_upper_range( group, name, number );
-        if ( group.equals("attr") ) {
-            TextView attr_helper = (TextView) findViewById(R.id.attr_show_helper);
-            attr_helper.setText( Arrays.toString(char_o.attr) );
+        generation_complete();
+        if ( char_o.Generated == 0 ) {
+            if (group.equals("attr")) {
+                attr_helper.setText(Arrays.toString(char_o.attr));
+            } else if (group.equals("abl")) {
+                abl_helper.setText(Arrays.toString(char_o.abl));
+            } else if (group.equals("bkg")) {
+                bkg_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points));
+            } else if (group.equals("sph")) {
+                sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+            } else if (group.equals("dis")) {
+                dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+            } else if (group.equals("gft")) {
+                gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+            }
         }
-        else if ( group.equals("abl") ) {
-            TextView abl_helper = (TextView) findViewById(R.id.abl_show_helper);
-            abl_helper.setText( Arrays.toString(char_o.abl) );
+    }
+
+    private void generation_complete() {
+        if ( ! char_o.check_gen_points() ) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(full_char_list.this);
+            builder.setTitle("Генерация");
+            builder.setMessage(R.string.go_to_free);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish_gen_goints();
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+            builder.show();
+
         }
-        else if ( group.equals("bkg") ) {
-            TextView helper = (TextView) findViewById(R.id.bkg_show_helper);
-            helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.bkg.get("gen_points")) );
-        }
+    }
+
+    private void finish_gen_goints() {
+        char_o.Generated = 1;
+        attr_helper.setVisibility(View.GONE);
+        abl_helper.setVisibility(View.GONE);
+        bkg_helper.setVisibility(View.GONE);
+        sph_helper.setVisibility(View.GONE);
+        dis_helper.setVisibility(View.GONE);
+        gft_helper.setVisibility(View.GONE);
     }
 
     private void set_range( String group, String name, Integer number ) {
@@ -445,16 +496,28 @@ public class full_char_list extends AppCompatActivity {
 
         // abilities
         for ( String resource : char_o.tal_abl.keySet() ) {
+            if ( resource.equals("gen_points") ) {
+                continue;
+            }
+
             val = char_o.tal_abl.get(resource);
             set_range( "abl", resource, val );
             unset_upper_range( "abl", resource, val );
         }
         for ( String resource : char_o.skl_abl.keySet() ) {
+            if ( resource.equals("gen_points") ) {
+                continue;
+            }
+
             val = char_o.skl_abl.get(resource);
             set_range( "abl", resource, val );
             unset_upper_range( "abl", resource, val );
         }
         for ( String resource : char_o.kng_abl.keySet() ) {
+            if ( resource.equals("gen_points") ) {
+                continue;
+            }
+
             val = char_o.kng_abl.get(resource);
             set_range( "abl", resource, val );
             unset_upper_range( "abl", resource, val );
@@ -462,9 +525,6 @@ public class full_char_list extends AppCompatActivity {
 
         // backgrounds
         for ( String resource : char_o.bkg.keySet() ) {
-            if ( resource.equals("gen_points") ) {
-                continue;
-            }
             val = char_o.bkg.get(resource);
             set_range( "bkg", resource, val );
             unset_upper_range( "bkg", resource, val );
@@ -720,6 +780,16 @@ public class full_char_list extends AppCompatActivity {
     public void new_char(MenuItem item) {
         Intent intent = new Intent(this, enter_name.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void yes_button(View view) {
+        char_o.Generated = 1;
+        finish();
+    }
+
+    public void no_button(View view) {
+        char_o.Generated = 0;
         finish();
     }
 }
