@@ -1,6 +1,10 @@
 package com.example.asm.resources;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +12,7 @@ import java.util.Map;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,31 +61,34 @@ public class load_char extends ListActivity {
     }
 
     private void load_char_file ( String filename ){
-/*        Context context = this;
-        Properties properties = new Properties();
-        FileInputStream handler;
-        try {
-            handler = new FileInputStream( context.getFilesDir().getAbsolutePath() + "/" +  filename);
-            properties.load(handler);
-            for (String key : properties.stringPropertyNames()) {
-                Integer val = Integer.parseInt( properties.get(key).toString() );
-                sp_res.put(key, val);
-            }
-            String chronic_name = sp_res.get( (String) "chronic_name" );
-            character char_o = new character( filename, "" );
-            char_o.set_sp_res( sp_res );
+        Context context = this;
 
-            Intent intent = new Intent(this, full_char_list.class);
-            startActivity(intent);
-            intent.putExtra( "CHAR", char_o );
-            finish();
+        FileInputStream fis;
+        try {
+            fis = context.openFileInput(filename);
         }
-        catch ( FileNotFoundException e ) {
-            throw new RuntimeException( "File not found" );
+        catch ( FileNotFoundException e) {
+            throw new RuntimeException( "Can't open file <" + filename + ">" );
+        }
+        ObjectInputStream is;
+        character char_o;
+        try {
+            is = new ObjectInputStream(fis);
+            char_o = (character) is.readObject();
+            is.close();
+            fis.close();
         }
         catch ( IOException e ) {
-            throw new RuntimeException( "Can't read file" );
+            throw new RuntimeException( "IO error <" + filename + ">" );
         }
-        */
+        catch ( ClassNotFoundException e ) {
+            throw new RuntimeException( "Class wasn't found <" + filename + ">" );
+        }
+
+        Intent intent = new Intent(this, full_char_list.class);
+        intent.putExtra( "CHAR", char_o );
+        startActivity(intent);
+
+        finish();
     }
 }

@@ -3,8 +3,10 @@ package com.example.asm.resources;
 import android.content.Context;
 import android.os.Environment;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,23 +16,37 @@ import java.util.Properties;
 public class character implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public final Map<String, Integer> sp_resources = new HashMap<>();
+    public final String char_name;
+    public final String chronic_name;
+
 
     public final Map<String, Integer> phis_attr = new HashMap<>();
     public final Map<String, Integer> soc_attr  = new HashMap<>();
     public final Map<String, Integer> men_attr  = new HashMap<>();
+    private Map<String, Integer> stored_phis_attr = new HashMap<>();
+    private Map<String, Integer> stored_soc_attr  = new HashMap<>();
+    private Map<String, Integer> stored_men_attr  = new HashMap<>();
 
     public final Map<String, Integer> tal_abl = new HashMap<>();
     public final Map<String, Integer> skl_abl = new HashMap<>();
     public final Map<String, Integer> kng_abl = new HashMap<>();
+    private Map<String, Integer> stored_tal_abl = new HashMap<>();
+    private Map<String, Integer> stored_skl_abl = new HashMap<>();
+    private Map<String, Integer> stored_kng_abl = new HashMap<>();
 
     public final Map<String, Integer> bkg = new HashMap<>();
     public final Map<String, Integer> sph = new HashMap<>();
     public final Map<String, Integer> gft = new HashMap<>();
     public final Map<String, Integer> dis = new HashMap<>();
+    private Map<String, Integer> stored_bkg = new HashMap<>();
+    private Map<String, Integer> stored_sph = new HashMap<>();
+    private Map<String, Integer> stored_gft = new HashMap<>();
+    private Map<String, Integer> stored_dis = new HashMap<>();
 
-    public final String char_name;
-    public final String chronic_name;
+    public final Map<String, Integer> sp_resources = new HashMap<>();
+
+
+    public Integer Generated;
 
     private String main_attr = "NULL";
     private String scnd_attr = "NULL";
@@ -49,7 +65,13 @@ public class character implements Serializable {
     public final Integer[] attr = new Integer[3];
     public final Integer[] abl  = new Integer[3];
 
-    public Integer Generated;
+    public Integer free_points = 15;
+    public final Integer attr_fp = 5;
+    public final Integer abl_fp  = 2;
+    public final Integer bkg_fp  = 1;
+    public final Integer dis_fp  = 7;
+    public final Integer sph_fp  = 7;
+    public final Integer gft_fp  = 7;
 
     public character( String name, String chronic ) {
         char_name    = name;
@@ -471,25 +493,257 @@ public class character implements Serializable {
         return false;
     }
 
+    public Integer save_fp_values( String group, String name, Integer number ) {
+        Integer prev;
+        Integer price;
+        Integer diff;
+        if ( group.equals("attr") ) {
+            price = attr_fp;
+            if ( phis_attr.get(name) != null ) {
+                prev = phis_attr.get(name);
+                diff = number - prev;
+                if ( number < stored_phis_attr.get(name) ) {
+                    Integer st = prev - stored_phis_attr.get(name);
+                    diff = -st;
+                    number = stored_phis_attr.get(name);
+                }
+
+                if ( (free_points - (price * diff)) >= 0 ) {
+                    free_points -= (price * diff);
+                }
+                else {
+                    Integer available = free_points / price;
+                    free_points -= available;
+                    number = prev + available;
+                }
+                phis_attr.put(name, number);
+            }
+            else if ( soc_attr.get(name) != null ) {
+                prev = soc_attr.get(name);
+                diff = number - prev;
+                if ( number < stored_soc_attr.get(name) ) {
+                    Integer st = prev - stored_soc_attr.get(name);
+                    diff = -st;
+                    number = stored_soc_attr.get(name);
+                }
+
+                if ( (free_points - (price * diff)) >= 0 ) {
+                    free_points -= (price * diff);
+                }
+                else {
+                    Integer available = free_points / price;
+                    free_points -= available;
+                    number = prev + available;
+                }
+                soc_attr.put(name, number);
+            }
+            else if ( men_attr.get(name) != null ) {
+                prev = men_attr.get(name);
+                diff = number - prev;
+                if ( number < stored_men_attr.get(name) ) {
+                    Integer st = prev - stored_men_attr.get(name);
+                    diff = -st;
+                    number = stored_men_attr.get(name);
+                }
+
+                if ( (free_points - (price * diff)) >= 0 ) {
+                    free_points -= (price * diff);
+                }
+                else {
+                    Integer available = free_points / price;
+                    free_points -= available;
+                    number = prev + available;
+                }
+                men_attr.put(name, number);
+            }
+        }
+        else if ( group.equals("abl") ) {
+            price = abl_fp;
+            if ( tal_abl.get(name) != null ) {
+                prev = tal_abl.get(name);
+                diff = number - prev;
+                if ( number < stored_tal_abl.get(name) ) {
+                    Integer st = prev - stored_tal_abl.get(name);
+                    diff = -st;
+                    number = stored_tal_abl.get(name);
+                }
+
+                if ( (free_points - (price * diff)) >= 0 ) {
+                    free_points -= (price * diff);
+                }
+                else {
+                    Integer available = free_points / price;
+                    free_points -= available;
+                    number = prev + available;
+                }
+                tal_abl.put(name, number);
+            }
+            else if ( skl_abl.get(name) != null ) {
+                prev = skl_abl.get(name);
+                diff = number - prev;
+                if ( number < stored_skl_abl.get(name) ) {
+                    Integer st = prev - stored_skl_abl.get(name);
+                    diff = -st;
+                    number = stored_skl_abl.get(name);
+                }
+
+                if ( (free_points - (price * diff)) >= 0 ) {
+                    free_points -= (price * diff);
+                }
+                else {
+                    Integer available = free_points / price;
+                    free_points -= available;
+                    number = prev + available;
+                }
+                skl_abl.put(name, number);
+            }
+            else if ( kng_abl.get(name) != null ) {
+                prev = kng_abl.get(name);
+                diff = number - prev;
+                if ( number < stored_kng_abl.get(name) ) {
+                    Integer st = prev - stored_kng_abl.get(name);
+                    diff = -st;
+                    number = stored_kng_abl.get(name);
+                }
+
+                if ( (free_points - (price * diff)) >= 0 ) {
+                    free_points -= (price * diff);
+                }
+                else {
+                    Integer available = free_points / price;
+                    free_points -= available;
+                    number = prev + available;
+                }
+                kng_abl.put(name, number);
+            }
+        }
+        else if ( group.equals("bkg") ) {
+            price = bkg_fp;
+            prev  = bkg.get(name);
+            diff  = number - prev;
+            if ( number < stored_bkg.get(name) ) {
+                Integer st = prev - stored_bkg.get(name);
+                diff = -st;
+                number = stored_bkg.get(name);
+            }
+
+            if ( (free_points - (price * diff)) >= 0 ) {
+                free_points -= (price * diff);
+            }
+            else {
+                Integer available = free_points / price;
+                free_points -= available;
+                number = prev + available;
+            }
+            bkg.put(name, number);
+         }
+        else if ( group.equals("sph") ) {
+            price = sph_fp;
+            prev  = sph.get(name);
+            diff  = number - prev;
+            if ( number < stored_sph.get(name) ) {
+                Integer st = prev - stored_sph.get(name);
+                diff = -st;
+                number = stored_sph.get(name);
+            }
+
+            if ( (free_points - (price * diff)) >= 0 ) {
+                free_points -= (price * diff);
+            }
+            else {
+                Integer available = free_points / price;
+                free_points -= available;
+                number = prev + available;
+            }
+            sph.put(name, number);
+        }
+        else if ( group.equals("dis") ) {
+            price = dis_fp;
+            prev  = dis.get(name);
+            diff  = number - prev;
+            if ( number < stored_dis.get(name) ) {
+                Integer st = prev - stored_dis.get(name);
+                diff = -st;
+                number = stored_dis.get(name);
+            }
+
+            if ( (free_points - (price * diff)) >= 0 ) {
+                free_points -= (price * diff);
+            }
+            else {
+                Integer available = free_points / price;
+                free_points -= available;
+                number = prev + available;
+            }
+            dis.put(name, number);
+        }
+        else if ( group.equals("gft") ) {
+            price = gft_fp;
+            prev  = gft.get(name);
+            diff  = number - prev;
+            if ( number < stored_gft.get(name) ) {
+                Integer st = prev - stored_gft.get(name);
+                diff = -st;
+                number = stored_gft.get(name);
+            }
+
+            if ( (free_points - (price * diff)) >= 0 ) {
+                free_points -= (price * diff);
+            }
+            else {
+                Integer available = free_points / price;
+                free_points -= available;
+                number = prev + available;
+            }
+            gft.put(name, number);
+        }
+
+        return number;
+    }
+
+    public void store_values() {
+        stored_phis_attr.putAll( phis_attr );
+        stored_soc_attr.putAll( soc_attr );
+        stored_men_attr.putAll( men_attr );
+
+        stored_tal_abl.putAll( tal_abl );
+        stored_skl_abl.putAll( skl_abl );
+        stored_kng_abl.putAll( kng_abl );
+
+        stored_bkg.putAll( bkg );
+
+        stored_sph.putAll( sph );
+        stored_dis.putAll( dis );
+        stored_gft.putAll( gft );
+    }
+
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     public void flush( Context context ) {
+//        String filename = context.getFilesDir() + "/" + char_name + " " + chronic_name;
+        String filename = char_name + " " + chronic_name;
         if ( isExternalStorageWritable() ){
-            Properties properties = new Properties();
-            for (Map.Entry<String,Integer> entry : sp_resources.entrySet()) {
-                properties.put( entry.getKey(), entry.getValue().toString() );
-            }
-            FileOutputStream file_handler;
+            FileOutputStream fos;
             try {
-                file_handler = new FileOutputStream( context.getFilesDir() + "/" + char_name);
-                properties.store(file_handler, null);
+                fos = context.openFileOutput(
+                        filename,
+                        Context.MODE_PRIVATE);
             }
-            catch( IOException e){
-                e.printStackTrace();
-                System.exit(0);
+            catch ( FileNotFoundException e) {
+                throw new RuntimeException( "Can't open file <" + filename + ">" );
+            }
+            ObjectOutputStream os;
+            try {
+                os = new ObjectOutputStream(fos);
+                os.writeObject(this);
+                os.close();
+                fos.close();
+            }
+            catch ( IOException e ) {
+                throw new RuntimeException( "IO error <" + filename + ">" );
             }
         }
     }

@@ -37,6 +37,7 @@ public class full_char_list extends AppCompatActivity {
     private View disciplines;
     private Spinner spinner_gd;
     private character char_o;
+
     private TextView attr_helper;
     private TextView abl_helper;
     private TextView bkg_helper;
@@ -112,7 +113,6 @@ public class full_char_list extends AppCompatActivity {
         sph_helper  = (TextView) findViewById(R.id.sph_show_helper);
         dis_helper  = (TextView) findViewById(R.id.dis_show_helper);
         gft_helper  = (TextView) findViewById(R.id.gft_show_helper);
-
 
         fill_map();
         update_helpers();
@@ -207,13 +207,28 @@ public class full_char_list extends AppCompatActivity {
     }
 
     private void update_helpers() {
-        attr_helper.setText( Arrays.toString(char_o.attr) );
-        abl_helper.setText( Arrays.toString(char_o.abl) );
-        bkg_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points) );
-        sph_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points) );
-        dis_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points) );
-        gft_helper.setText( String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points) );
-
+        if ( char_o.Generated == 0 ) {
+            attr_helper.setText(Arrays.toString(char_o.attr));
+            abl_helper.setText(Arrays.toString(char_o.abl));
+            bkg_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points));
+            sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+            dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+            gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+        }
+        else if ( char_o.Generated == 1 ) {
+            attr_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 5",
+                    char_o.free_points));
+            abl_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 2",
+                    char_o.free_points));
+            bkg_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 1",
+                    char_o.free_points));
+            sph_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 7",
+                    char_o.free_points));
+            dis_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 7",
+                    char_o.free_points));
+            gft_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 7",
+                    char_o.free_points));
+        }
     }
 
     private void show_sp( String resource ) {
@@ -258,11 +273,11 @@ public class full_char_list extends AppCompatActivity {
             throw new RuntimeException( "Can't fine resource and value in " + IdAsString );
         }
 
-        number = char_o.save_new_values( group, name, number );
-        set_range( group, name, number );
-        unset_upper_range( group, name, number );
-        generation_complete();
         if ( char_o.Generated == 0 ) {
+            number = char_o.save_new_values( group, name, number );
+            set_range( group, name, number );
+            unset_upper_range( group, name, number );
+            generation_complete();
             if (group.equals("attr")) {
                 attr_helper.setText(Arrays.toString(char_o.attr));
             } else if (group.equals("abl")) {
@@ -277,6 +292,13 @@ public class full_char_list extends AppCompatActivity {
                 gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
             }
         }
+        else if ( char_o.Generated == 1 ) {
+            number = char_o.save_fp_values( group, name, number );
+            set_range( group, name, number );
+            unset_upper_range( group, name, number );
+            update_helpers();
+            fp_complete();
+        }
     }
 
     private void generation_complete() {
@@ -286,7 +308,7 @@ public class full_char_list extends AppCompatActivity {
             builder.setMessage(R.string.go_to_free);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    finish_gen_goints();
+                    finish_gen_points();
                 }
             });
             builder.setNegativeButton("Cancel", null);
@@ -295,14 +317,36 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
-    private void finish_gen_goints() {
+    private void finish_gen_points() {
         char_o.Generated = 1;
+        update_helpers();
+        char_o.store_values();
+    }
+
+    private void fp_complete() {
+        if ( char_o.free_points == 0 ) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(full_char_list.this);
+            builder.setTitle("Генерация");
+            builder.setMessage(R.string.finish_gen);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish_fp_points();
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+            builder.show();
+        }
+    }
+
+    private void finish_fp_points() {
+        char_o.Generated = 2;
         attr_helper.setVisibility(View.GONE);
         abl_helper.setVisibility(View.GONE);
         bkg_helper.setVisibility(View.GONE);
         sph_helper.setVisibility(View.GONE);
         dis_helper.setVisibility(View.GONE);
         gft_helper.setVisibility(View.GONE);
+        char_o.store_values();
     }
 
     private void set_range( String group, String name, Integer number ) {
