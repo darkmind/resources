@@ -6,9 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -22,7 +20,6 @@ import android.widget.ListView;
 public class load_char extends ListActivity {
 
     final private List<String> fileList = new ArrayList<>();
-    final private Map<String, Integer> sp_res = new HashMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -269,8 +269,6 @@
     <string name="gft_shapeshifter">Оборотень</string>
 
     <string name="go_to_free">Перейти к распределению Свободных Очков?</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
     <string name="finish_gen">Завершить генерацию?</string>
 
 </resources>

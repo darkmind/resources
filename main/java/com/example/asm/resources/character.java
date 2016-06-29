@@ -10,10 +10,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 @SuppressWarnings("serial")
-public class character implements Serializable {
+class character implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public final String char_name;
@@ -23,25 +22,25 @@ public class character implements Serializable {
     public final Map<String, Integer> phis_attr = new HashMap<>();
     public final Map<String, Integer> soc_attr  = new HashMap<>();
     public final Map<String, Integer> men_attr  = new HashMap<>();
-    private Map<String, Integer> stored_phis_attr = new HashMap<>();
-    private Map<String, Integer> stored_soc_attr  = new HashMap<>();
-    private Map<String, Integer> stored_men_attr  = new HashMap<>();
+    private final Map<String, Integer> stored_phis_attr = new HashMap<>();
+    private final Map<String, Integer> stored_soc_attr  = new HashMap<>();
+    private final Map<String, Integer> stored_men_attr  = new HashMap<>();
 
     public final Map<String, Integer> tal_abl = new HashMap<>();
     public final Map<String, Integer> skl_abl = new HashMap<>();
     public final Map<String, Integer> kng_abl = new HashMap<>();
-    private Map<String, Integer> stored_tal_abl = new HashMap<>();
-    private Map<String, Integer> stored_skl_abl = new HashMap<>();
-    private Map<String, Integer> stored_kng_abl = new HashMap<>();
+    private final Map<String, Integer> stored_tal_abl = new HashMap<>();
+    private final Map<String, Integer> stored_skl_abl = new HashMap<>();
+    private final Map<String, Integer> stored_kng_abl = new HashMap<>();
 
     public final Map<String, Integer> bkg = new HashMap<>();
     public final Map<String, Integer> sph = new HashMap<>();
     public final Map<String, Integer> gft = new HashMap<>();
     public final Map<String, Integer> dis = new HashMap<>();
-    private Map<String, Integer> stored_bkg = new HashMap<>();
-    private Map<String, Integer> stored_sph = new HashMap<>();
-    private Map<String, Integer> stored_gft = new HashMap<>();
-    private Map<String, Integer> stored_dis = new HashMap<>();
+    private final Map<String, Integer> stored_bkg = new HashMap<>();
+    private final Map<String, Integer> stored_sph = new HashMap<>();
+    private final Map<String, Integer> stored_gft = new HashMap<>();
+    private final Map<String, Integer> stored_dis = new HashMap<>();
 
     public final Map<String, Integer> sp_resources = new HashMap<>();
 
@@ -56,22 +55,16 @@ public class character implements Serializable {
     private String scnd_abl = "NULL";
     private String thrd_abl = "NULL";
 
-    private Integer attr_gen_limit;
-    private Integer abl_gen_limit;
+    private final Integer attr_gen_limit;
+    private final Integer abl_gen_limit;
     public  Integer bkg_gen_points;
     public  Integer cf_gen_points;
-    private Integer cf_gen_limit;
+    private final Integer cf_gen_limit;
 
     public final Integer[] attr = new Integer[3];
     public final Integer[] abl  = new Integer[3];
 
     public Integer free_points = 15;
-    public final Integer attr_fp = 5;
-    public final Integer abl_fp  = 2;
-    public final Integer bkg_fp  = 1;
-    public final Integer dis_fp  = 7;
-    public final Integer sph_fp  = 7;
-    public final Integer gft_fp  = 7;
 
     public character( String name, String chronic ) {
         char_name    = name;
@@ -200,17 +193,23 @@ public class character implements Serializable {
                     number = attr_gen_limit;
                 }
             }
-            if (name.equals("strength") || name.equals("dexterity") || name.equals("stamina")) {
-                type = "phis";
-                prev_num = phis_attr.get(name);
-            }
-            else if (name.equals("charisma") || name.equals("manipulation") || name.equals("appearance")) {
-                type = "soc";
-                prev_num = soc_attr.get(name);
-            }
-            else {
-                type = "men";
-                prev_num = men_attr.get(name);
+            switch (name) {
+                case "strength":
+                case "dexterity":
+                case "stamina":
+                    type = "phis";
+                    prev_num = phis_attr.get(name);
+                    break;
+                case "charisma":
+                case "manipulation":
+                case "appearance":
+                    type = "soc";
+                    prev_num = soc_attr.get(name);
+                    break;
+                default:
+                    type = "men";
+                    prev_num = men_attr.get(name);
+                    break;
             }
 
             if ( main_attr.equals("NULL") || main_attr.equals(type) ) {
@@ -497,205 +496,199 @@ public class character implements Serializable {
         Integer prev;
         Integer price;
         Integer diff;
-        if ( group.equals("attr") ) {
-            price = attr_fp;
-            if ( phis_attr.get(name) != null ) {
-                prev = phis_attr.get(name);
+        switch (group) {
+            case "attr":
+                Integer attr_fp = 5;
+                price = attr_fp;
+                if (phis_attr.get(name) != null) {
+                    prev = phis_attr.get(name);
+                    diff = number - prev;
+                    if (number < stored_phis_attr.get(name)) {
+                        Integer st = prev - stored_phis_attr.get(name);
+                        diff = -st;
+                        number = stored_phis_attr.get(name);
+                    }
+
+                    if ((free_points - (price * diff)) >= 0) {
+                        free_points -= (price * diff);
+                    } else {
+                        Integer available = free_points / price;
+                        free_points -= available;
+                        number = prev + available;
+                    }
+                    phis_attr.put(name, number);
+                } else if (soc_attr.get(name) != null) {
+                    prev = soc_attr.get(name);
+                    diff = number - prev;
+                    if (number < stored_soc_attr.get(name)) {
+                        Integer st = prev - stored_soc_attr.get(name);
+                        diff = -st;
+                        number = stored_soc_attr.get(name);
+                    }
+
+                    if ((free_points - (price * diff)) >= 0) {
+                        free_points -= (price * diff);
+                    } else {
+                        Integer available = free_points / price;
+                        free_points -= available;
+                        number = prev + available;
+                    }
+                    soc_attr.put(name, number);
+                } else if (men_attr.get(name) != null) {
+                    prev = men_attr.get(name);
+                    diff = number - prev;
+                    if (number < stored_men_attr.get(name)) {
+                        Integer st = prev - stored_men_attr.get(name);
+                        diff = -st;
+                        number = stored_men_attr.get(name);
+                    }
+
+                    if ((free_points - (price * diff)) >= 0) {
+                        free_points -= (price * diff);
+                    } else {
+                        Integer available = free_points / price;
+                        free_points -= available;
+                        number = prev + available;
+                    }
+                    men_attr.put(name, number);
+                }
+                break;
+            case "abl":
+                Integer abl_fp = 2;
+                price = abl_fp;
+                if (tal_abl.get(name) != null) {
+                    prev = tal_abl.get(name);
+                    diff = number - prev;
+                    if (number < stored_tal_abl.get(name)) {
+                        Integer st = prev - stored_tal_abl.get(name);
+                        diff = -st;
+                        number = stored_tal_abl.get(name);
+                    }
+
+                    if ((free_points - (price * diff)) >= 0) {
+                        free_points -= (price * diff);
+                    } else {
+                        Integer available = free_points / price;
+                        free_points -= available;
+                        number = prev + available;
+                    }
+                    tal_abl.put(name, number);
+                } else if (skl_abl.get(name) != null) {
+                    prev = skl_abl.get(name);
+                    diff = number - prev;
+                    if (number < stored_skl_abl.get(name)) {
+                        Integer st = prev - stored_skl_abl.get(name);
+                        diff = -st;
+                        number = stored_skl_abl.get(name);
+                    }
+
+                    if ((free_points - (price * diff)) >= 0) {
+                        free_points -= (price * diff);
+                    } else {
+                        Integer available = free_points / price;
+                        free_points -= available;
+                        number = prev + available;
+                    }
+                    skl_abl.put(name, number);
+                } else if (kng_abl.get(name) != null) {
+                    prev = kng_abl.get(name);
+                    diff = number - prev;
+                    if (number < stored_kng_abl.get(name)) {
+                        Integer st = prev - stored_kng_abl.get(name);
+                        diff = -st;
+                        number = stored_kng_abl.get(name);
+                    }
+
+                    if ((free_points - (price * diff)) >= 0) {
+                        free_points -= (price * diff);
+                    } else {
+                        Integer available = free_points / price;
+                        free_points -= available;
+                        number = prev + available;
+                    }
+                    kng_abl.put(name, number);
+                }
+                break;
+            case "bkg":
+                Integer bkg_fp = 1;
+                price = bkg_fp;
+                prev = bkg.get(name);
                 diff = number - prev;
-                if ( number < stored_phis_attr.get(name) ) {
-                    Integer st = prev - stored_phis_attr.get(name);
+                if (number < stored_bkg.get(name)) {
+                    Integer st = prev - stored_bkg.get(name);
                     diff = -st;
-                    number = stored_phis_attr.get(name);
+                    number = stored_bkg.get(name);
                 }
 
-                if ( (free_points - (price * diff)) >= 0 ) {
+                if ((free_points - (price * diff)) >= 0) {
                     free_points -= (price * diff);
-                }
-                else {
+                } else {
                     Integer available = free_points / price;
                     free_points -= available;
                     number = prev + available;
                 }
-                phis_attr.put(name, number);
-            }
-            else if ( soc_attr.get(name) != null ) {
-                prev = soc_attr.get(name);
+                bkg.put(name, number);
+                break;
+            case "sph":
+                Integer sph_fp = 7;
+                price = sph_fp;
+                prev = sph.get(name);
                 diff = number - prev;
-                if ( number < stored_soc_attr.get(name) ) {
-                    Integer st = prev - stored_soc_attr.get(name);
+                if (number < stored_sph.get(name)) {
+                    Integer st = prev - stored_sph.get(name);
                     diff = -st;
-                    number = stored_soc_attr.get(name);
+                    number = stored_sph.get(name);
                 }
 
-                if ( (free_points - (price * diff)) >= 0 ) {
+                if ((free_points - (price * diff)) >= 0) {
                     free_points -= (price * diff);
-                }
-                else {
+                } else {
                     Integer available = free_points / price;
                     free_points -= available;
                     number = prev + available;
                 }
-                soc_attr.put(name, number);
-            }
-            else if ( men_attr.get(name) != null ) {
-                prev = men_attr.get(name);
+                sph.put(name, number);
+                break;
+            case "dis":
+                Integer dis_fp = 7;
+                price = dis_fp;
+                prev = dis.get(name);
                 diff = number - prev;
-                if ( number < stored_men_attr.get(name) ) {
-                    Integer st = prev - stored_men_attr.get(name);
+                if (number < stored_dis.get(name)) {
+                    Integer st = prev - stored_dis.get(name);
                     diff = -st;
-                    number = stored_men_attr.get(name);
+                    number = stored_dis.get(name);
                 }
 
-                if ( (free_points - (price * diff)) >= 0 ) {
+                if ((free_points - (price * diff)) >= 0) {
                     free_points -= (price * diff);
-                }
-                else {
+                } else {
                     Integer available = free_points / price;
                     free_points -= available;
                     number = prev + available;
                 }
-                men_attr.put(name, number);
-            }
-        }
-        else if ( group.equals("abl") ) {
-            price = abl_fp;
-            if ( tal_abl.get(name) != null ) {
-                prev = tal_abl.get(name);
+                dis.put(name, number);
+                break;
+            case "gft":
+                Integer gft_fp = 7;
+                price = gft_fp;
+                prev = gft.get(name);
                 diff = number - prev;
-                if ( number < stored_tal_abl.get(name) ) {
-                    Integer st = prev - stored_tal_abl.get(name);
+                if (number < stored_gft.get(name)) {
+                    Integer st = prev - stored_gft.get(name);
                     diff = -st;
-                    number = stored_tal_abl.get(name);
+                    number = stored_gft.get(name);
                 }
 
-                if ( (free_points - (price * diff)) >= 0 ) {
+                if ((free_points - (price * diff)) >= 0) {
                     free_points -= (price * diff);
-                }
-                else {
+                } else {
                     Integer available = free_points / price;
                     free_points -= available;
                     number = prev + available;
                 }
-                tal_abl.put(name, number);
-            }
-            else if ( skl_abl.get(name) != null ) {
-                prev = skl_abl.get(name);
-                diff = number - prev;
-                if ( number < stored_skl_abl.get(name) ) {
-                    Integer st = prev - stored_skl_abl.get(name);
-                    diff = -st;
-                    number = stored_skl_abl.get(name);
-                }
-
-                if ( (free_points - (price * diff)) >= 0 ) {
-                    free_points -= (price * diff);
-                }
-                else {
-                    Integer available = free_points / price;
-                    free_points -= available;
-                    number = prev + available;
-                }
-                skl_abl.put(name, number);
-            }
-            else if ( kng_abl.get(name) != null ) {
-                prev = kng_abl.get(name);
-                diff = number - prev;
-                if ( number < stored_kng_abl.get(name) ) {
-                    Integer st = prev - stored_kng_abl.get(name);
-                    diff = -st;
-                    number = stored_kng_abl.get(name);
-                }
-
-                if ( (free_points - (price * diff)) >= 0 ) {
-                    free_points -= (price * diff);
-                }
-                else {
-                    Integer available = free_points / price;
-                    free_points -= available;
-                    number = prev + available;
-                }
-                kng_abl.put(name, number);
-            }
-        }
-        else if ( group.equals("bkg") ) {
-            price = bkg_fp;
-            prev  = bkg.get(name);
-            diff  = number - prev;
-            if ( number < stored_bkg.get(name) ) {
-                Integer st = prev - stored_bkg.get(name);
-                diff = -st;
-                number = stored_bkg.get(name);
-            }
-
-            if ( (free_points - (price * diff)) >= 0 ) {
-                free_points -= (price * diff);
-            }
-            else {
-                Integer available = free_points / price;
-                free_points -= available;
-                number = prev + available;
-            }
-            bkg.put(name, number);
-         }
-        else if ( group.equals("sph") ) {
-            price = sph_fp;
-            prev  = sph.get(name);
-            diff  = number - prev;
-            if ( number < stored_sph.get(name) ) {
-                Integer st = prev - stored_sph.get(name);
-                diff = -st;
-                number = stored_sph.get(name);
-            }
-
-            if ( (free_points - (price * diff)) >= 0 ) {
-                free_points -= (price * diff);
-            }
-            else {
-                Integer available = free_points / price;
-                free_points -= available;
-                number = prev + available;
-            }
-            sph.put(name, number);
-        }
-        else if ( group.equals("dis") ) {
-            price = dis_fp;
-            prev  = dis.get(name);
-            diff  = number - prev;
-            if ( number < stored_dis.get(name) ) {
-                Integer st = prev - stored_dis.get(name);
-                diff = -st;
-                number = stored_dis.get(name);
-            }
-
-            if ( (free_points - (price * diff)) >= 0 ) {
-                free_points -= (price * diff);
-            }
-            else {
-                Integer available = free_points / price;
-                free_points -= available;
-                number = prev + available;
-            }
-            dis.put(name, number);
-        }
-        else if ( group.equals("gft") ) {
-            price = gft_fp;
-            prev  = gft.get(name);
-            diff  = number - prev;
-            if ( number < stored_gft.get(name) ) {
-                Integer st = prev - stored_gft.get(name);
-                diff = -st;
-                number = stored_gft.get(name);
-            }
-
-            if ( (free_points - (price * diff)) >= 0 ) {
-                free_points -= (price * diff);
-            }
-            else {
-                Integer available = free_points / price;
-                free_points -= available;
-                number = prev + available;
-            }
-            gft.put(name, number);
+                gft.put(name, number);
+                break;
         }
 
         return number;
@@ -723,7 +716,6 @@ public class character implements Serializable {
     }
 
     public void flush( Context context ) {
-//        String filename = context.getFilesDir() + "/" + char_name + " " + chronic_name;
         String filename = char_name + " " + chronic_name;
         if ( isExternalStorageWritable() ){
             FileOutputStream fos;
@@ -746,16 +738,6 @@ public class character implements Serializable {
                 throw new RuntimeException( "IO error <" + filename + ">" );
             }
         }
-    }
-
-    public void reset() {
-        sp_resources.put("rage", 1);
-        sp_resources.put("faith", 0);
-        sp_resources.put("wp", 0);
-        sp_resources.put("health", 0);
-        sp_resources.put("perm_rage", 1);
-        sp_resources.put("perm_faith", 0);
-        sp_resources.put("perm_wp", 0);
     }
 
     public Integer get_health_pen() {

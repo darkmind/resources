@@ -11,13 +11,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="Name"/>
+            android:text=""/>
         <TextView
             android:id="@+id/charlist_chronic_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="Chronic"/>
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/charlist_alignment_hint"
-            android:layout_centerVertical="true"
             android:gravity="left"/>
     </LinearLayout>
     <LinearLayout
@@ -41,7 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:hint="@string/charlist_class_hint"
-            android:layout_centerVertical="true"
             android:gravity="right"/>
         <Spinner
             android:id="@+id/charlist_gods"
@@ -50,7 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:hint="@string/charlist_gods_hint"
-            android:layout_centerVertical="true"
             android:gravity="right"/>
     </LinearLayout>
 </LinearLayout>

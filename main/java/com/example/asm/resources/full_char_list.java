@@ -1,7 +1,6 @@
 package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -278,18 +277,25 @@ public class full_char_list extends AppCompatActivity {
             set_range( group, name, number );
             unset_upper_range( group, name, number );
             generation_complete();
-            if (group.equals("attr")) {
-                attr_helper.setText(Arrays.toString(char_o.attr));
-            } else if (group.equals("abl")) {
-                abl_helper.setText(Arrays.toString(char_o.abl));
-            } else if (group.equals("bkg")) {
-                bkg_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points));
-            } else if (group.equals("sph")) {
-                sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
-            } else if (group.equals("dis")) {
-                dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
-            } else if (group.equals("gft")) {
-                gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+            switch (group) {
+                case "attr":
+                    attr_helper.setText(Arrays.toString(char_o.attr));
+                    break;
+                case "abl":
+                    abl_helper.setText(Arrays.toString(char_o.abl));
+                    break;
+                case "bkg":
+                    bkg_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points));
+                    break;
+                case "sph":
+                    sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+                    break;
+                case "dis":
+                    dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+                    break;
+                case "gft":
+                    gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+                    break;
             }
         }
         else if ( char_o.Generated == 1 ) {
@@ -824,16 +830,6 @@ public class full_char_list extends AppCompatActivity {
     public void new_char(MenuItem item) {
         Intent intent = new Intent(this, enter_name.class);
         startActivity(intent);
-        finish();
-    }
-
-    public void yes_button(View view) {
-        char_o.Generated = 1;
-        finish();
-    }
-
-    public void no_button(View view) {
-        char_o.Generated = 0;
         finish();
     }
 }
