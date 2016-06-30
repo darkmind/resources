@@ -163,29 +163,7 @@ public class full_char_list extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String c_class = spinner_cl.getSelectedItem().toString();
                 char_o.class_name = c_class;
-                switch (c_class) {
-                    case "Воин":
-                        show_sp("rage");
-                        gifts.setVisibility(View.VISIBLE);
-                        spheres.setVisibility(View.GONE);
-                        disciplines.setVisibility(View.GONE);
-                        spinner_gd.setVisibility(View.GONE);
-                        break;
-                    case "Маг":
-                        show_sp("wp");
-                        gifts.setVisibility(View.GONE);
-                        spheres.setVisibility(View.VISIBLE);
-                        disciplines.setVisibility(View.GONE);
-                        spinner_gd.setVisibility(View.GONE);
-                        break;
-                    case "Жрец":
-                        show_sp("faith");
-                        gifts.setVisibility(View.GONE);
-                        spheres.setVisibility(View.GONE);
-                        disciplines.setVisibility(View.VISIBLE);
-                        spinner_gd.setVisibility(View.VISIBLE);
-                        break;
-                }
+                select_class( c_class );
             }
 
             @Override
@@ -200,6 +178,59 @@ public class full_char_list extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar_menu, menu);
         return true;
+    }
+
+    private void select_class( String c_class ) {
+        switch (c_class) {
+            case "Воин":
+                show_sp("rage");
+                init_sp_points( "rage", 1 );
+                gifts.setVisibility(View.VISIBLE);
+                spheres.setVisibility(View.GONE);
+                disciplines.setVisibility(View.GONE);
+                spinner_gd.setVisibility(View.GONE);
+                break;
+            case "Маг":
+                show_sp("wp");
+                init_sp_points( "wp", 1 );
+                gifts.setVisibility(View.GONE);
+                spheres.setVisibility(View.VISIBLE);
+                disciplines.setVisibility(View.GONE);
+                spinner_gd.setVisibility(View.GONE);
+                break;
+            case "Жрец":
+                show_sp("faith");
+                init_sp_points( "faith", (char_o.kng_abl.get("religion") * 2) );
+                gifts.setVisibility(View.GONE);
+                spheres.setVisibility(View.GONE);
+                disciplines.setVisibility(View.VISIBLE);
+                spinner_gd.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    private void init_sp_points( String res, Integer num ) {
+        if ( res.equals("rage") ) {
+            if ( char_o.sp_resources.get(res) == 0 ) {
+                char_o.sp_resources.put(res, num);
+                set_free_range( res, num );
+                unset_free_upper_range( res, num );
+            }
+        }
+        else if ( res.equals("wp") ) {
+            if ( char_o.sp_resources.get("perm_" + res) == 0 ) {
+                char_o.sp_resources.put("perm_" + res, num);
+                set_range( "button", res, 1 );
+                unset_upper_range( "button", res, 1 );
+            }
+        }
+        else if ( res.equals("faith") ) {
+            char_o.sp_resources.put("perm_" + res, num);
+            set_range( "button", res, num );
+            unset_upper_range( "button", res, num );
+
+        }
+        reset_parameter( res );
     }
 
     private void update_helpers() {
@@ -273,6 +304,11 @@ public class full_char_list extends AppCompatActivity {
             number = char_o.save_new_values( group, name, number );
             set_range( group, name, number );
             unset_upper_range( group, name, number );
+            if ( char_o.class_name.equals("Жрец") ) {
+                if ( name.equals("religion") ) {
+                    init_sp_points( "faith", (char_o.kng_abl.get("religion") * 2) );
+                }
+            }
             generation_complete();
             switch (group) {
                 case "attr":
@@ -795,38 +831,43 @@ public class full_char_list extends AppCompatActivity {
             throw new RuntimeException( "Can't fine resource in " + IdAsString );
         }
 
-        if ( special_resource.equals("health") ) {
-            Integer sp_value = char_o.sp_resources.get(special_resource);
+        reset_parameter(special_resource);
 
+        if ( special_resource.equals("health") ) {
             TextView t = (TextView)findViewById(R.id.special_limit_health);
             assert t != null;
             t.setTextColor( Color.parseColor("#33b5e5") );
             t.setText( "0" );
+        }
+    }
 
+    private void reset_parameter ( String name ) {
+        Integer sp_value = char_o.sp_resources.get(name);
+        if ( name.equals("health") ) {
             while ( sp_value > 0 ) {
-                mark_checkboxes( special_resource, sp_value, R.drawable.ic_crop_din_black_24dp );
+                mark_checkboxes( name, sp_value, R.drawable.ic_crop_din_black_24dp );
                 sp_value--;
             }
-            char_o.sp_resources.put(special_resource, 0);
-            return ;
+            char_o.sp_resources.put(name, 0);
         }
-
-        if ( special_resource.equals("rage") ) {
-            char_o.sp_resources.put(special_resource, 1);
-            for ( Integer i = 2; i <= 10; i++ ) {
-                mark_checkboxes( special_resource, i, R.drawable.ic_crop_din_black_24dp );
+        else if ( name.equals("rage") ) {
+            for ( Integer i = 1; i <= 10; i++ ) {
+                mark_checkboxes( name, i, R.drawable.ic_crop_din_black_24dp );
             }
-            mark_checkboxes( special_resource, 1, R.drawable.ic_check_box_black_24dp );
+            if ( char_o.class_name.equals("Воин") ) {
+                char_o.sp_resources.put(name, 1);
+                mark_checkboxes(name, 1, R.drawable.ic_check_box_black_24dp);
+            }
         }
         else {
-            Integer perm_val = char_o.sp_resources.get( "perm_" + special_resource );
-            char_o.sp_resources.put( special_resource, perm_val );
+            Integer perm_val = char_o.sp_resources.get( "perm_" + name );
+            char_o.sp_resources.put( name, perm_val );
             for ( Integer i = 1; i <= perm_val; i++ ) {
-                mark_checkboxes( special_resource, i, R.drawable.ic_check_box_black_24dp );
+                mark_checkboxes( name, i, R.drawable.ic_check_box_black_24dp );
             }
             perm_val++;
             for ( Integer i = perm_val; i <= 10; i++ ) {
-                mark_checkboxes( special_resource, i, R.drawable.ic_crop_din_black_24dp );
+                mark_checkboxes( name, i, R.drawable.ic_crop_din_black_24dp );
             }
         }
     }
