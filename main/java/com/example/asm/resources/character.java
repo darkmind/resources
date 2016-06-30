@@ -18,6 +18,9 @@ class character implements Serializable {
     public final String char_name;
     public final String chronic_name;
 
+    public String class_name;
+    public String alignment;
+    public String god;
 
     public final Map<String, Integer> phis_attr = new HashMap<>();
     public final Map<String, Integer> soc_attr  = new HashMap<>();
@@ -69,7 +72,12 @@ class character implements Serializable {
     public character( String name, String chronic ) {
         char_name    = name;
         chronic_name = chronic;
-        Generated = 0;
+
+        class_name = "Воин";
+        alignment  = "Законопослушный-Добрый";
+        god        = "Акади";
+
+        Generated    = 0;
 
         attr[0] = 7;
         attr[1] = 5;
@@ -497,8 +505,7 @@ class character implements Serializable {
         Integer diff;
         switch (group) {
             case "attr":
-                Integer attr_fp = 5;
-                price = attr_fp;
+                price = 5;
                 if (phis_attr.get(name) != null) {
                     prev = phis_attr.get(name);
                     diff = number - prev;
@@ -553,8 +560,7 @@ class character implements Serializable {
                 }
                 break;
             case "abl":
-                Integer abl_fp = 2;
-                price = abl_fp;
+                price = 2;
                 if (tal_abl.get(name) != null) {
                     prev = tal_abl.get(name);
                     diff = number - prev;
@@ -609,8 +615,7 @@ class character implements Serializable {
                 }
                 break;
             case "bkg":
-                Integer bkg_fp = 1;
-                price = bkg_fp;
+                price = 1;
                 prev = bkg.get(name);
                 diff = number - prev;
                 if (number < stored_bkg.get(name)) {
@@ -629,8 +634,7 @@ class character implements Serializable {
                 bkg.put(name, number);
                 break;
             case "sph":
-                Integer sph_fp = 7;
-                price = sph_fp;
+                price = 7;
                 prev = sph.get(name);
                 diff = number - prev;
                 if (number < stored_sph.get(name)) {
@@ -649,8 +653,7 @@ class character implements Serializable {
                 sph.put(name, number);
                 break;
             case "dis":
-                Integer dis_fp = 7;
-                price = dis_fp;
+                price = 7;
                 prev = dis.get(name);
                 diff = number - prev;
                 if (number < stored_dis.get(name)) {
@@ -669,8 +672,7 @@ class character implements Serializable {
                 dis.put(name, number);
                 break;
             case "gft":
-                Integer gft_fp = 7;
-                price = gft_fp;
+                price = 7;
                 prev = gft.get(name);
                 diff = number - prev;
                 if (number < stored_gft.get(name)) {

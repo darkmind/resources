@@ -35,6 +35,11 @@ public class full_char_list extends AppCompatActivity {
     private View spheres;
     private View disciplines;
     private Spinner spinner_gd;
+    private Spinner spinner_al;
+    private Spinner spinner_cl;
+
+    private ArrayAdapter<CharSequence> adapter_gd;
+
     private character char_o;
 
     private TextView attr_helper;
@@ -43,8 +48,6 @@ public class full_char_list extends AppCompatActivity {
     private TextView sph_helper;
     private TextView dis_helper;
     private TextView gft_helper;
-
-    private ArrayAdapter<CharSequence> adapter_gd;
 
     private final String[] discs = { "dis_animalism", "dis_auspex", "dis_celerity", "dis_chimerstry",
             "dis_daimoinon", "dis_dementation", "dis_dominate", "dis_fortitude", "dis_melpominee",
@@ -106,6 +109,19 @@ public class full_char_list extends AppCompatActivity {
         TextView chronic = (TextView) findViewById(R.id.charlist_chronic_name);
         chronic.setText( String.format(Locale.getDefault(), "Хроника: %s", cr_name) );
 
+        gifts       = findViewById(R.id.gifts);
+        spheres     = findViewById(R.id.spheres);
+        disciplines = findViewById(R.id.disciplines);
+
+        // list for gods
+        spinner_gd = (Spinner) findViewById(R.id.charlist_gods);
+
+        // list for alignment
+        spinner_al = (Spinner) findViewById(R.id.charlist_alignment);
+
+        // list for classes
+        spinner_cl = (Spinner) findViewById(R.id.charlist_class);
+
         attr_helper = (TextView) findViewById(R.id.attr_show_helper);
         abl_helper  = (TextView) findViewById(R.id.abl_show_helper);
         bkg_helper  = (TextView) findViewById(R.id.bkg_show_helper);
@@ -116,37 +132,10 @@ public class full_char_list extends AppCompatActivity {
         fill_map();
         update_helpers();
 
-        gifts       = findViewById(R.id.gifts);
-        spheres     = findViewById(R.id.spheres);
-        disciplines = findViewById(R.id.disciplines);
-
-        spinner_gd = (Spinner) findViewById(R.id.charlist_gods);
-        adapter_gd = ArrayAdapter.createFromResource(this,
-                R.array.gods_array, android.R.layout.simple_spinner_item);
-        adapter_gd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_gd.setAdapter(adapter_gd);
-        spinner_gd.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String c_god = spinner_gd.getSelectedItem().toString();
-                show_god_disciplines( c_god );
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-        });
-
-
-        final Spinner spinner_al = (Spinner) findViewById(R.id.charlist_alignment);
-        final ArrayAdapter<CharSequence> adapter_al = ArrayAdapter.createFromResource(this,
-                R.array.alignments_array, android.R.layout.simple_spinner_item);
-        adapter_al.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_al.setAdapter(adapter_al);
         spinner_al.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                char_o.alignment = spinner_al.getSelectedItem().toString();
                 fix_gods_list( spinner_al.getSelectedItem().toString() );
 
             }
@@ -156,16 +145,24 @@ public class full_char_list extends AppCompatActivity {
             }
         });
 
+        spinner_gd.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                char_o.god = spinner_gd.getSelectedItem().toString();
+                show_god_disciplines( spinner_gd.getSelectedItem().toString() );
+            }
 
-        final Spinner spinner_cl = (Spinner) findViewById(R.id.charlist_class);
-        final ArrayAdapter<CharSequence> adapter_cl = ArrayAdapter.createFromResource(this,
-                R.array.classes_array, android.R.layout.simple_spinner_item);
-        adapter_cl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_cl.setAdapter(adapter_cl);
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+
         spinner_cl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String c_class = spinner_cl.getSelectedItem().toString();
+                char_o.class_name = c_class;
                 switch (c_class) {
                     case "Воин":
                         show_sp("rage");
@@ -418,8 +415,24 @@ public class full_char_list extends AppCompatActivity {
                         R.array.gods_ce_array, android.R.layout.simple_spinner_item);
                 break;
         }
-        adapter_gd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_gd.setAdapter(adapter_gd);
+
+        if ( spinner_gd.getAdapter() == null ) {
+            spinner_gd.setAdapter(adapter_gd);
+        }
+
+        ArrayList<String> new_list = new ArrayList<>();
+        for (int i = 0; i < adapter_gd.getCount(); i++) {
+            new_list.add(adapter_gd.getItem(i).toString());
+        }
+
+        ArrayList<String> old_list = new ArrayList<>();
+        for (int i = 0; i < spinner_gd.getAdapter().getCount(); i++) {
+            old_list.add(spinner_gd.getAdapter().getItem(i).toString());
+        }
+
+        if (!old_list.toString().equals(new_list.toString())) {
+            spinner_gd.setAdapter(adapter_gd);
+        }
     }
 
     private void show_god_disciplines( String god_name ) {
@@ -525,6 +538,31 @@ public class full_char_list extends AppCompatActivity {
 
 
     private void fill_map() {
+        Integer pos;
+
+        // alignment
+        ArrayAdapter<CharSequence> adapter_al = ArrayAdapter.createFromResource(this,
+                R.array.alignments_array, android.R.layout.simple_spinner_item);
+        adapter_al.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_al.setAdapter(adapter_al);
+        pos = adapter_al.getPosition( char_o.alignment );
+        spinner_al.setSelection(pos);
+
+        // class
+        ArrayAdapter<CharSequence> adapter_cl = ArrayAdapter.createFromResource(this,
+                R.array.classes_array, android.R.layout.simple_spinner_item);
+        adapter_cl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_cl.setAdapter(adapter_cl);
+        pos = adapter_cl.getPosition( char_o.class_name );
+        spinner_cl.setSelection(pos);
+
+        // god
+        if ( char_o.class_name.equals("Жрец") ) {
+            fix_gods_list(char_o.alignment);
+            pos = adapter_gd.getPosition(char_o.god);
+            spinner_gd.setSelection(pos);
+        }
+
         Integer val;
 
         // attributes
