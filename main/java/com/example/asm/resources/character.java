@@ -179,7 +179,6 @@ class character implements Serializable {
         sp_resources.put("faith", 0);
         sp_resources.put("wp", 0);
         sp_resources.put("health", 0);
-        sp_resources.put("perm_rage", 0);
         sp_resources.put("perm_faith", 0);
         sp_resources.put("perm_wp", 0);
     }

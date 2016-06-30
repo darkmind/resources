@@ -672,6 +672,12 @@ public class full_char_list extends AppCompatActivity {
             set_health_pen();
             return ;
         }
+        else if ( special_resource.equals("rage") ) {
+            sp_value += 1;
+            char_o.sp_resources.put(special_resource, sp_value);
+            mark_checkboxes( special_resource, sp_value, R.drawable.ic_check_box_black_24dp );
+            return ;
+        }
 
         Integer limit = char_o.sp_resources.get( "perm_" + special_resource );
         if ( (special_resource.equals("faith")) || (sp_value < limit) ) {
