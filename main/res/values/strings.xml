@@ -191,6 +191,7 @@
     <string name="abl_intimidation">Запугивание</string>
     <string name="abl_persuasion">Убеждение</string>
     <string name="abl_streetwise">Знание улиц</string>
+    <string name="abl_enlightenment">Просвещенность</string>
 
     <string name="abl_skills">Навыки</string>
     <string name="abl_security">Безопасность</string>
@@ -202,6 +203,7 @@
     <string name="abl_melee">Холодное</string>
     <string name="abl_herbalism">Гербализм</string>
     <string name="abl_stealth">Скрытность</string>
+    <string name="abl_concentration">Концентрация</string>
 
     <string name="abl_knowledges">Знания</string>
     <string name="abl_alchemistry">Алхимия</string>

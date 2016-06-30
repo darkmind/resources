@@ -189,22 +189,61 @@ public class full_char_list extends AppCompatActivity {
                 spheres.setVisibility(View.GONE);
                 disciplines.setVisibility(View.GONE);
                 spinner_gd.setVisibility(View.GONE);
+                findViewById( R.id.abl_enlightenment ).setVisibility(View.GONE);
+                findViewById( R.id.abl_concentration ).setVisibility(View.GONE);
+                if ( char_o.tal_abl.get("enlightenment") == 1 ) {
+                    set_range( "abl", "enlightenment", 0 );
+                    unset_upper_range( "abl", "enlightenment", 0 );
+                    char_o.return_m_point( "tal_abl" );
+                }
+                if ( char_o.kng_abl.get("religion") == 1 ) {
+                    set_range( "abl", "religion", 0 );
+                    unset_upper_range( "abl", "religion", 0 );
+                    char_o.return_m_point( "kng_abl" );
+                }
+                update_helpers();
                 break;
             case "Маг":
                 show_sp("wp");
                 init_sp_points( "wp", 1 );
+                if ( char_o.tal_abl.get("enlightenment") == 0 ) {
+                    set_range( "abl", "enlightenment", 1 );
+                    unset_upper_range( "abl", "enlightenment", 1 );
+                    char_o.delay_charge( "enlightenment", 1 );
+                }
+                if ( char_o.kng_abl.get("religion") == 1 ) {
+                    set_range( "abl", "religion", 0 );
+                    unset_upper_range( "abl", "religion", 0 );
+                    char_o.return_m_point( "kng_abl" );
+                }
+                update_helpers();
+                findViewById( R.id.abl_enlightenment ).setVisibility(View.VISIBLE);
+                findViewById( R.id.abl_concentration ).setVisibility(View.VISIBLE);
                 gifts.setVisibility(View.GONE);
                 spheres.setVisibility(View.VISIBLE);
                 disciplines.setVisibility(View.GONE);
                 spinner_gd.setVisibility(View.GONE);
                 break;
             case "Жрец":
+                if ( char_o.kng_abl.get("religion") == 0 ) {
+                    set_range( "abl", "religion", 1 );
+                    unset_upper_range( "abl", "religion", 1 );
+                    char_o.delay_charge( "religion", 1 );
+                }
+                if ( char_o.tal_abl.get("enlightenment") == 1 ) {
+                    set_range( "abl", "enlightenment", 0 );
+                    unset_upper_range( "abl", "enlightenment", 0 );
+                    char_o.return_m_point( "tal_abl" );
+                }
+                update_helpers();
                 show_sp("faith");
                 init_sp_points( "faith", (char_o.kng_abl.get("religion") * 2) );
                 gifts.setVisibility(View.GONE);
                 spheres.setVisibility(View.GONE);
                 disciplines.setVisibility(View.VISIBLE);
                 spinner_gd.setVisibility(View.VISIBLE);
+                findViewById( R.id.abl_enlightenment ).setVisibility(View.GONE);
+                findViewById( R.id.abl_concentration ).setVisibility(View.GONE);
                 break;
         }
     }
