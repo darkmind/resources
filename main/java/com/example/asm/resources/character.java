@@ -78,7 +78,7 @@ class character implements Serializable {
         alignment  = "Законопослушный-Добрый";
         god        = "Акади";
 
-        Generated    = 0;
+        Generated = 0;
 
         attr[0] = 7;
         attr[1] = 5;
@@ -510,7 +510,7 @@ class character implements Serializable {
         }
 
         if (group.equals("button")) {
-            sp_resources.put( "perm_" + name, number );
+            return 0;
         }
 
         return number;
@@ -722,6 +722,24 @@ class character implements Serializable {
                     number = prev + available;
                 }
                 gft.put(name, number);
+                break;
+            case "button":
+                if (! name.equals("wp")) {
+                    return 0;
+                }
+                price = 2;
+                prev  = sp_resources.get("perm_" + name);
+                diff  = number - prev;
+
+                if ((free_points - (price * diff)) >= 0) {
+                    free_points -= (price * diff);
+                } else {
+                    Integer available = free_points / price;
+                    free_points -= available;
+                    number = prev + available;
+                }
+                sp_resources.put("perm_" + name, number);
+
                 break;
         }
 

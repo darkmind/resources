@@ -48,6 +48,7 @@ public class full_char_list extends AppCompatActivity {
     private TextView sph_helper;
     private TextView dis_helper;
     private TextView gft_helper;
+    private TextView wp_show_helper;
 
     private final String[] discs = { "dis_animalism", "dis_auspex", "dis_celerity", "dis_chimerstry",
             "dis_daimoinon", "dis_dementation", "dis_dominate", "dis_fortitude", "dis_melpominee",
@@ -122,12 +123,13 @@ public class full_char_list extends AppCompatActivity {
         // list for classes
         spinner_cl = (Spinner) findViewById(R.id.charlist_class);
 
-        attr_helper = (TextView) findViewById(R.id.attr_show_helper);
-        abl_helper  = (TextView) findViewById(R.id.abl_show_helper);
-        bkg_helper  = (TextView) findViewById(R.id.bkg_show_helper);
-        sph_helper  = (TextView) findViewById(R.id.sph_show_helper);
-        dis_helper  = (TextView) findViewById(R.id.dis_show_helper);
-        gft_helper  = (TextView) findViewById(R.id.gft_show_helper);
+        attr_helper    = (TextView) findViewById(R.id.attr_show_helper);
+        abl_helper     = (TextView) findViewById(R.id.abl_show_helper);
+        bkg_helper     = (TextView) findViewById(R.id.bkg_show_helper);
+        sph_helper     = (TextView) findViewById(R.id.sph_show_helper);
+        dis_helper     = (TextView) findViewById(R.id.dis_show_helper);
+        gft_helper     = (TextView) findViewById(R.id.gft_show_helper);
+        wp_show_helper = (TextView) findViewById(R.id.wp_show_helper);
 
         fill_map();
         update_helpers();
@@ -294,6 +296,8 @@ public class full_char_list extends AppCompatActivity {
                     char_o.free_points));
             gft_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 7",
                     char_o.free_points));
+            wp_show_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 2",
+                    char_o.free_points));
         }
     }
 
@@ -397,6 +401,7 @@ public class full_char_list extends AppCompatActivity {
 
     private void finish_gen_points() {
         char_o.Generated = 1;
+        wp_show_helper.setVisibility(View.VISIBLE);
         update_helpers();
         char_o.store_values();
     }

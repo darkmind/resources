@@ -18,6 +18,13 @@
         android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/wp_show_helper"
+        android:visibility="gone"
+        android:text=""/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
