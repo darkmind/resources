@@ -797,8 +797,7 @@ class character implements Serializable {
         if ( group.equals("tal_abl") ) {
             if (postponed_payments.get("tal") == null) {
                 Integer r_val = tal_abl.get("enlightenment");
-                tal_abl.put("enlightenment", 0);
-                Integer cur = tal_abl.get("gen_points");
+                Integer cur   = tal_abl.get("gen_points");
                 cur += r_val;
                 tal_abl.put("gen_points", cur);
                 if (main_abl.equals("tal")) {
@@ -811,11 +810,11 @@ class character implements Serializable {
             } else {
                 postponed_payments.remove("tal");
             }
+            tal_abl.put("enlightenment", 0);
         }
         else if ( group.equals("kng_abl") ) {
             if (postponed_payments.get("kng") == null) {
                 Integer r_val = kng_abl.get("religion");
-                kng_abl.put("religion", 0);
                 Integer cur   = kng_abl.get("gen_points");
                 cur += r_val;
                 kng_abl.put("gen_points", cur);
@@ -829,6 +828,7 @@ class character implements Serializable {
             } else {
                 postponed_payments.remove("kng");
             }
+            kng_abl.put("religion", 0);
         }
     }
 
