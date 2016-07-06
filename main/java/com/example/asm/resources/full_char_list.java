@@ -344,8 +344,13 @@ public class full_char_list extends AppCompatActivity {
         }
 
         if ( char_o.Generated == 0 ) {
+            if ( group.equals("button") ) {
+                return ;
+            }
             number = char_o.save_new_values( group, name, number );
-            set_range( group, name, number );
+            if ( number > 0 ) {
+                set_range(group, name, number);
+            }
             unset_upper_range( group, name, number );
             if ( char_o.class_name.equals("Жрец") ) {
                 if ( name.equals("religion") ) {

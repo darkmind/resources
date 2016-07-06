@@ -308,6 +308,15 @@ class character implements Serializable {
             Integer gen_points;
             if ( tal_abl.get(name) != null ) {
                 prev_num = tal_abl.get(name);
+
+                if ( number == 1 && prev_num == 1 ) {
+                    if ( name.equals("enlightenment") && class_name.equals("Маг") ) {
+                    }
+                    else {
+                        number = 0;
+                    }
+                }
+
                 if (tal_abl.get( "gen_points" ) == null) {
                     if (main_abl.equals("NULL")) {
                         Integer postponed = postponed_payments.get("tal");
@@ -337,6 +346,7 @@ class character implements Serializable {
                         thrd_abl = "tal";
                     }
                 }
+
                 gen_points = tal_abl.get( "gen_points" );
                 if ( (number - prev_num) <= gen_points ) {
                     gen_points -= (number - prev_num);
@@ -345,6 +355,7 @@ class character implements Serializable {
                     number = prev_num + gen_points;
                     gen_points = 0;
                 }
+
                 tal_abl.put(name, number);
                 tal_abl.put( "gen_points", gen_points );
                 if ( main_abl.equals("tal") ) {
@@ -359,6 +370,11 @@ class character implements Serializable {
             }
             if ( skl_abl.get(name) != null ) {
                 prev_num = skl_abl.get(name);
+
+                if ( number == 1 && prev_num == 1 ) {
+                    number = 0;
+                }
+
                 if (skl_abl.get( "gen_points" ) == null) {
                     if (main_abl.equals("NULL")) {
                         skl_abl.put( "gen_points", abl[0] );
@@ -395,6 +411,15 @@ class character implements Serializable {
             }
             if ( kng_abl.get(name) != null ) {
                 prev_num = kng_abl.get(name);
+
+                if ( number == 1 && prev_num == 1 ) {
+                    if ( name.equals("religion") && class_name.equals("Жрец") ) {
+                    }
+                    else {
+                        number = 0;
+                    }
+                }
+
                 if (kng_abl.get( "gen_points" ) == null) {
                     if (main_abl.equals("NULL")) {
                         Integer postponed = postponed_payments.get("kng");
@@ -448,6 +473,11 @@ class character implements Serializable {
 
         if (group.equals("bkg")) {
             prev_num = bkg.get(name);
+
+            if ( number == 1 && prev_num == 1 ) {
+                number = 0;
+            }
+
             if ( (number - prev_num) <= bkg_gen_points ) {
                 bkg_gen_points -= (number - prev_num);
             }
@@ -465,6 +495,11 @@ class character implements Serializable {
                 }
             }
             prev_num = sph.get(name);
+
+            if ( number == 1 && prev_num == 1 ) {
+                number = 0;
+            }
+
             if ( (number - prev_num) <= cf_gen_points ) {
                 cf_gen_points -= (number - prev_num);
             }
@@ -482,6 +517,11 @@ class character implements Serializable {
                 }
             }
             prev_num = dis.get(name);
+
+            if ( number == 1 && prev_num == 1 ) {
+                number = 0;
+            }
+
             if ( (number - prev_num) <= cf_gen_points ) {
                 cf_gen_points -= (number - prev_num);
             }
@@ -499,6 +539,11 @@ class character implements Serializable {
                 }
             }
             prev_num = gft.get(name);
+
+            if ( number == 1 && prev_num == 1 ) {
+                number = 0;
+            }
+
             if ( (number - prev_num) <= cf_gen_points ) {
                 cf_gen_points -= (number - prev_num);
             }
@@ -510,7 +555,7 @@ class character implements Serializable {
         }
 
         if (group.equals("button")) {
-            return 0;
+            return 1;
         }
 
         return number;
@@ -596,6 +641,11 @@ class character implements Serializable {
                 price = 2;
                 if (tal_abl.get(name) != null) {
                     prev = tal_abl.get(name);
+
+                    if ( number == 1 && prev == 1 && stored_tal_abl.get(name) == 0 ) {
+                        number = 0;
+                    }
+
                     diff = number - prev;
                     if (number < stored_tal_abl.get(name)) {
                         Integer st = prev - stored_tal_abl.get(name);
@@ -613,6 +663,11 @@ class character implements Serializable {
                     tal_abl.put(name, number);
                 } else if (skl_abl.get(name) != null) {
                     prev = skl_abl.get(name);
+
+                    if ( number == 1 && prev == 1 && stored_skl_abl.get(name) == 0 ) {
+                        number = 0;
+                    }
+
                     diff = number - prev;
                     if (number < stored_skl_abl.get(name)) {
                         Integer st = prev - stored_skl_abl.get(name);
@@ -630,6 +685,11 @@ class character implements Serializable {
                     skl_abl.put(name, number);
                 } else if (kng_abl.get(name) != null) {
                     prev = kng_abl.get(name);
+
+                    if ( number == 1 && prev == 1 && stored_kng_abl.get(name) == 0 ) {
+                        number = 0;
+                    }
+
                     diff = number - prev;
                     if (number < stored_kng_abl.get(name)) {
                         Integer st = prev - stored_kng_abl.get(name);
@@ -650,6 +710,11 @@ class character implements Serializable {
             case "bkg":
                 price = 1;
                 prev = bkg.get(name);
+
+                if ( number == 1 && prev == 1 && stored_bkg.get(name) == 0 ) {
+                    number = 0;
+                }
+
                 diff = number - prev;
                 if (number < stored_bkg.get(name)) {
                     Integer st = prev - stored_bkg.get(name);
@@ -669,6 +734,11 @@ class character implements Serializable {
             case "sph":
                 price = 7;
                 prev = sph.get(name);
+
+                if ( number == 1 && prev == 1 && stored_sph.get(name) == 0 ) {
+                    number = 0;
+                }
+
                 diff = number - prev;
                 if (number < stored_sph.get(name)) {
                     Integer st = prev - stored_sph.get(name);
@@ -688,6 +758,11 @@ class character implements Serializable {
             case "dis":
                 price = 7;
                 prev = dis.get(name);
+
+                if ( number == 1 && prev == 1 && stored_dis.get(name) == 0 ) {
+                    number = 0;
+                }
+
                 diff = number - prev;
                 if (number < stored_dis.get(name)) {
                     Integer st = prev - stored_dis.get(name);
@@ -707,6 +782,11 @@ class character implements Serializable {
             case "gft":
                 price = 7;
                 prev = gft.get(name);
+
+                if ( number == 1 && prev == 1 && stored_gft.get(name) == 0 ) {
+                    number = 0;
+                }
+
                 diff = number - prev;
                 if (number < stored_gft.get(name)) {
                     Integer st = prev - stored_gft.get(name);
@@ -729,6 +809,11 @@ class character implements Serializable {
                 }
                 price = 2;
                 prev  = sp_resources.get("perm_" + name);
+
+                if ( number == 1 && prev == 1 && !class_name.equals("Маг") ) {
+                    number = 0;
+                }
+
                 diff  = number - prev;
 
                 if ((free_points - (price * diff)) >= 0) {
