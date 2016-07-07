@@ -52,7 +52,7 @@ public class full_char_list extends AppCompatActivity {
     private TextView gft_helper;
     private TextView wp_show_helper;
 
-    private List<String> g_discs = new ArrayList<>();
+    private final List<String> g_discs = new ArrayList<>();
 
     private final String[] discs = { "animalism", "auspex", "celerity", "chimerstry",
             "daimoinon", "dementation", "dominate", "fortitude", "melpominee",

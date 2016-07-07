@@ -47,7 +47,7 @@ class character implements Serializable {
 
     public final Map<String, Integer> sp_resources = new HashMap<>();
 
-    private Map<String, Integer> postponed_payments = new HashMap<>();
+    private final Map<String, Integer> postponed_payments = new HashMap<>();
 
     public Integer Generated;
 
