@@ -55,6 +55,7 @@ public class enter_name extends Activity {
         finish();
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void create_character(View view) {
         go_main_screen();
     }

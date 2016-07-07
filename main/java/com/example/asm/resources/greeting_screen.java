@@ -13,18 +13,21 @@ public class greeting_screen extends Activity {
         setContentView(R.layout.activity_greeting_screen);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void run_enter_name(View view) {
         Intent intent = new Intent(this, enter_name.class);
         startActivity(intent);
         finish();
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void run_load_screen(View view) {
         Intent intent = new Intent(this, load_char.class);
         startActivity(intent);
         finish();
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void exit_app(View view) {
         System.exit(0);
     }

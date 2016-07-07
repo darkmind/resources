@@ -63,6 +63,7 @@ public class full_char_list extends AppCompatActivity {
 
     private final String[] resources = { "rage", "faith", "wp" };
 
+    @SuppressWarnings("UnusedParameters")
     public void switch_screen(View view) {
         if (mVisible) {
             hide();
@@ -964,11 +965,13 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void save_char(MenuItem item) {
         Context context = this;
         char_o.flush( context );
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void run_load_screen(MenuItem item) {
 
         Intent intent = new Intent(this, load_char.class);
@@ -976,6 +979,7 @@ public class full_char_list extends AppCompatActivity {
         finish();
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void new_char(MenuItem item) {
         Intent intent = new Intent(this, enter_name.class);
         startActivity(intent);
