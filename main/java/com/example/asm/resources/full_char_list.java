@@ -63,7 +63,7 @@ public class full_char_list extends AppCompatActivity {
 
     private final String[] resources = { "rage", "faith", "wp" };
 
-    @SuppressWarnings("UnusedParameters")
+    @SuppressWarnings({"UnusedParameters", "unused"})
     public void switch_screen(View view) {
         if (mVisible) {
             hide();
@@ -335,6 +335,7 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void radio_button_clicked(View view) {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("_(\\p{Lower}+)_(\\p{Lower}+)(\\d+)$");
@@ -785,6 +786,7 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void plus_button(View view) {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("/(\\p{Lower}+)_");
@@ -824,6 +826,7 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void minus_button(View view) {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("/(\\p{Lower}+)_");
@@ -882,6 +885,7 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void reset_button(View view) {
         String IdAsString = view.getResources().getResourceName(view.getId());
         Pattern p = Pattern.compile("/(\\p{Lower}+)_");
@@ -937,6 +941,7 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
     public void onCheckboxClicked_sp_resources(View view) {
         boolean checked = ((CheckBox) view).isChecked();
 
@@ -965,13 +970,13 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
-    @SuppressWarnings("UnusedParameters")
+    @SuppressWarnings({"UnusedParameters", "unused"})
     public void save_char(MenuItem item) {
         Context context = this;
         char_o.flush( context );
     }
 
-    @SuppressWarnings("UnusedParameters")
+    @SuppressWarnings({"UnusedParameters", "unused"})
     public void run_load_screen(MenuItem item) {
 
         Intent intent = new Intent(this, load_char.class);
@@ -979,13 +984,14 @@ public class full_char_list extends AppCompatActivity {
         finish();
     }
 
-    @SuppressWarnings("UnusedParameters")
+    @SuppressWarnings({"UnusedParameters", "unused"})
     public void new_char(MenuItem item) {
         Intent intent = new Intent(this, enter_name.class);
         startActivity(intent);
         finish();
     }
 
+    @SuppressWarnings("unused")
     public void run_hide_zero(MenuItem item) {
 
         item.setVisible(false);
@@ -1059,6 +1065,7 @@ public class full_char_list extends AppCompatActivity {
         w_param.setVisibility(vis);
     }
 
+    @SuppressWarnings("unused")
     public void run_show_zero(MenuItem item) {
         item.setVisible(false);
         MenuItem hide_params = menu_bar.findItem(R.id.action_hide_zero);

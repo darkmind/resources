@@ -13,7 +13,6 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 class character implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     public final String char_name;
     public final String chronic_name;
