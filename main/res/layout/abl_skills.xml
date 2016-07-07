@@ -504,7 +504,7 @@
                 android:id="@+id/rb_abl_concentration3"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
                 android:onClick="radio_button_clicked"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,TooManyViews" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
