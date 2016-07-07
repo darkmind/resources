@@ -938,7 +938,8 @@ class character implements Serializable {
         }
     }
 
-    public void delay_charge( String name, Integer num ) {
+    @SuppressWarnings("SameParameterValue")
+    public void delay_charge(String name, Integer num ) {
         if ( name.equals("enlightenment") ) {
             tal_abl.put( name, num );
             if ( main_abl.equals("tal") ) {
