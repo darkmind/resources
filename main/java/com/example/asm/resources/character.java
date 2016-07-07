@@ -311,7 +311,10 @@ class character implements Serializable {
                 prev_num = tal_abl.get(name);
 
                 if ( number == 1 && prev_num == 1 ) {
-                    if ( !name.equals("enlightenment") && !class_name.equals("Маг") ) {
+                    //noinspection StatementWithEmptyBody
+                    if ( name.equals("enlightenment") && class_name.equals("Маг") ) {
+                    }
+                    else {
                         number = 0;
                     }
                 }
@@ -412,7 +415,10 @@ class character implements Serializable {
                 prev_num = kng_abl.get(name);
 
                 if ( number == 1 && prev_num == 1 ) {
-                    if ( !name.equals("religion") && !class_name.equals("Жрец") ) {
+                    //noinspection StatementWithEmptyBody
+                    if ( name.equals("religion") && class_name.equals("Жрец") ) {
+                    }
+                    else {
                         number = 0;
                     }
                 }
