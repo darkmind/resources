@@ -7,14 +7,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="@string/attrs"/>
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:id="@+id/attr_show_helper"
             android:text=""/>
     </LinearLayout>
@@ -22,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <include layout="@layout/attr_phisical"/>
+        <include layout="@layout/attr_physical"/>
         <include layout="@layout/attr_social"/>
         <include layout="@layout/attr_mental"/>
     </LinearLayout>

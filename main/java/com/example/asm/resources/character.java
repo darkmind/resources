@@ -117,7 +117,7 @@ class character implements Serializable {
         skl_abl.put("security", 0);
         skl_abl.put("craft", 0);
         skl_abl.put("blindfight", 0);
-        skl_abl.put("etiquete", 0);
+        skl_abl.put("etiquette", 0);
         skl_abl.put("firearms", 0);
         skl_abl.put("survival", 0);
         skl_abl.put("melee", 0);
@@ -130,7 +130,7 @@ class character implements Serializable {
         kng_abl.put("investigation", 0);
         kng_abl.put("religion", 0);
         kng_abl.put("linguistics", 0);
-        kng_abl.put("medecine", 0);
+        kng_abl.put("medicine", 0);
         kng_abl.put("occult", 0);
         kng_abl.put("politics", 0);
         kng_abl.put("science", 0);

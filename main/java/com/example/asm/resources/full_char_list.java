@@ -1042,6 +1042,9 @@ public class full_char_list extends AppCompatActivity {
         if ( char_o.class_name.equals("Жрец") ) {
             for (String param : g_discs) {
                 if (char_o.dis.get(param) == 0) {
+                    if ( param.equals("alchemistry") ) {
+                        param = "dis_alchemistry";
+                    }
                     display_param(param, View.GONE);
                 }
             }
@@ -1057,9 +1060,6 @@ public class full_char_list extends AppCompatActivity {
     }
 
     private void display_param( String param, Integer vis ) {
-        if ( param.equals("alchemistry") ) {
-            param = "dis_alchemistry";
-        }
         int resID = getResources().getIdentifier(param, "id", getPackageName());
         View w_param = findViewById(resID);
         w_param.setVisibility(vis);

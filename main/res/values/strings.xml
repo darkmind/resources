@@ -164,7 +164,7 @@
     <string name="abl_security">Безопасность</string>
     <string name="abl_craft">Ремесло</string>
     <string name="abl_blindfight">Бой вслепую</string>
-    <string name="abl_etiquete">Этикет</string>
+    <string name="abl_etiquette">Этикет</string>
     <string name="abl_firearms">Дальнобойное</string>
     <string name="abl_survival">Выживание</string>
     <string name="abl_melee">Холодное</string>
@@ -178,7 +178,7 @@
     <string name="abl_investigation">Расследование</string>
     <string name="abl_religion">Религия</string>
     <string name="abl_linguistics">Языки</string>
-    <string name="abl_medecine">Медицина</string>
+    <string name="abl_medicine">Медицина</string>
     <string name="abl_occult">Оккультизм</string>
     <string name="abl_politics">Политика</string>
     <string name="abl_science">Наука</string>
