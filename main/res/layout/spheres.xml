@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_time"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_spirit"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_life"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_matter"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_prime"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -286,7 +286,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_mind"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -337,7 +337,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_connection"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -388,7 +388,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_forces"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -439,7 +439,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sph_entropy"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"

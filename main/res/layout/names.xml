@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/charlist_alignment_hint"
-            android:gravity="left"/>
+            android:gravity="start"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:hint="@string/charlist_class_hint"
-            android:gravity="right"/>
+            android:gravity="end"/>
         <Spinner
             android:id="@+id/charlist_gods"
             android:visibility="invisible"
@@ -48,6 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:hint="@string/charlist_gods_hint"
-            android:gravity="right"/>
+            android:gravity="end"/>
     </LinearLayout>
 </LinearLayout>

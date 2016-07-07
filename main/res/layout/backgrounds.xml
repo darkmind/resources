@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bkg_allies"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bkg_contacts"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bkg_fame"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bkg_resources"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -233,7 +233,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bkg_dignity"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -284,7 +284,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bkg_artifact"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"

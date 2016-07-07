@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_animalism"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_auspex"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_celerity"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_chimerstry"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_daimoinon"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -286,7 +286,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_dementation"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -337,7 +337,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_dominate"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -388,7 +388,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_fortitude"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -439,7 +439,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_melpominee"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -490,7 +490,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_obfuscate"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -541,7 +541,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_obtenebration"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -592,7 +592,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_potence"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -643,7 +643,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_presence"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -694,7 +694,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_protean"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -745,7 +745,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_quietus"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -796,7 +796,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_serpentis"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -847,7 +847,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_temporis"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -898,7 +898,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_thanatosis"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -949,7 +949,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_vicissitude"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -1000,7 +1000,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_alchemistry"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -1051,7 +1051,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_conveyance"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -1102,7 +1102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_enchantment"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -1153,7 +1153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_healing"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -1204,7 +1204,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_hellfire"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
@@ -1255,7 +1255,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dis_weathercraft"
-            android:gravity="left"/>
+            android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
