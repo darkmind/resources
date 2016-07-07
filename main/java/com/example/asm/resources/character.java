@@ -194,7 +194,8 @@ class character implements Serializable {
         sp_resources.put("perm_wp", 0);
     }
 
-    public Integer save_new_values( String group, String name, Integer number ) {
+    @SuppressWarnings("ConstantConditions")
+    public Integer save_new_values(String group, String name, Integer number ) {
         String type;
         Integer prev_num;
         if (group.equals("attr")) {
@@ -310,9 +311,7 @@ class character implements Serializable {
                 prev_num = tal_abl.get(name);
 
                 if ( number == 1 && prev_num == 1 ) {
-                    if ( name.equals("enlightenment") && class_name.equals("Маг") ) {
-                    }
-                    else {
+                    if ( !name.equals("enlightenment") && !class_name.equals("Маг") ) {
                         number = 0;
                     }
                 }
@@ -413,9 +412,7 @@ class character implements Serializable {
                 prev_num = kng_abl.get(name);
 
                 if ( number == 1 && prev_num == 1 ) {
-                    if ( name.equals("religion") && class_name.equals("Жрец") ) {
-                    }
-                    else {
+                    if ( !name.equals("religion") && !class_name.equals("Жрец") ) {
                         number = 0;
                     }
                 }
