@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="#0099cc"
     android:orientation="vertical"
-    tools:context="com.example.asm.resources.enter_name">
+    tools:context="com.example.asm.resources.enter_name"
+    tools:ignore="Overdraw">
     <EditText
         android:id="@+id/char_name"
         android:layout_width="match_parent"

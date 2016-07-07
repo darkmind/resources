@@ -17,12 +17,10 @@
     <string name="char_m_10">-10</string>
     <string name="char_minus">-</string>
     <string name="char_plus">+</string>
-    <string name="title_activity_greeting_screen">greeting_screen</string>
     <string name="title_activity_enter_name">enter_name</string>
     <string name="name_hint">Введите имя персонажа</string>
     <string name="title_activity_load_char">load_char</string>
 
-    <string name="charlist_master_name_hint">Мастер</string>
     <string name="charlist_chronic_name_hint">Хроника</string>
 
     <string-array name="alignments_array">
@@ -44,25 +42,6 @@
     </string-array>
 
     <string name="charlist_gods_hint">Бог</string>
-    <string-array name="gods_array">
-        <item>Акади</item>
-        <item>Грумбар</item>
-        <item>Истишия</item>
-        <item>Келемвор</item>
-        <item>Коссут</item>
-        <item>Латандер</item>
-        <item>Мистра</item>
-        <item>Огма</item>
-        <item>Сайрик</item>
-        <item>Суне</item>
-        <item>Сильванус</item>
-        <item>Талос</item>
-        <item>Темпус</item>
-        <item>Тир</item>
-        <item>Чонти</item>
-        <item>Шар</item>
-        <item>Бэйн</item>
-    </string-array>
 
     <string-array name="gods_lg_array">
         <item>Келемвор</item>
@@ -147,20 +126,8 @@
     </string-array>
 
     <string name="charlist_alignment_hint">Мировоззрение</string>
-    <string name="alignment_LG">Законопослушный-Добрый</string>
-    <string name="alignment_NG">Нейтральный-Добрый</string>
-    <string name="alignment_CG">Хаотичный-Добрый</string>
-    <string name="alignment_LN">Законопослушный-Нейтральный</string>
-    <string name="alignment_NN">Нейтральный</string>
-    <string name="alignment_CN">Хаотичный-Нейтральный</string>
-    <string name="alignment_LE">Законопослушный-Злой</string>
-    <string name="alignment_NE">Нейтральный-Злой</string>
-    <string name="alignment_CE">Хаотичный-Злой</string>
 
     <string name="charlist_class_hint">Класс</string>
-    <string name="class_warrior">Воин</string>
-    <string name="class_mage">Маг</string>
-    <string name="class_priest">Жрец</string>
 
     <string name="attrs">Атрибуты</string>
 
