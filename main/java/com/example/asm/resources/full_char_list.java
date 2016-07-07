@@ -31,6 +31,8 @@ import java.util.regex.Pattern;
 public class full_char_list extends AppCompatActivity {
     private boolean mVisible;
 
+    private Menu menu_bar;
+
     private View gifts;
     private View spheres;
     private View disciplines;
@@ -50,12 +52,14 @@ public class full_char_list extends AppCompatActivity {
     private TextView gft_helper;
     private TextView wp_show_helper;
 
-    private final String[] discs = { "dis_animalism", "dis_auspex", "dis_celerity", "dis_chimerstry",
-            "dis_daimoinon", "dis_dementation", "dis_dominate", "dis_fortitude", "dis_melpominee",
-            "dis_obfuscate", "dis_obtenebration", "dis_potence", "dis_presence", "dis_protean",
-            "dis_quietus", "dis_serpentis", "dis_temporis", "dis_thanatosis", "dis_vicissitude",
-            "dis_alchemistry", "dis_conveyance", "dis_enchantment", "dis_healing", "dis_hellfire",
-            "dis_weathercraft" };
+    private List<String> g_discs = new ArrayList<>();
+
+    private final String[] discs = { "animalism", "auspex", "celerity", "chimerstry",
+            "daimoinon", "dementation", "dominate", "fortitude", "melpominee",
+            "obfuscate", "obtenebration", "potence", "presence", "protean",
+            "quietus", "serpentis", "temporis", "thanatosis", "vicissitude",
+            "alchemistry", "conveyance", "enchantment", "healing", "hellfire",
+            "weathercraft" };
 
     private final String[] resources = { "rage", "faith", "wp" };
 
@@ -179,6 +183,7 @@ public class full_char_list extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar_menu, menu);
+        menu_bar = menu;
         return true;
     }
 
@@ -191,8 +196,8 @@ public class full_char_list extends AppCompatActivity {
                 spheres.setVisibility(View.GONE);
                 disciplines.setVisibility(View.GONE);
                 spinner_gd.setVisibility(View.GONE);
-                findViewById( R.id.abl_enlightenment ).setVisibility(View.GONE);
-                findViewById( R.id.abl_concentration ).setVisibility(View.GONE);
+                findViewById( R.id.enlightenment ).setVisibility(View.GONE);
+                findViewById( R.id.concentration ).setVisibility(View.GONE);
                 if ( char_o.tal_abl.get("enlightenment") == 1 ) {
                     set_range( "abl", "enlightenment", 0 );
                     unset_upper_range( "abl", "enlightenment", 0 );
@@ -219,8 +224,8 @@ public class full_char_list extends AppCompatActivity {
                     char_o.return_m_point( "kng_abl" );
                 }
                 update_helpers();
-                findViewById( R.id.abl_enlightenment ).setVisibility(View.VISIBLE);
-                findViewById( R.id.abl_concentration ).setVisibility(View.VISIBLE);
+                findViewById( R.id.enlightenment ).setVisibility(View.VISIBLE);
+                findViewById( R.id.concentration ).setVisibility(View.VISIBLE);
                 gifts.setVisibility(View.GONE);
                 spheres.setVisibility(View.VISIBLE);
                 disciplines.setVisibility(View.GONE);
@@ -244,32 +249,34 @@ public class full_char_list extends AppCompatActivity {
                 spheres.setVisibility(View.GONE);
                 disciplines.setVisibility(View.VISIBLE);
                 spinner_gd.setVisibility(View.VISIBLE);
-                findViewById( R.id.abl_enlightenment ).setVisibility(View.GONE);
-                findViewById( R.id.abl_concentration ).setVisibility(View.GONE);
+                findViewById( R.id.enlightenment ).setVisibility(View.GONE);
+                findViewById( R.id.concentration ).setVisibility(View.GONE);
                 break;
         }
     }
 
     private void init_sp_points( String res, Integer num ) {
-        if ( res.equals("rage") ) {
-            if ( char_o.sp_resources.get(res) == 0 ) {
-                char_o.sp_resources.put(res, num);
-                set_free_range( res, num );
-                unset_free_upper_range( res, num );
-            }
-        }
-        else if ( res.equals("wp") ) {
-            if ( char_o.sp_resources.get("perm_" + res) == 0 ) {
+        switch (res) {
+            case "rage":
+                if (char_o.sp_resources.get(res) == 0) {
+                    char_o.sp_resources.put(res, num);
+                    set_free_range(res, num);
+                    unset_free_upper_range(res, num);
+                }
+                break;
+            case "wp":
+                if (char_o.sp_resources.get("perm_" + res) == 0) {
+                    char_o.sp_resources.put("perm_" + res, num);
+                    set_range("button", res, 1);
+                    unset_upper_range("button", res, 1);
+                }
+                break;
+            case "faith":
                 char_o.sp_resources.put("perm_" + res, num);
-                set_range( "button", res, 1 );
-                unset_upper_range( "button", res, 1 );
-            }
-        }
-        else if ( res.equals("faith") ) {
-            char_o.sp_resources.put("perm_" + res, num);
-            set_range( "button", res, num );
-            unset_upper_range( "button", res, num );
+                set_range("button", res, num);
+                unset_upper_range("button", res, num);
 
+                break;
         }
         reset_parameter( res );
     }
@@ -522,105 +529,113 @@ public class full_char_list extends AppCompatActivity {
 
     private void show_god_disciplines( String god_name ) {
         for (String d: discs) {
+            if ( d.equals("alchemistry") ) {
+                d = "dis_alchemistry";
+            }
             int resID = getResources().getIdentifier(d, "id", getPackageName());
             View disc = findViewById(resID);
             disc.setVisibility(View.GONE);
         }
-
-        List<String> g_discs = new ArrayList<>();
+        g_discs.clear();
         switch (god_name) {
             case "Акади":
-                g_discs.add("dis_celerity");
-                g_discs.add("dis_conveyance");
-                g_discs.add("dis_weathercraft");
+                g_discs.add("celerity");
+                g_discs.add("conveyance");
+                g_discs.add("weathercraft");
                 break;
             case "Грумбар":
-                g_discs.add("dis_fortitude");
-                g_discs.add("dis_temporis");
+                g_discs.add("fortitude");
+                g_discs.add("temporis");
                 break;
             case "Истишия":
-                g_discs.add("dis_potence");
-                g_discs.add("dis_alchemistry");
-                g_discs.add("dis_melpominee");
+                g_discs.add("potence");
+                g_discs.add("alchemistry");
+                g_discs.add("melpominee");
                 break;
             case "Келемвор":
-                g_discs.add("dis_conveyance");
-                g_discs.add("dis_auspex");
-                g_discs.add("dis_temporis");
+                g_discs.add("conveyance");
+                g_discs.add("auspex");
+                g_discs.add("temporis");
                 break;
             case "Коссут":
-                g_discs.add("dis_potence");
-                g_discs.add("dis_hellfire");
-                g_discs.add("dis_dominate");
+                g_discs.add("potence");
+                g_discs.add("hellfire");
+                g_discs.add("dominate");
                 break;
             case "Латандер":
-                g_discs.add("dis_healing");
-                g_discs.add("dis_potence");
-                g_discs.add("dis_presence");
+                g_discs.add("healing");
+                g_discs.add("potence");
+                g_discs.add("presence");
                 break;
             case "Мистра":
-                g_discs.add("dis_hellfire");
-                g_discs.add("dis_alchemistry");
-                g_discs.add("dis_enchantment");
+                g_discs.add("hellfire");
+                g_discs.add("alchemistry");
+                g_discs.add("enchantment");
                 break;
             case "Огма":
-                g_discs.add("dis_conveyance");
-                g_discs.add("dis_alchemistry");
-                g_discs.add("dis_enchantment");
+                g_discs.add("conveyance");
+                g_discs.add("alchemistry");
+                g_discs.add("enchantment");
                 break;
             case "Сайрик":
-                g_discs.add("dis_dominate");
-                g_discs.add("dis_chimerstry");
-                g_discs.add("dis_dementation");
+                g_discs.add("dominate");
+                g_discs.add("chimerstry");
+                g_discs.add("dementation");
                 break;
             case "Суне":
-                g_discs.add("dis_presence");
-                g_discs.add("dis_healing");
-                g_discs.add("dis_celerity");
+                g_discs.add("presence");
+                g_discs.add("healing");
+                g_discs.add("celerity");
                 break;
             case "Сильванус":
-                g_discs.add("dis_animalism");
-                g_discs.add("dis_protean");
-                g_discs.add("dis_serpentis");
+                g_discs.add("animalism");
+                g_discs.add("protean");
+                g_discs.add("serpentis");
                 break;
             case "Талос":
-                g_discs.add("dis_hellfire");
-                g_discs.add("dis_weathercraft");
-                g_discs.add("dis_dominate");
+                g_discs.add("hellfire");
+                g_discs.add("weathercraft");
+                g_discs.add("dominate");
                 break;
             case "Темпус":
-                g_discs.add("dis_potence");
-                g_discs.add("dis_healing");
-                g_discs.add("dis_fortitude");
+                g_discs.add("potence");
+                g_discs.add("healing");
+                g_discs.add("fortitude");
                 break;
             case "Тир":
-                g_discs.add("dis_auspex");
-                g_discs.add("dis_fortitude");
+                g_discs.add("auspex");
+                g_discs.add("fortitude");
                 break;
             case "Чонти":
-                g_discs.add("dis_weathercraft");
-                g_discs.add("dis_healing");
-                g_discs.add("dis_animalism");
+                g_discs.add("weathercraft");
+                g_discs.add("healing");
+                g_discs.add("animalism");
                 break;
             case "Шар":
-                g_discs.add("dis_dominate");
-                g_discs.add("dis_obtenebration");
-                g_discs.add("dis_obfuscate");
+                g_discs.add("dominate");
+                g_discs.add("obtenebration");
+                g_discs.add("obfuscate");
                 break;
             case "Бэйн":
-                g_discs.add("dis_quietus");
-                g_discs.add("dis_dominate");
-                g_discs.add("dis_daimoinon");
+                g_discs.add("quietus");
+                g_discs.add("dominate");
+                g_discs.add("daimoinon");
                 break;
         }
 
+        display_discs();
+    }
+
+    private void display_discs () {
         for( String d: g_discs ) {
+            if ( d.equals("alchemistry") ) {
+                d = "dis_alchemistry";
+            }
             int resID = getResources().getIdentifier(d, "id", getPackageName());
             View disc = findViewById(resID);
             disc.setVisibility(View.VISIBLE);
         }
     }
-
 
     private void fill_map() {
         Integer pos;
@@ -786,8 +801,6 @@ public class full_char_list extends AppCompatActivity {
         if ( special_resource.equals("health") ) {
             sp_value++;
             if ( sp_value > 14 ) {
-                //noinspection UnusedAssignment
-                sp_value = 14;
                 return ;
             }
             char_o.sp_resources.put(special_resource, sp_value);
@@ -892,32 +905,34 @@ public class full_char_list extends AppCompatActivity {
 
     private void reset_parameter ( String name ) {
         Integer sp_value = char_o.sp_resources.get(name);
-        if ( name.equals("health") ) {
-            while ( sp_value > 0 ) {
-                mark_checkboxes( name, sp_value, R.drawable.ic_crop_din_black_24dp );
-                sp_value--;
-            }
-            char_o.sp_resources.put(name, 0);
-        }
-        else if ( name.equals("rage") ) {
-            for ( Integer i = 1; i <= 10; i++ ) {
-                mark_checkboxes( name, i, R.drawable.ic_crop_din_black_24dp );
-            }
-            if ( char_o.class_name.equals("Воин") ) {
-                char_o.sp_resources.put(name, 1);
-                mark_checkboxes(name, 1, R.drawable.ic_check_box_black_24dp);
-            }
-        }
-        else {
-            Integer perm_val = char_o.sp_resources.get( "perm_" + name );
-            char_o.sp_resources.put( name, perm_val );
-            for ( Integer i = 1; i <= perm_val; i++ ) {
-                mark_checkboxes( name, i, R.drawable.ic_check_box_black_24dp );
-            }
-            perm_val++;
-            for ( Integer i = perm_val; i <= 10; i++ ) {
-                mark_checkboxes( name, i, R.drawable.ic_crop_din_black_24dp );
-            }
+        switch (name) {
+            case "health":
+                while (sp_value > 0) {
+                    mark_checkboxes(name, sp_value, R.drawable.ic_crop_din_black_24dp);
+                    sp_value--;
+                }
+                char_o.sp_resources.put(name, 0);
+                break;
+            case "rage":
+                for (Integer i = 1; i <= 10; i++) {
+                    mark_checkboxes(name, i, R.drawable.ic_crop_din_black_24dp);
+                }
+                if (char_o.class_name.equals("Воин")) {
+                    char_o.sp_resources.put(name, 1);
+                    mark_checkboxes(name, 1, R.drawable.ic_check_box_black_24dp);
+                }
+                break;
+            default:
+                Integer perm_val = char_o.sp_resources.get("perm_" + name);
+                char_o.sp_resources.put(name, perm_val);
+                for (Integer i = 1; i <= perm_val; i++) {
+                    mark_checkboxes(name, i, R.drawable.ic_check_box_black_24dp);
+                }
+                perm_val++;
+                for (Integer i = perm_val; i <= 10; i++) {
+                    mark_checkboxes(name, i, R.drawable.ic_crop_din_black_24dp);
+                }
+                break;
         }
     }
 
@@ -966,4 +981,143 @@ public class full_char_list extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void run_hide_zero(MenuItem item) {
+
+        item.setVisible(false);
+        MenuItem show_params =  menu_bar.findItem(R.id.action_show_zero);
+        show_params.setVisible(true);
+
+        for ( String param : char_o.tal_abl.keySet() ) {
+            if ( param.equals("gen_points") ) {
+                continue;
+            }
+            if ( char_o.tal_abl.get(param) == 0 ) {
+                display_param(param, View.GONE);
+            }
+        }
+
+        for ( String param : char_o.skl_abl.keySet() ) {
+            if ( param.equals("gen_points") ) {
+                continue;
+            }
+            if ( char_o.skl_abl.get(param) == 0 ) {
+                display_param(param, View.GONE);
+            }
+        }
+
+        for ( String param : char_o.kng_abl.keySet() ) {
+            if ( param.equals("gen_points") ) {
+                continue;
+            }
+            if ( char_o.kng_abl.get(param) == 0 ) {
+                display_param(param, View.GONE);
+            }
+        }
+
+        for ( String param : char_o.bkg.keySet() ) {
+            if ( char_o.bkg.get(param) == 0 ) {
+                display_param(param, View.GONE);
+            }
+        }
+
+        if ( char_o.class_name.equals("Маг") ) {
+            for (String param : char_o.sph.keySet()) {
+                if (char_o.sph.get(param) == 0) {
+                    display_param(param, View.GONE);
+                }
+            }
+        }
+
+        if ( char_o.class_name.equals("Жрец") ) {
+            for (String param : g_discs) {
+                if (char_o.dis.get(param) == 0) {
+                    display_param(param, View.GONE);
+                }
+            }
+        }
+
+        if ( char_o.class_name.equals("Воин") ) {
+            for (String param : char_o.gft.keySet()) {
+                if (char_o.gft.get(param) == 0) {
+                    display_param(param, View.GONE);
+                }
+            }
+        }
+    }
+
+    private void display_param( String param, Integer vis ) {
+        if ( param.equals("alchemistry") ) {
+            param = "dis_alchemistry";
+        }
+        int resID = getResources().getIdentifier(param, "id", getPackageName());
+        View w_param = findViewById(resID);
+        w_param.setVisibility(vis);
+    }
+
+    public void run_show_zero(MenuItem item) {
+        item.setVisible(false);
+        MenuItem hide_params = menu_bar.findItem(R.id.action_hide_zero);
+        hide_params.setVisible(true);
+
+        for ( String param : char_o.tal_abl.keySet() ) {
+            if ( param.equals("gen_points") ) {
+                continue;
+            }
+            if ( param.equals("enlightenment") && !char_o.class_name.equals("Маг") ){
+                continue;
+            }
+            if ( char_o.tal_abl.get(param) == 0 ) {
+                display_param(param, View.VISIBLE);
+            }
+        }
+
+        for ( String param : char_o.skl_abl.keySet() ) {
+            if ( param.equals("gen_points") ) {
+                continue;
+            }
+            if ( param.equals("concentration") && !char_o.class_name.equals("Маг") ){
+                continue;
+            }
+            if ( char_o.skl_abl.get(param) == 0 ) {
+                display_param(param, View.VISIBLE);
+            }
+        }
+
+        for ( String param : char_o.kng_abl.keySet() ) {
+            if ( param.equals("gen_points") ) {
+                continue;
+            }
+            if ( char_o.kng_abl.get(param) == 0 ) {
+                display_param(param, View.VISIBLE);
+            }
+        }
+
+        for ( String param : char_o.bkg.keySet() ) {
+            if ( char_o.bkg.get(param) == 0 ) {
+                display_param(param, View.VISIBLE);
+            }
+        }
+
+        if ( char_o.class_name.equals("Маг") ) {
+            for (String param : char_o.sph.keySet()) {
+                if (char_o.sph.get(param) == 0) {
+                    display_param(param, View.VISIBLE);
+                }
+            }
+        }
+
+        if ( char_o.class_name.equals("Жрец") ) {
+            display_discs();
+        }
+
+        if ( char_o.class_name.equals("Воин") ) {
+            for (String param : char_o.gft.keySet()) {
+                if (char_o.gft.get(param) == 0) {
+                    display_param(param, View.VISIBLE);
+                }
+            }
+        }
+    }
+
 }

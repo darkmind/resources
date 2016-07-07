@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,370 +11,469 @@
         android:layout_height="wrap_content"
         android:text="@string/abl_talents"
         android:gravity="center"/>
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/abl_alertness"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
+        android:orientation="vertical"
+        android:id="@+id/alertness">
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_alertness1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_alertness2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_alertness3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_alertness4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_alertness5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_athletics"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_athletics1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_athletics2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_athletics3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_athletics4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_athletics5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_brawl"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_brawl1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_brawl2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_brawl3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_brawl4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_brawl5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_subterfuge"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_subterfuge1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_subterfuge2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_subterfuge3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_subterfuge4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_subterfuge5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_ambidexter"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_ambidexter1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_ambidexter2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_ambidexter3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_ambidexter4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_ambidexter5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_leadership"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_leadership1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_leadership2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_leadership3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_leadership4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_leadership5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_intimidation"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_intimidation1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_intimidation2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_intimidation3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_intimidation4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_intimidation5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_persuasion"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_persuasion1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_persuasion2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_persuasion3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_persuasion4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_persuasion5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/abl_streetwise"
-        android:gravity="left"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_streetwise1"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_streetwise2"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_streetwise3"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_streetwise4"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/rb_abl_streetwise5"
-            android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:onClick="radio_button_clicked"/>
+            android:layout_height="wrap_content"
+            android:text="@string/abl_alertness"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_alertness1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_alertness2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_alertness3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_alertness4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_alertness5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/abl_enlightenment"
+        android:orientation="vertical"
+        android:id="@+id/athletics">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_athletics"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_athletics1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_athletics2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_athletics3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_athletics4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_athletics5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/brawl">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_brawl"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_brawl1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_brawl2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_brawl3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_brawl4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_brawl5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/subterfuge">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_subterfuge"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_subterfuge1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_subterfuge2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_subterfuge3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_subterfuge4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_subterfuge5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ambidexter">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_ambidexter"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_ambidexter1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_ambidexter2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_ambidexter3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_ambidexter4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_ambidexter5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/leadership">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_leadership"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_leadership1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_leadership2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_leadership3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_leadership4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_leadership5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/intimidation">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_intimidation"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_intimidation1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_intimidation2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_intimidation3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_intimidation4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_intimidation5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/persuasion">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_persuasion"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_persuasion1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_persuasion2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_persuasion3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_persuasion4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_persuasion5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/streetwise">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abl_streetwise"
+            android:gravity="left"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_streetwise1"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_streetwise2"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_streetwise3"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_streetwise4"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rb_abl_streetwise5"
+                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enlightenment"
         android:orientation="vertical"
         android:visibility="gone">
         <TextView
@@ -390,31 +490,36 @@
                 android:layout_height="match_parent"
                 android:id="@+id/rb_abl_enlightenment1"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-                android:onClick="radio_button_clicked"/>
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_abl_enlightenment2"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-                android:onClick="radio_button_clicked"/>
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_abl_enlightenment3"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-                android:onClick="radio_button_clicked"/>
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_abl_enlightenment4"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-                android:onClick="radio_button_clicked"/>
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_abl_enlightenment5"
                 android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-                android:onClick="radio_button_clicked"/>
+                android:onClick="radio_button_clicked"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

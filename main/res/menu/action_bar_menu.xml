@@ -8,7 +8,17 @@
         android:id="@+id/action_save"
         android:title="@string/save"
         android:onClick="save_char"/>
-    <item android:id="@+id/action_load"
+    <item
+        android:id="@+id/action_load"
         android:title="@string/load"
         android:onClick="run_load_screen"/>
+    <item
+        android:id="@+id/action_hide_zero"
+        android:title="@string/hide_zero"
+        android:onClick="run_hide_zero"/>
+    <item
+        android:id="@+id/action_show_zero"
+        android:title="@string/show_zero"
+        android:onClick="run_show_zero"
+        android:visible="false"/>
 </menu>

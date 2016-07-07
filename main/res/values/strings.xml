@@ -273,4 +273,7 @@
     <string name="go_to_free">Перейти к распределению Свободных Очков?</string>
     <string name="finish_gen">Завершить генерацию?</string>
 
+    <string name="hide_zero">Убрать нулевые параметры</string>
+    <string name="show_zero">Показать нулевые параметры</string>
+
 </resources>
