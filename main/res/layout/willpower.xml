@@ -4,19 +4,13 @@
     android:id="@+id/sp_wp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight=".25"
-    android:gravity="top"
     android:onClick="switch_screen"
     android:orientation="vertical">
     <TextView
         android:id="@+id/special_willpower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight=".2"
-        android:gravity="top"
-        android:keepScreenOn="true"
         android:text="@string/willpower"
-        android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />
     <TextView
@@ -29,163 +23,159 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".2"
-        android:background="#0099cc"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp1"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp2"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp3"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp4"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp5"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp6"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp7"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp8"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp9"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:id="@+id/rb_button_wp10"
             android:onClick="radio_button_clicked"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             tools:ignore="ContentDescription" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".2"
-        android:background="#0099cc"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:id="@+id/image_wp1"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:id="@+id/image_wp2"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:id="@+id/image_wp3"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             android:id="@+id/image_wp4"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             android:id="@+id/image_wp5"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
-            android:layout_weight=".2"
             android:id="@+id/image_wp6"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:id="@+id/image_wp7"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:id="@+id/image_wp8"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:id="@+id/image_wp9"
             tools:ignore="ContentDescription" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
             android:src="@drawable/ic_radio_button_unchecked_black_24dp"
             android:id="@+id/image_wp10"
             tools:ignore="ContentDescription" />
@@ -193,27 +183,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".2"
-        android:background="#0099cc"
         android:orientation="horizontal">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".3"
             android:text="@string/char_minus"
             android:onClick="minus_button"
             android:id="@+id/wp_minus_b" />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".3"
             android:onClick="reset_button"
             android:text="@string/reset"
             android:id="@+id/wp_reset_b" />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".3"
             android:text="@string/char_plus"
             android:onClick="plus_button"
             android:id="@+id/wp_plus_b" />

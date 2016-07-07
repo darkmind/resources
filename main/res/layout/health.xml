@@ -3,138 +3,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sp_health"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight=".25"
-    android:gravity="top"
+    android:layout_height="wrap_content"
     android:onClick="switch_screen"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight=".2">
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/special_health"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="top"
-            android:keepScreenOn="true"
+            android:layout_weight=".2"
+            android:layout_gravity="start"
             android:text="@string/health"
-            android:textColor="#33b5e5"
             android:textSize="50sp"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/special_limit_health"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".2"
-            android:gravity="end"
-            android:keepScreenOn="true"
+            android:layout_weight=".5"
             android:text="@string/char_0"
-            android:textColor="#33b5e5"
             android:textSize="50sp"
             android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:orientation="horizontal">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health1"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health2"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health3"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health4"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health5"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health6"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health7"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health8"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health9"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health10"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health11"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health12"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health13"
             tools:ignore="ContentDescription" />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_weight=".14"
             android:src="@drawable/ic_crop_din_black_24dp"
             android:id="@+id/image_health14"
             tools:ignore="ContentDescription" />
@@ -142,26 +134,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#0099cc"
         android:orientation="horizontal">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight=".3"
             android:text="@string/char_minus"
             android:onClick="minus_button"
             android:id="@+id/health_minus_b" />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight=".3"
             android:text="@string/reset"
             android:onClick="reset_button"
             android:id="@+id/health_reset_b" />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight=".3"
             android:onClick="plus_button"
             android:text="@string/char_plus"
