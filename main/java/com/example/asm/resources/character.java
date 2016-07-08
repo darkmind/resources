@@ -21,53 +21,60 @@ class character implements Serializable {
     public String alignment;
     public String god;
 
-    public final Map<String, Integer> phis_attr = new HashMap<>();
-    public final Map<String, Integer> soc_attr  = new HashMap<>();
-    public final Map<String, Integer> men_attr  = new HashMap<>();
-    private final Map<String, Integer> stored_phis_attr = new HashMap<>();
-    private final Map<String, Integer> stored_soc_attr  = new HashMap<>();
-    private final Map<String, Integer> stored_men_attr  = new HashMap<>();
-
-    public final Map<String, Integer> tal_abl = new HashMap<>();
-    public final Map<String, Integer> skl_abl = new HashMap<>();
-    public final Map<String, Integer> kng_abl = new HashMap<>();
-    private final Map<String, Integer> stored_tal_abl = new HashMap<>();
-    private final Map<String, Integer> stored_skl_abl = new HashMap<>();
-    private final Map<String, Integer> stored_kng_abl = new HashMap<>();
-
-    public final Map<String, Integer> bkg = new HashMap<>();
-    public final Map<String, Integer> sph = new HashMap<>();
-    public final Map<String, Integer> gft = new HashMap<>();
-    public final Map<String, Integer> dis = new HashMap<>();
-    private final Map<String, Integer> stored_bkg = new HashMap<>();
-    private final Map<String, Integer> stored_sph = new HashMap<>();
-    private final Map<String, Integer> stored_gft = new HashMap<>();
-    private final Map<String, Integer> stored_dis = new HashMap<>();
-
-    public final Map<String, Integer> sp_resources = new HashMap<>();
-
-    private final Map<String, Integer> postponed_payments = new HashMap<>();
-
     public Integer Generated;
 
-    private String main_attr = "NULL";
-    private String scnd_attr = "NULL";
-    private String thrd_attr = "NULL";
+    public  final Map<String, Integer> phis_attr;
+    public  final Map<String, Integer> soc_attr;
+    public  final Map<String, Integer> men_attr;
 
-    private String main_abl = "NULL";
-    private String scnd_abl = "NULL";
-    private String thrd_abl = "NULL";
-
+    public  final Integer[] attr;
     private final Integer attr_gen_limit;
+
+    private final Map<String, Integer> stored_phis_attr;
+    private final Map<String, Integer> stored_soc_attr;
+    private final Map<String, Integer> stored_men_attr;
+
+    public  final Map<String, Integer> tal_abl;
+    public  final Map<String, Integer> skl_abl;
+    public  final Map<String, Integer> kng_abl;
+
+    public  final Integer[] abl;
     private final Integer abl_gen_limit;
+
+    private final Map<String, Integer> stored_tal_abl;
+    private final Map<String, Integer> stored_skl_abl;
+    private final Map<String, Integer> stored_kng_abl;
+
+    public  final Map<String, Integer> bkg;
+
     public  Integer bkg_gen_points;
+    private final Map<String, Integer> stored_bkg;
+
     public  Integer cf_gen_points;
-    private final Integer cf_gen_limit;
+    private final Integer class_feature_gen_limit;
 
-    public final Integer[] attr = new Integer[3];
-    public final Integer[] abl  = new Integer[3];
+    public  final Map<String, Integer> sph;
+    public  final Map<String, Integer> gft;
+    public  final Map<String, Integer> dis;
 
-    public Integer free_points = 15;
+    private final Map<String, Integer> stored_sph;
+    private final Map<String, Integer> stored_gft;
+    private final Map<String, Integer> stored_dis;
+
+    public final Map<String, Integer> sp_resources;
+
+    private final Map<String, Integer> postponed_payments;
+
+    public Integer free_points;
+
+    private String main_attr;
+    private String scnd_attr;
+    private String thrd_attr;
+
+    private String main_abl;
+    private String scnd_abl;
+    private String thrd_abl;
+
 
     public character( String name, String chronic ) {
         char_name    = name;
@@ -79,480 +86,193 @@ class character implements Serializable {
 
         Generated = 0;
 
+        phis_attr = new HashMap<String, Integer>() {{
+            put("strength", 1);
+            put("dexterity", 1);
+            put("stamina", 1);
+        }};
+
+        soc_attr = new HashMap<String, Integer>() {{
+            put("charisma", 1);
+            put("manipulation", 1);
+            put("appearance", 1);
+        }};
+
+        men_attr = new HashMap<String, Integer>() {{
+            put("perception", 1);
+            put("intelligence", 1);
+            put("wits", 1);
+        }};
+
+        attr = new Integer[3];
         attr[0] = 7;
         attr[1] = 5;
         attr[2] = 3;
-        abl[0]  = 13;
-        abl[1]  = 9;
-        abl[2]  = 5;
         attr_gen_limit = 4;
-        abl_gen_limit  = 3;
+
+        stored_phis_attr = new HashMap<>();
+        stored_soc_attr  = new HashMap<>();
+        stored_men_attr  = new HashMap<>();
+
+        tal_abl = new HashMap<String, Integer>() {{
+            put("alertness", 0);
+            put("athletics", 0);
+            put("brawl", 0);
+            put("subterfuge", 0);
+            put("ambidexter", 0);
+            put("leadership", 0);
+            put("intimidation", 0);
+            put("persuasion", 0);
+            put("streetwise", 0);
+            put("enlightenment", 0);
+        }};
+
+        skl_abl = new HashMap<String, Integer>() {{
+            put("security", 0);
+            put("craft", 0);
+            put("blindfight", 0);
+            put("etiquette", 0);
+            put("firearms", 0);
+            put("survival", 0);
+            put("melee", 0);
+            put("herbalism", 0);
+            put("stealth", 0);
+            put("concentration", 0);
+        }};
+
+        kng_abl = new HashMap<String, Integer>() {{
+            put("alchemistry", 0);
+            put("logic", 0);
+            put("investigation", 0);
+            put("religion", 0);
+            put("linguistics", 0);
+            put("medicine", 0);
+            put("occult", 0);
+            put("politics", 0);
+            put("science", 0);
+        }};
+
+        abl = new Integer[3];
+        abl[0] = 13;
+        abl[1] = 9;
+        abl[2] = 5;
+        abl_gen_limit = 3;
+
+        stored_tal_abl = new HashMap<>();
+        stored_skl_abl = new HashMap<>();
+        stored_kng_abl = new HashMap<>();
+
+        bkg = new HashMap<String, Integer>() {{
+            put("allies", 0);
+            put("contacts", 0);
+            put("fame", 0);
+            put("resources", 0);
+            put("dignity", 0);
+            put("artifact", 0);
+        }};
+
         bkg_gen_points = 5;
+        stored_bkg = new HashMap<>();
+
         cf_gen_points  = 5;
-        cf_gen_limit   = 3;
+        class_feature_gen_limit   = 3;
 
-        phis_attr.put("strength", 1);
-        phis_attr.put("dexterity", 1);
-        phis_attr.put("stamina", 1);
+        sph = new HashMap<String, Integer>() {{
+            put("time", 0);
+            put("spirit", 0);
+            put("life", 0);
+            put("matter", 0);
+            put("prime", 0);
+            put("mind", 0);
+            put("connection", 0);
+            put("forces", 0);
+            put("entropy", 0);
+        }};
 
-        soc_attr.put("charisma", 1);
-        soc_attr.put("manipulation", 1);
-        soc_attr.put("appearance", 1);
+        dis = new HashMap<String, Integer>() {{
+            put("animalism", 0);
+            put("auspex", 0);
+            put("celerity", 0);
+            put("chimerstry", 0);
+            put("daimoinon", 0);
+            put("dementation", 0);
+            put("dominate", 0);
+            put("fortitude", 0);
+            put("melpominee", 0);
+            put("obfuscate", 0);
+            put("obtenebration", 0);
+            put("potence", 0);
+            put("presence", 0);
+            put("protean", 0);
+            put("quietus", 0);
+            put("serpentis", 0);
+            put("temporis", 0);
+            put("thanatosis", 0);
+            put("vicissitude", 0);
+            put("alchemistry", 0);
+            put("conveyance", 0);
+            put("enchantment", 0);
+            put("healing", 0);
+            put("hellfire", 0);
+            put("weathercraft", 0);
+        }};
 
-        men_attr.put("perception", 1);
-        men_attr.put("intelligence", 1);
-        men_attr.put("wits", 1);
+        gft = new HashMap<String, Integer>() {{
+            put("common", 0);
+            put("monk", 0);
+            put("warlord", 0);
+            put("assassin", 0);
+            put("mageslayer", 0);
+            put("shapeshifter", 0);
+        }};
 
-        tal_abl.put("alertness", 0);
-        tal_abl.put("athletics", 0);
-        tal_abl.put("brawl", 0);
-        tal_abl.put("subterfuge", 0);
-        tal_abl.put("ambidexter", 0);
-        tal_abl.put("leadership", 0);
-        tal_abl.put("intimidation", 0);
-        tal_abl.put("persuasion", 0);
-        tal_abl.put("streetwise", 0);
-        tal_abl.put("enlightenment", 0);
+        stored_sph = new HashMap<>();
+        stored_dis = new HashMap<>();
+        stored_gft = new HashMap<>();
 
-        skl_abl.put("security", 0);
-        skl_abl.put("craft", 0);
-        skl_abl.put("blindfight", 0);
-        skl_abl.put("etiquette", 0);
-        skl_abl.put("firearms", 0);
-        skl_abl.put("survival", 0);
-        skl_abl.put("melee", 0);
-        skl_abl.put("herbalism", 0);
-        skl_abl.put("stealth", 0);
-        skl_abl.put("concentration", 0);
+        sp_resources = new HashMap<String, Integer>() {{
+            put("rage", 0);
+            put("faith", 0);
+            put("wp", 0);
+            put("health", 0);
+            put("perm_faith", 0);
+            put("perm_wp", 0);
+        }};
 
-        kng_abl.put("alchemistry", 0);
-        kng_abl.put("logic", 0);
-        kng_abl.put("investigation", 0);
-        kng_abl.put("religion", 0);
-        kng_abl.put("linguistics", 0);
-        kng_abl.put("medicine", 0);
-        kng_abl.put("occult", 0);
-        kng_abl.put("politics", 0);
-        kng_abl.put("science", 0);
+        postponed_payments = new HashMap<>();
 
-        bkg.put("allies", 0);
-        bkg.put("contacts", 0);
-        bkg.put("fame", 0);
-        bkg.put("resources", 0);
-        bkg.put("dignity", 0);
-        bkg.put("artifact", 0);
-
-        sph.put("time", 0);
-        sph.put("spirit", 0);
-        sph.put("life", 0);
-        sph.put("matter", 0);
-        sph.put("prime", 0);
-        sph.put("mind", 0);
-        sph.put("connection", 0);
-        sph.put("forces", 0);
-        sph.put("entropy", 0);
-
-        dis.put("animalism", 0);
-        dis.put("auspex", 0);
-        dis.put("celerity", 0);
-        dis.put("chimerstry", 0);
-        dis.put("daimoinon", 0);
-        dis.put("dementation", 0);
-        dis.put("dominate", 0);
-        dis.put("fortitude", 0);
-        dis.put("melpominee", 0);
-        dis.put("obfuscate", 0);
-        dis.put("obtenebration", 0);
-        dis.put("potence", 0);
-        dis.put("presence", 0);
-        dis.put("protean", 0);
-        dis.put("quietus", 0);
-        dis.put("serpentis", 0);
-        dis.put("temporis", 0);
-        dis.put("thanatosis", 0);
-        dis.put("vicissitude", 0);
-        dis.put("alchemistry", 0);
-        dis.put("conveyance", 0);
-        dis.put("enchantment", 0);
-        dis.put("healing", 0);
-        dis.put("hellfire", 0);
-        dis.put("weathercraft", 0);
-
-        gft.put("common", 0);
-        gft.put("monk", 0);
-        gft.put("warlord", 0);
-        gft.put("assassin", 0);
-        gft.put("mageslayer", 0);
-        gft.put("shapeshifter", 0);
-
-        sp_resources.put("rage", 0);
-        sp_resources.put("faith", 0);
-        sp_resources.put("wp", 0);
-        sp_resources.put("health", 0);
-        sp_resources.put("perm_faith", 0);
-        sp_resources.put("perm_wp", 0);
+        free_points = 15;
     }
 
-    @SuppressWarnings("ConstantConditions")
     public Integer save_new_values(String group, String name, Integer number ) {
-        String type;
         Integer prev_num;
         if (group.equals("attr")) {
-            if ( Generated == 0 ) {
-                if (number > attr_gen_limit) {
-                    number = attr_gen_limit;
-                }
-            }
-            switch (name) {
-                case "strength":
-                case "dexterity":
-                case "stamina":
-                    type = "phis";
-                    prev_num = phis_attr.get(name);
-                    break;
-                case "charisma":
-                case "manipulation":
-                case "appearance":
-                    type = "soc";
-                    prev_num = soc_attr.get(name);
-                    break;
-                default:
-                    type = "men";
-                    prev_num = men_attr.get(name);
-                    break;
-            }
-
-            if ( main_attr.equals("NULL") || main_attr.equals(type) ) {
-                main_attr = type;
-            }
-            else if ( scnd_attr.equals("NULL") || scnd_attr.equals(type) ) {
-                scnd_attr = type;
-            }
-            else if ( thrd_attr.equals("NULL") || thrd_attr.equals(type) ) {
-                thrd_attr = type;
-            }
-
-            if ( main_attr.equals(type) ) {
-                if ( (number - prev_num) <= attr[0] ) {
-                    attr[0] -= (number - prev_num);
-                }
-                else {
-                    number = prev_num + attr[0];
-                    attr[0] = 0;
-                }
-
-                switch (type) {
-                    case "phis":
-                        phis_attr.put(name, number);
-                        break;
-                    case "soc":
-                        soc_attr.put(name, number);
-                        break;
-                    case "men":
-                        men_attr.put(name, number);
-                        break;
-                }
-            }
-
-            else if ( scnd_attr.equals(type) ) {
-                if ( (number - prev_num) <= attr[1] ) {
-                    attr[1] -= (number - prev_num);
-                }
-                else {
-                    number = prev_num + attr[1];
-                    attr[1] = 0;
-                }
-
-                switch (type) {
-                    case "phis":
-                        phis_attr.put(name, number);
-                        break;
-                    case "soc":
-                        soc_attr.put(name, number);
-                        break;
-                    case "men":
-                        men_attr.put(name, number);
-                        break;
-                }
-            }
-
-            else if ( thrd_attr.equals(type) ) {
-                if ( (number - prev_num) <= attr[2] ) {
-                    attr[2] -= (number - prev_num);
-                }
-                else {
-                    number = prev_num + attr[2];
-                    attr[2] = 0;
-                }
-
-                switch (type) {
-                    case "phis":
-                        phis_attr.put(name, number);
-                        break;
-                    case "soc":
-                        soc_attr.put(name, number);
-                        break;
-                    case "men":
-                        men_attr.put(name, number);
-                        break;
-                }
-            }
+            number = save_attr_values( name, number );
         }
 
         if (group.equals("abl")) {
-            if ( Generated == 0 ) {
-                if (number > abl_gen_limit) {
-                    number = abl_gen_limit;
-                }
-            }
-            Integer gen_points;
-            if ( tal_abl.get(name) != null ) {
-                prev_num = tal_abl.get(name);
-
-                if ( number == 1 && prev_num == 1 ) {
-                    //noinspection StatementWithEmptyBody
-                    if ( name.equals("enlightenment") && class_name.equals("Маг") ) {
-                    }
-                    else {
-                        number = 0;
-                    }
-                }
-
-                if (tal_abl.get( "gen_points" ) == null) {
-                    if (main_abl.equals("NULL")) {
-                        Integer postponed = postponed_payments.get("tal");
-                        if ( postponed != null ) {
-                            abl[0] -= postponed;
-                            postponed_payments.remove("tal");
-                        }
-                        tal_abl.put( "gen_points", abl[0] );
-                        main_abl = "tal";
-                    }
-                    else if (scnd_abl.equals("NULL")) {
-                        Integer postponed = postponed_payments.get("tal");
-                        if ( postponed != null ) {
-                            abl[1] -= postponed;
-                            postponed_payments.remove("tal");
-                        }
-                        tal_abl.put( "gen_points", abl[1] );
-                        scnd_abl = "tal";
-                    }
-                    else if (thrd_abl.equals("NULL")) {
-                        Integer postponed = postponed_payments.get("tal");
-                        if ( postponed != null ) {
-                            abl[2] -= postponed;
-                            postponed_payments.remove("tal");
-                        }
-                        tal_abl.put( "gen_points", abl[2] );
-                        thrd_abl = "tal";
-                    }
-                }
-
-                gen_points = tal_abl.get( "gen_points" );
-                if ( (number - prev_num) <= gen_points ) {
-                    gen_points -= (number - prev_num);
-                }
-                else {
-                    number = prev_num + gen_points;
-                    gen_points = 0;
-                }
-
-                tal_abl.put(name, number);
-                tal_abl.put( "gen_points", gen_points );
-                if ( main_abl.equals("tal") ) {
-                    abl[0] = gen_points;
-                }
-                else if ( scnd_abl.equals("tal") ) {
-                    abl[1] = gen_points;
-                }
-                else if ( thrd_abl.equals("tal") ) {
-                    abl[2] = gen_points;
-                }
-            }
-            if ( skl_abl.get(name) != null ) {
-                prev_num = skl_abl.get(name);
-
-                if ( number == 1 && prev_num == 1 ) {
-                    number = 0;
-                }
-
-                if (skl_abl.get( "gen_points" ) == null) {
-                    if (main_abl.equals("NULL")) {
-                        skl_abl.put( "gen_points", abl[0] );
-                        main_abl = "skl";
-                    }
-                    else if (scnd_abl.equals("NULL")) {
-                        skl_abl.put( "gen_points", abl[1] );
-                        scnd_abl = "skl";
-                    }
-                    else if (thrd_abl.equals("NULL")) {
-                        skl_abl.put( "gen_points", abl[2] );
-                        thrd_abl = "skl";
-                    }
-                }
-                gen_points = skl_abl.get( "gen_points" );
-                if ( (number - prev_num) <= gen_points ) {
-                    gen_points -= (number - prev_num);
-                }
-                else {
-                    number = prev_num + gen_points;
-                    gen_points = 0;
-                }
-                skl_abl.put(name, number);
-                skl_abl.put( "gen_points", gen_points );
-                if ( main_abl.equals("skl") ) {
-                    abl[0] = gen_points;
-                }
-                else if ( scnd_abl.equals("skl") ) {
-                    abl[1] = gen_points;
-                }
-                else if ( thrd_abl.equals("skl") ) {
-                    abl[2] = gen_points;
-                }
-            }
-            if ( kng_abl.get(name) != null ) {
-                prev_num = kng_abl.get(name);
-
-                if ( number == 1 && prev_num == 1 ) {
-                    //noinspection StatementWithEmptyBody
-                    if ( name.equals("religion") && class_name.equals("Жрец") ) {
-                    }
-                    else {
-                        number = 0;
-                    }
-                }
-
-                if (kng_abl.get( "gen_points" ) == null) {
-                    if (main_abl.equals("NULL")) {
-                        Integer postponed = postponed_payments.get("kng");
-                        if ( postponed != null ) {
-                            abl[2] -= postponed;
-                            postponed_payments.remove("kng");
-                        }
-                        kng_abl.put( "gen_points", abl[0] );
-                        main_abl = "kng";
-                    }
-                    else if (scnd_abl.equals("NULL")) {
-                        Integer postponed = postponed_payments.get("kng");
-                        if ( postponed != null ) {
-                            abl[2] -= postponed;
-                            postponed_payments.remove("kng");
-                        }
-                        kng_abl.put( "gen_points", abl[1] );
-                        scnd_abl = "kng";
-                    }
-                    else if (thrd_abl.equals("NULL")) {
-                        Integer postponed = postponed_payments.get("kng");
-                        if ( postponed != null ) {
-                            abl[2] -= postponed;
-                            postponed_payments.remove("kng");
-                        }
-                        kng_abl.put( "gen_points", abl[2] );
-                        thrd_abl = "kng";
-                    }
-                }
-                gen_points = kng_abl.get( "gen_points" );
-                if ( (number - prev_num) <= gen_points ) {
-                    gen_points -= (number - prev_num);
-                }
-                else {
-                    number = prev_num + gen_points;
-                    gen_points = 0;
-                }
-                kng_abl.put(name, number);
-                kng_abl.put( "gen_points", gen_points );
-                if ( main_abl.equals("kng") ) {
-                    abl[0] = gen_points;
-                }
-                else if ( scnd_abl.equals("kng") ) {
-                    abl[1] = gen_points;
-                }
-                else if ( thrd_abl.equals("kng") ) {
-                    abl[2] = gen_points;
-                }
-            }
+            number = save_abl_values( name, number );
         }
 
         if (group.equals("bkg")) {
-            prev_num = bkg.get(name);
-
-            if ( number == 1 && prev_num == 1 ) {
-                number = 0;
-            }
-
-            if ( (number - prev_num) <= bkg_gen_points ) {
-                bkg_gen_points -= (number - prev_num);
-            }
-            else {
-                number = prev_num + bkg_gen_points;
-                bkg_gen_points = 0;
-            }
-            bkg.put(name, number);
+            number = save_bkg_values( name, number );
         }
 
         if (group.equals("sph")) {
-            if ( Generated == 0 ) {
-                if (number > cf_gen_limit) {
-                    number = cf_gen_limit;
-                }
-            }
             prev_num = sph.get(name);
-
-            if ( number == 1 && prev_num == 1 ) {
-                number = 0;
-            }
-
-            if ( (number - prev_num) <= cf_gen_points ) {
-                cf_gen_points -= (number - prev_num);
-            }
-            else {
-                number = prev_num + cf_gen_points;
-                cf_gen_points = 0;
-            }
+            number = save_class_feature_values( number, prev_num );
             sph.put(name, number);
         }
 
         if (group.equals("dis")) {
-            if ( Generated == 0 ) {
-                if (number > cf_gen_limit) {
-                    number = cf_gen_limit;
-                }
-            }
             prev_num = dis.get(name);
-
-            if ( number == 1 && prev_num == 1 ) {
-                number = 0;
-            }
-
-            if ( (number - prev_num) <= cf_gen_points ) {
-                cf_gen_points -= (number - prev_num);
-            }
-            else {
-                number = prev_num + cf_gen_points;
-                cf_gen_points = 0;
-            }
+            number = save_class_feature_values( number, prev_num );
             dis.put(name, number);
         }
 
         if (group.equals("gft")) {
-            if ( Generated == 0 ) {
-                if (number > cf_gen_limit) {
-                    number = cf_gen_limit;
-                }
-            }
             prev_num = gft.get(name);
-
-            if ( number == 1 && prev_num == 1 ) {
-                number = 0;
-            }
-
-            if ( (number - prev_num) <= cf_gen_points ) {
-                cf_gen_points -= (number - prev_num);
-            }
-            else {
-                number = prev_num + cf_gen_points;
-                cf_gen_points = 0;
-            }
+            number = save_class_feature_values( number, prev_num );
             gft.put(name, number);
         }
 
@@ -563,15 +283,311 @@ class character implements Serializable {
         return number;
     }
 
+    private Integer save_attr_values( String name, Integer number ) {
+        String type;
+        Integer prev_num;
+        if ( Generated == 0 ) {
+            if (number > attr_gen_limit) {
+                number = attr_gen_limit;
+            }
+        }
+
+        if ( phis_attr.get(name) != null ) {
+            type = "phis";
+            prev_num = phis_attr.get(name);
+
+        }
+        else if ( soc_attr.get(name) != null ) {
+            type = "soc";
+            prev_num = soc_attr.get(name);
+        }
+        else {
+            type = "men";
+            prev_num = men_attr.get(name);
+        }
+
+        if ( main_attr == null      || main_attr.equals(type) ) {
+            main_attr = type;
+        }
+        else if ( scnd_attr == null || scnd_attr.equals(type) ) {
+            scnd_attr = type;
+        }
+        else if ( thrd_attr == null || thrd_attr.equals(type) ) {
+            thrd_attr = type;
+        }
+
+        Integer[] returned;
+        if ( main_attr.equals(type) ) {
+            returned = add_num_to_attr( name, number, prev_num, attr[0] );
+            attr[0]  = returned[1];
+        }
+
+        else if ( scnd_attr.equals(type) ) {
+            returned = add_num_to_attr( name, number, prev_num, attr[1] );
+            attr[1]  = returned[1];
+        }
+
+        else {
+            returned = add_num_to_attr( name, number, prev_num, attr[2] );
+            attr[2]  = returned[1];
+        }
+        number = returned[0];
+
+        return number;
+    }
+
+    private Integer[] add_num_to_attr( String name, Integer number, Integer prev_num, Integer attr_v ) {
+        if ( (number - prev_num) <= attr_v ) {
+            attr_v -= (number - prev_num);
+        }
+        else {
+            number = prev_num + attr_v;
+            attr_v = 0;
+        }
+
+        if ( phis_attr.get(name) != null ) {
+            phis_attr.put(name, number);
+
+        }
+        else if ( soc_attr.get(name) != null ) {
+            soc_attr.put(name, number);
+        }
+        else {
+            men_attr.put(name, number);
+        }
+
+        return new Integer[] {number, attr_v};
+    }
+
+    private Integer save_abl_values( String name, Integer number ) {
+        Integer prev_num;
+        if ( Generated == 0 ) {
+            if (number > abl_gen_limit) {
+                number = abl_gen_limit;
+            }
+        }
+        Integer gen_points;
+        if ( tal_abl.get(name) != null ) {
+            prev_num = tal_abl.get(name);
+
+            if ( number == 1 && prev_num == 1 ) {
+                //noinspection StatementWithEmptyBody
+                if ( name.equals("enlightenment") && class_name.equals("Маг") ) {
+                }
+                else {
+                    number = 0;
+                }
+            }
+
+            if (tal_abl.get( "gen_points" ) == null) {
+                if (main_abl == null) {
+                    Integer postponed = postponed_payments.get("tal");
+                    if ( postponed != null ) {
+                        abl[0] -= postponed;
+                        postponed_payments.remove("tal");
+                    }
+                    tal_abl.put( "gen_points", abl[0] );
+                    main_abl = "tal";
+                }
+                else if (scnd_abl == null) {
+                    Integer postponed = postponed_payments.get("tal");
+                    if ( postponed != null ) {
+                        abl[1] -= postponed;
+                        postponed_payments.remove("tal");
+                    }
+                    tal_abl.put( "gen_points", abl[1] );
+                    scnd_abl = "tal";
+                }
+                else if (thrd_abl == null) {
+                    Integer postponed = postponed_payments.get("tal");
+                    if ( postponed != null ) {
+                        abl[2] -= postponed;
+                        postponed_payments.remove("tal");
+                    }
+                    tal_abl.put( "gen_points", abl[2] );
+                    thrd_abl = "tal";
+                }
+            }
+
+            gen_points = tal_abl.get( "gen_points" );
+            if ( (number - prev_num) <= gen_points ) {
+                gen_points -= (number - prev_num);
+            }
+            else {
+                number = prev_num + gen_points;
+                gen_points = 0;
+            }
+
+            tal_abl.put(name, number);
+            tal_abl.put( "gen_points", gen_points );
+            if ( main_abl.equals("tal") ) {
+                abl[0] = gen_points;
+            }
+            else if ( scnd_abl.equals("tal") ) {
+                abl[1] = gen_points;
+            }
+            else if ( thrd_abl.equals("tal") ) {
+                abl[2] = gen_points;
+            }
+        }
+        if ( skl_abl.get(name) != null ) {
+            prev_num = skl_abl.get(name);
+
+            if ( number == 1 && prev_num == 1 ) {
+                number = 0;
+            }
+
+            if (skl_abl.get( "gen_points" ) == null) {
+                if (main_abl == null) {
+                    skl_abl.put( "gen_points", abl[0] );
+                    main_abl = "skl";
+                }
+                else if (scnd_abl == null) {
+                    skl_abl.put( "gen_points", abl[1] );
+                    scnd_abl = "skl";
+                }
+                else if (thrd_abl == null) {
+                    skl_abl.put( "gen_points", abl[2] );
+                    thrd_abl = "skl";
+                }
+            }
+            gen_points = skl_abl.get( "gen_points" );
+            if ( (number - prev_num) <= gen_points ) {
+                gen_points -= (number - prev_num);
+            }
+            else {
+                number = prev_num + gen_points;
+                gen_points = 0;
+            }
+            skl_abl.put(name, number);
+            skl_abl.put( "gen_points", gen_points );
+            if ( main_abl.equals("skl") ) {
+                abl[0] = gen_points;
+            }
+            else if ( scnd_abl.equals("skl") ) {
+                abl[1] = gen_points;
+            }
+            else if ( thrd_abl.equals("skl") ) {
+                abl[2] = gen_points;
+            }
+        }
+        if ( kng_abl.get(name) != null ) {
+            prev_num = kng_abl.get(name);
+
+            if ( number == 1 && prev_num == 1 ) {
+                //noinspection StatementWithEmptyBody
+                if ( name.equals("religion") && class_name.equals("Жрец") ) {
+                }
+                else {
+                    number = 0;
+                }
+            }
+
+            if (kng_abl.get( "gen_points" ) == null) {
+                if (main_abl == null) {
+                    Integer postponed = postponed_payments.get("kng");
+                    if ( postponed != null ) {
+                        abl[2] -= postponed;
+                        postponed_payments.remove("kng");
+                    }
+                    kng_abl.put( "gen_points", abl[0] );
+                    main_abl = "kng";
+                }
+                else if (scnd_abl == null) {
+                    Integer postponed = postponed_payments.get("kng");
+                    if ( postponed != null ) {
+                        abl[2] -= postponed;
+                        postponed_payments.remove("kng");
+                    }
+                    kng_abl.put( "gen_points", abl[1] );
+                    scnd_abl = "kng";
+                }
+                else if (thrd_abl == null) {
+                    Integer postponed = postponed_payments.get("kng");
+                    if ( postponed != null ) {
+                        abl[2] -= postponed;
+                        postponed_payments.remove("kng");
+                    }
+                    kng_abl.put( "gen_points", abl[2] );
+                    thrd_abl = "kng";
+                }
+            }
+            gen_points = kng_abl.get( "gen_points" );
+            if ( (number - prev_num) <= gen_points ) {
+                gen_points -= (number - prev_num);
+            }
+            else {
+                number = prev_num + gen_points;
+                gen_points = 0;
+            }
+            kng_abl.put(name, number);
+            kng_abl.put( "gen_points", gen_points );
+            if ( main_abl.equals("kng") ) {
+                abl[0] = gen_points;
+            }
+            else if ( scnd_abl.equals("kng") ) {
+                abl[1] = gen_points;
+            }
+            else if ( thrd_abl.equals("kng") ) {
+                abl[2] = gen_points;
+            }
+        }
+
+        return number;
+    }
+
+    private Integer save_bkg_values( String name, Integer number ) {
+        Integer prev_num;
+        prev_num = bkg.get(name);
+
+        if ( number == 1 && prev_num == 1 ) {
+            number = 0;
+        }
+
+        if ( (number - prev_num) <= bkg_gen_points ) {
+            bkg_gen_points -= (number - prev_num);
+        }
+        else {
+            number = prev_num + bkg_gen_points;
+            bkg_gen_points = 0;
+        }
+        bkg.put(name, number);
+
+        return number;
+    }
+
+    private Integer save_class_feature_values(Integer number, Integer prev_num ) {
+        if ( Generated == 0 ) {
+            if (number > class_feature_gen_limit) {
+                number = class_feature_gen_limit;
+            }
+        }
+
+        if ( number == 1 && prev_num == 1 ) {
+            number = 0;
+        }
+
+        if ( (number - prev_num) <= cf_gen_points ) {
+            cf_gen_points -= (number - prev_num);
+        }
+        else {
+            number = prev_num + cf_gen_points;
+            cf_gen_points = 0;
+        }
+
+        return number;
+    }
+
+
     public boolean check_gen_points() {
         if ( Generated == 0 ) {
             Integer sum = 0;
             for (int e : attr) sum += e;
-            for (int e : abl) sum += e;
+            for (int e : abl)  sum += e;
             sum += bkg_gen_points;
             sum += cf_gen_points;
 
-            if (sum > 0) {
+            if (sum != 0) {
                 return true;
             }
         }
