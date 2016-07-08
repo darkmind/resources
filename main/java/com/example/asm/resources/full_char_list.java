@@ -21,8 +21,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,8 +40,6 @@ public class full_char_list extends AppCompatActivity {
     private Spinner spinner_al;
     private Spinner spinner_cl;
 
-    private ArrayAdapter<CharSequence> adapter_al;
-    private ArrayAdapter<CharSequence> adapter_cl;
     private ArrayAdapter<CharSequence> adapter_gd;
 
     private character char_o;
@@ -657,7 +653,7 @@ public class full_char_list extends AppCompatActivity {
         Integer pos;
 
         // alignment
-        adapter_al = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> adapter_al = ArrayAdapter.createFromResource(this,
                 R.array.alignments_array, android.R.layout.simple_spinner_item);
         adapter_al.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_al.setAdapter(adapter_al);
@@ -665,7 +661,7 @@ public class full_char_list extends AppCompatActivity {
         spinner_al.setSelection(pos);
 
         // class
-        adapter_cl = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> adapter_cl = ArrayAdapter.createFromResource(this,
                 R.array.classes_array, android.R.layout.simple_spinner_item);
         adapter_cl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_cl.setAdapter(adapter_cl);

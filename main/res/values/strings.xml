@@ -126,16 +126,6 @@
     </string-array>
 
     <string name="charlist_alignment_hint">Мировоззрение</string>
-    <string name="alignment_LG">Законопослушный-Добрый</string>
-    <string name="alignment_NG">Нейтральный-Добрый</string>
-    <string name="alignment_CG">Хаотичный-Добрый</string>
-    <string name="alignment_LN">Законопослушный-Нейтральный</string>
-    <string name="alignment_NN">Нейтральный</string>
-    <string name="alignment_CN">Хаотичный-Нейтральный</string>
-    <string name="alignment_LE">Законопослушный-Злой</string>
-    <string name="alignment_NE">Нейтральный-Злой</string>
-    <string name="alignment_CE">Хаотичный-Злой</string>
-
     <string name="charlist_class_hint">Класс</string>
 
     <string name="attrs">Атрибуты</string>
