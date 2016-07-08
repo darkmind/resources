@@ -287,9 +287,9 @@ public class full_char_list extends AppCompatActivity {
             attr_helper.setText(Arrays.toString(char_o.attr));
             abl_helper.setText(Arrays.toString(char_o.abl));
             bkg_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points));
-            sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
-            dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
-            gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+            sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.class_feature_gen_points));
+            dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.class_feature_gen_points));
+            gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.class_feature_gen_points));
         }
         else if ( char_o.Generated == 1 ) {
             attr_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 5",
@@ -378,13 +378,13 @@ public class full_char_list extends AppCompatActivity {
                     bkg_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.bkg_gen_points));
                     break;
                 case "sph":
-                    sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+                    sph_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.class_feature_gen_points));
                     break;
                 case "dis":
-                    dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+                    dis_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.class_feature_gen_points));
                     break;
                 case "gft":
-                    gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.cf_gen_points));
+                    gft_helper.setText(String.format(Locale.getDefault(), " [%d]", char_o.class_feature_gen_points));
                     break;
             }
         }

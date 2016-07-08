@@ -50,7 +50,7 @@ class character implements Serializable {
     public  Integer bkg_gen_points;
     private final Map<String, Integer> stored_bkg;
 
-    public  Integer cf_gen_points;
+    public Integer class_feature_gen_points;
     private final Integer class_feature_gen_limit;
 
     public  final Map<String, Integer> sph;
@@ -104,10 +104,7 @@ class character implements Serializable {
             put("wits", 1);
         }};
 
-        attr = new Integer[3];
-        attr[0] = 7;
-        attr[1] = 5;
-        attr[2] = 3;
+        attr = new Integer[]{ 7, 5, 3 };
         attr_gen_limit = 4;
 
         stored_phis_attr = new HashMap<>();
@@ -152,10 +149,7 @@ class character implements Serializable {
             put("science", 0);
         }};
 
-        abl = new Integer[3];
-        abl[0] = 13;
-        abl[1] = 9;
-        abl[2] = 5;
+        abl = new Integer[]{ 13, 9, 5 };
         abl_gen_limit = 3;
 
         stored_tal_abl = new HashMap<>();
@@ -174,8 +168,8 @@ class character implements Serializable {
         bkg_gen_points = 5;
         stored_bkg = new HashMap<>();
 
-        cf_gen_points  = 5;
-        class_feature_gen_limit   = 3;
+        class_feature_gen_points = 5;
+        class_feature_gen_limit = 3;
 
         sph = new HashMap<String, Integer>() {{
             put("time", 0);
@@ -360,180 +354,110 @@ class character implements Serializable {
     }
 
     private Integer save_abl_values( String name, Integer number ) {
+        String type;
         Integer prev_num;
         if ( Generated == 0 ) {
             if (number > abl_gen_limit) {
                 number = abl_gen_limit;
             }
         }
-        Integer gen_points;
+
         if ( tal_abl.get(name) != null ) {
+            type = "tal";
             prev_num = tal_abl.get(name);
 
-            if ( number == 1 && prev_num == 1 ) {
+            if (number == 1 && prev_num == 1) {
                 //noinspection StatementWithEmptyBody
-                if ( name.equals("enlightenment") && class_name.equals("Маг") ) {
-                }
-                else {
+                if (name.equals("enlightenment") && class_name.equals("Маг")) {
+                } else {
                     number = 0;
                 }
             }
-
-            if (tal_abl.get( "gen_points" ) == null) {
-                if (main_abl == null) {
-                    Integer postponed = postponed_payments.get("tal");
-                    if ( postponed != null ) {
-                        abl[0] -= postponed;
-                        postponed_payments.remove("tal");
-                    }
-                    tal_abl.put( "gen_points", abl[0] );
-                    main_abl = "tal";
-                }
-                else if (scnd_abl == null) {
-                    Integer postponed = postponed_payments.get("tal");
-                    if ( postponed != null ) {
-                        abl[1] -= postponed;
-                        postponed_payments.remove("tal");
-                    }
-                    tal_abl.put( "gen_points", abl[1] );
-                    scnd_abl = "tal";
-                }
-                else if (thrd_abl == null) {
-                    Integer postponed = postponed_payments.get("tal");
-                    if ( postponed != null ) {
-                        abl[2] -= postponed;
-                        postponed_payments.remove("tal");
-                    }
-                    tal_abl.put( "gen_points", abl[2] );
-                    thrd_abl = "tal";
-                }
-            }
-
-            gen_points = tal_abl.get( "gen_points" );
-            if ( (number - prev_num) <= gen_points ) {
-                gen_points -= (number - prev_num);
-            }
-            else {
-                number = prev_num + gen_points;
-                gen_points = 0;
-            }
-
-            tal_abl.put(name, number);
-            tal_abl.put( "gen_points", gen_points );
-            if ( main_abl.equals("tal") ) {
-                abl[0] = gen_points;
-            }
-            else if ( scnd_abl.equals("tal") ) {
-                abl[1] = gen_points;
-            }
-            else if ( thrd_abl.equals("tal") ) {
-                abl[2] = gen_points;
-            }
         }
-        if ( skl_abl.get(name) != null ) {
+        else if ( skl_abl.get(name) != null ) {
+            type = "skl";
             prev_num = skl_abl.get(name);
 
             if ( number == 1 && prev_num == 1 ) {
                 number = 0;
             }
-
-            if (skl_abl.get( "gen_points" ) == null) {
-                if (main_abl == null) {
-                    skl_abl.put( "gen_points", abl[0] );
-                    main_abl = "skl";
-                }
-                else if (scnd_abl == null) {
-                    skl_abl.put( "gen_points", abl[1] );
-                    scnd_abl = "skl";
-                }
-                else if (thrd_abl == null) {
-                    skl_abl.put( "gen_points", abl[2] );
-                    thrd_abl = "skl";
-                }
-            }
-            gen_points = skl_abl.get( "gen_points" );
-            if ( (number - prev_num) <= gen_points ) {
-                gen_points -= (number - prev_num);
-            }
-            else {
-                number = prev_num + gen_points;
-                gen_points = 0;
-            }
-            skl_abl.put(name, number);
-            skl_abl.put( "gen_points", gen_points );
-            if ( main_abl.equals("skl") ) {
-                abl[0] = gen_points;
-            }
-            else if ( scnd_abl.equals("skl") ) {
-                abl[1] = gen_points;
-            }
-            else if ( thrd_abl.equals("skl") ) {
-                abl[2] = gen_points;
-            }
         }
-        if ( kng_abl.get(name) != null ) {
+        else {
+            type = "kng";
             prev_num = kng_abl.get(name);
 
-            if ( number == 1 && prev_num == 1 ) {
+            if (number == 1 && prev_num == 1) {
                 //noinspection StatementWithEmptyBody
-                if ( name.equals("religion") && class_name.equals("Жрец") ) {
-                }
-                else {
+                if (name.equals("religion") && class_name.equals("Жрец")) {
+                } else {
                     number = 0;
                 }
             }
+        }
 
-            if (kng_abl.get( "gen_points" ) == null) {
-                if (main_abl == null) {
-                    Integer postponed = postponed_payments.get("kng");
-                    if ( postponed != null ) {
-                        abl[2] -= postponed;
-                        postponed_payments.remove("kng");
-                    }
-                    kng_abl.put( "gen_points", abl[0] );
-                    main_abl = "kng";
-                }
-                else if (scnd_abl == null) {
-                    Integer postponed = postponed_payments.get("kng");
-                    if ( postponed != null ) {
-                        abl[2] -= postponed;
-                        postponed_payments.remove("kng");
-                    }
-                    kng_abl.put( "gen_points", abl[1] );
-                    scnd_abl = "kng";
-                }
-                else if (thrd_abl == null) {
-                    Integer postponed = postponed_payments.get("kng");
-                    if ( postponed != null ) {
-                        abl[2] -= postponed;
-                        postponed_payments.remove("kng");
-                    }
-                    kng_abl.put( "gen_points", abl[2] );
-                    thrd_abl = "kng";
-                }
+        if ( main_abl == null      || main_abl.equals(type) ) {
+            main_abl = type;
+        }
+        else if ( scnd_abl == null || scnd_abl.equals(type) ) {
+            scnd_abl = type;
+        }
+        else if ( thrd_abl == null || thrd_abl.equals(type) ) {
+            thrd_abl = type;
+        }
+
+        Integer[] returned;
+        if ( main_abl.equals(type) ) {
+            returned = add_num_to_abl( name, number, prev_num, abl[0] );
+            abl[0]  = returned[1];
+        }
+
+        else if ( scnd_abl.equals(type) ) {
+            returned = add_num_to_abl( name, number, prev_num, abl[1] );
+            abl[1]  = returned[1];
+        }
+
+        else {
+            returned = add_num_to_abl( name, number, prev_num, abl[2] );
+            abl[2]  = returned[1];
+        }
+        number = returned[0];
+
+        return number;
+    }
+
+    private Integer[] add_num_to_abl( String name, Integer number, Integer prev_num, Integer abl_v ) {
+
+        if ( (number - prev_num) <= abl_v ) {
+            abl_v -= (number - prev_num);
+        }
+        else {
+            number = prev_num + abl_v;
+            abl_v = 0;
+        }
+
+        if ( tal_abl.get(name) != null ) {
+            tal_abl.put(name, number);
+
+            Integer postponed = postponed_payments.get("tal");
+            if ( postponed != null ) {
+                abl_v -= postponed;
+                postponed_payments.remove("tal");
             }
-            gen_points = kng_abl.get( "gen_points" );
-            if ( (number - prev_num) <= gen_points ) {
-                gen_points -= (number - prev_num);
-            }
-            else {
-                number = prev_num + gen_points;
-                gen_points = 0;
-            }
+        }
+        else if ( skl_abl.get(name) != null ) {
+            skl_abl.put(name, number);
+        }
+        else {
             kng_abl.put(name, number);
-            kng_abl.put( "gen_points", gen_points );
-            if ( main_abl.equals("kng") ) {
-                abl[0] = gen_points;
-            }
-            else if ( scnd_abl.equals("kng") ) {
-                abl[1] = gen_points;
-            }
-            else if ( thrd_abl.equals("kng") ) {
-                abl[2] = gen_points;
+
+            Integer postponed = postponed_payments.get("kng");
+            if ( postponed != null ) {
+                abl_v -= postponed;
+                postponed_payments.remove("kng");
             }
         }
 
-        return number;
+        return new Integer[] {number, abl_v};
     }
 
     private Integer save_bkg_values( String name, Integer number ) {
@@ -567,12 +491,12 @@ class character implements Serializable {
             number = 0;
         }
 
-        if ( (number - prev_num) <= cf_gen_points ) {
-            cf_gen_points -= (number - prev_num);
+        if ( (number - prev_num) <= class_feature_gen_points ) {
+            class_feature_gen_points -= (number - prev_num);
         }
         else {
-            number = prev_num + cf_gen_points;
-            cf_gen_points = 0;
+            number = prev_num + class_feature_gen_points;
+            class_feature_gen_points = 0;
         }
 
         return number;
@@ -585,7 +509,7 @@ class character implements Serializable {
             for (int e : attr) sum += e;
             for (int e : abl)  sum += e;
             sum += bkg_gen_points;
-            sum += cf_gen_points;
+            sum += class_feature_gen_points;
 
             if (sum != 0) {
                 return true;
@@ -918,9 +842,6 @@ class character implements Serializable {
         if ( group.equals("tal_abl") ) {
             if (postponed_payments.get("tal") == null) {
                 Integer r_val = tal_abl.get("enlightenment");
-                Integer cur   = tal_abl.get("gen_points");
-                cur += r_val;
-                tal_abl.put("gen_points", cur);
                 if (main_abl.equals("tal")) {
                     abl[0] += r_val;
                 } else if (scnd_abl.equals("tal")) {
@@ -936,9 +857,6 @@ class character implements Serializable {
         else if ( group.equals("kng_abl") ) {
             if (postponed_payments.get("kng") == null) {
                 Integer r_val = kng_abl.get("religion");
-                Integer cur   = kng_abl.get("gen_points");
-                cur += r_val;
-                kng_abl.put("gen_points", cur);
                 if (main_abl.equals("kng")) {
                     abl[0] += r_val;
                 } else if (scnd_abl.equals("kng")) {
@@ -957,13 +875,13 @@ class character implements Serializable {
     public void delay_charge(String name, Integer num ) {
         if ( name.equals("enlightenment") ) {
             tal_abl.put( name, num );
-            if ( main_abl.equals("tal") ) {
+            if ( main_abl != null && main_abl.equals("tal") ) {
                 abl[0] -= num;
             }
-            else if ( scnd_abl.equals("tal") ) {
+            else if ( main_abl != null && scnd_abl.equals("tal") ) {
                 abl[1] -= num;
             }
-            else if ( thrd_abl.equals("tal") ) {
+            else if ( main_abl != null && thrd_abl.equals("tal") ) {
                 abl[2] -= num;
             }
             else {
@@ -972,13 +890,13 @@ class character implements Serializable {
         }
         else if ( name.equals("religion") ) {
             kng_abl.put( name, num );
-            if ( main_abl.equals("kng") ) {
+            if ( main_abl != null && main_abl.equals("kng") ) {
                 abl[0] -= num;
             }
-            else if ( scnd_abl.equals("kng") ) {
+            else if ( main_abl != null && scnd_abl.equals("kng") ) {
                 abl[1] -= num;
             }
-            else if ( thrd_abl.equals("kng") ) {
+            else if ( main_abl != null && thrd_abl.equals("kng") ) {
                 abl[2] -= num;
             }
             else {
