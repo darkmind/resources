@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +42,8 @@ public class full_char_list extends AppCompatActivity {
     private Spinner spinner_al;
     private Spinner spinner_cl;
 
+    private ArrayAdapter<CharSequence> adapter_al;
+    private ArrayAdapter<CharSequence> adapter_cl;
     private ArrayAdapter<CharSequence> adapter_gd;
 
     private character char_o;
@@ -199,51 +203,45 @@ public class full_char_list extends AppCompatActivity {
                 spinner_gd.setVisibility(View.GONE);
                 findViewById( R.id.enlightenment ).setVisibility(View.GONE);
                 findViewById( R.id.concentration ).setVisibility(View.GONE);
-                if ( char_o.tal_abl.get("enlightenment") == 1 ) {
-                    set_range( "abl", "enlightenment", 0 );
-                    unset_upper_range( "abl", "enlightenment", 0 );
-                    char_o.return_m_point( "tal_abl" );
+                if ( char_o.Generated == 0 ) {
+                    if (char_o.tal_abl.get("enlightenment") == 1) {
+                        set_range("abl", "enlightenment", 0);
+                        unset_upper_range("abl", "enlightenment", 0);
+                        char_o.return_m_point("tal_abl");
+                    }
+                    if (char_o.kng_abl.get("religion") == 1) {
+                        set_range("abl", "religion", 0);
+                        unset_upper_range("abl", "religion", 0);
+                        char_o.return_m_point("kng_abl");
+                    }
+                    update_helpers();
                 }
-                if ( char_o.kng_abl.get("religion") == 1 ) {
-                    set_range( "abl", "religion", 0 );
-                    unset_upper_range( "abl", "religion", 0 );
-                    char_o.return_m_point( "kng_abl" );
-                }
-                update_helpers();
                 break;
             case "Маг":
                 show_sp("wp");
-                init_sp_points( "wp", 1 );
-                if ( char_o.tal_abl.get("enlightenment") == 0 ) {
-                    set_range( "abl", "enlightenment", 1 );
-                    unset_upper_range( "abl", "enlightenment", 1 );
-                    char_o.delay_charge( "enlightenment", 1 );
-                }
-                if ( char_o.kng_abl.get("religion") == 1 ) {
-                    set_range( "abl", "religion", 0 );
-                    unset_upper_range( "abl", "religion", 0 );
-                    char_o.return_m_point( "kng_abl" );
-                }
-                update_helpers();
-                findViewById( R.id.enlightenment ).setVisibility(View.VISIBLE);
-                findViewById( R.id.concentration ).setVisibility(View.VISIBLE);
                 gifts.setVisibility(View.GONE);
                 spheres.setVisibility(View.VISIBLE);
                 disciplines.setVisibility(View.GONE);
                 spinner_gd.setVisibility(View.GONE);
+                findViewById( R.id.enlightenment ).setVisibility(View.VISIBLE);
+                findViewById( R.id.concentration ).setVisibility(View.VISIBLE);
+                if ( char_o.Generated == 0 ) {
+                    init_sp_points( "wp", 1 );
+                    if (char_o.tal_abl.get("enlightenment") == 0) {
+                        set_range("abl", "enlightenment", 1);
+                        unset_upper_range("abl", "enlightenment", 1);
+                        char_o.delay_charge("enlightenment", 1);
+                    }
+                    if (char_o.kng_abl.get("religion") == 1) {
+                        set_range("abl", "religion", 0);
+                        unset_upper_range("abl", "religion", 0);
+                        char_o.return_m_point("kng_abl");
+                    }
+                    update_helpers();
+                }
+
                 break;
             case "Жрец":
-                if ( char_o.kng_abl.get("religion") == 0 ) {
-                    set_range( "abl", "religion", 1 );
-                    unset_upper_range( "abl", "religion", 1 );
-                    char_o.delay_charge( "religion", 1 );
-                }
-                if ( char_o.tal_abl.get("enlightenment") == 1 ) {
-                    set_range( "abl", "enlightenment", 0 );
-                    unset_upper_range( "abl", "enlightenment", 0 );
-                    char_o.return_m_point( "tal_abl" );
-                }
-                update_helpers();
                 show_sp("faith");
                 init_sp_points( "faith", (char_o.kng_abl.get("religion") * 2) );
                 gifts.setVisibility(View.GONE);
@@ -252,6 +250,20 @@ public class full_char_list extends AppCompatActivity {
                 spinner_gd.setVisibility(View.VISIBLE);
                 findViewById( R.id.enlightenment ).setVisibility(View.GONE);
                 findViewById( R.id.concentration ).setVisibility(View.GONE);
+                if ( char_o.Generated == 0 ) {
+                    if (char_o.kng_abl.get("religion") == 0) {
+                        set_range("abl", "religion", 1);
+                        unset_upper_range("abl", "religion", 1);
+                        char_o.delay_charge("religion", 1);
+                    }
+                    if (char_o.tal_abl.get("enlightenment") == 1) {
+                        set_range("abl", "enlightenment", 0);
+                        unset_upper_range("abl", "enlightenment", 0);
+                        char_o.return_m_point("tal_abl");
+                    }
+                    update_helpers();
+                }
+
                 break;
         }
     }
@@ -400,14 +412,14 @@ public class full_char_list extends AppCompatActivity {
     private void generation_complete() {
         if ( ! char_o.check_gen_points() ) {
             AlertDialog.Builder builder = new AlertDialog.Builder(full_char_list.this);
-            builder.setTitle("Генерация");
+            builder.setTitle(R.string.generation);
             builder.setMessage(R.string.go_to_free);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     finish_gen_points();
                 }
             });
-            builder.setNegativeButton("Cancel", null);
+            builder.setNegativeButton(R.string.cancel, null);
             builder.show();
 
         }
@@ -418,19 +430,20 @@ public class full_char_list extends AppCompatActivity {
         wp_show_helper.setVisibility(View.VISIBLE);
         update_helpers();
         char_o.store_values();
+        lock_unlock_names();
     }
 
     private void fp_complete() {
         if ( char_o.free_points == 0 ) {
             AlertDialog.Builder builder = new AlertDialog.Builder(full_char_list.this);
-            builder.setTitle("Генерация");
+            builder.setTitle(R.string.generation);
             builder.setMessage(R.string.finish_gen);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     finish_fp_points();
                 }
             });
-            builder.setNegativeButton("Cancel", null);
+            builder.setNegativeButton(R.string.cancel, null);
             builder.show();
         }
     }
@@ -444,6 +457,7 @@ public class full_char_list extends AppCompatActivity {
         dis_helper.setVisibility(View.GONE);
         gft_helper.setVisibility(View.GONE);
         char_o.store_values();
+        lock_unlock_names();
     }
 
     private void set_range( String group, String name, Integer number ) {
@@ -643,7 +657,7 @@ public class full_char_list extends AppCompatActivity {
         Integer pos;
 
         // alignment
-        ArrayAdapter<CharSequence> adapter_al = ArrayAdapter.createFromResource(this,
+        adapter_al = ArrayAdapter.createFromResource(this,
                 R.array.alignments_array, android.R.layout.simple_spinner_item);
         adapter_al.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_al.setAdapter(adapter_al);
@@ -651,7 +665,7 @@ public class full_char_list extends AppCompatActivity {
         spinner_al.setSelection(pos);
 
         // class
-        ArrayAdapter<CharSequence> adapter_cl = ArrayAdapter.createFromResource(this,
+        adapter_cl = ArrayAdapter.createFromResource(this,
                 R.array.classes_array, android.R.layout.simple_spinner_item);
         adapter_cl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_cl.setAdapter(adapter_cl);
@@ -755,7 +769,46 @@ public class full_char_list extends AppCompatActivity {
             }
         }
 
+        lock_unlock_names();
         set_health_pen();
+    }
+
+    private void lock_unlock_names() {
+        if ( char_o.Generated == 1 ) {
+            spinner_al.setVisibility(View.GONE);
+            spinner_cl.setVisibility(View.GONE);
+            spinner_gd.setVisibility(View.GONE);
+
+            TextView al = (TextView) findViewById(R.id.txt_charlist_alignment);
+            al.setText(String.format(Locale.getDefault(), "Мировоззрение: %s", char_o.alignment));
+            al.setVisibility(View.VISIBLE);
+
+            TextView cl = (TextView) findViewById(R.id.txt_charlist_class);
+            cl.setText(String.format(Locale.getDefault(), "Класс: %s", char_o.class_name));
+            cl.setVisibility(View.VISIBLE);
+
+            if (char_o.class_name.equals("Жрец")) {
+                TextView gd = (TextView) findViewById(R.id.txt_charlist_gods);
+                gd.setText(String.format(Locale.getDefault(), "Бог: %s", char_o.god));
+                gd.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
+            spinner_al.setVisibility(View.VISIBLE);
+            spinner_cl.setVisibility(View.VISIBLE);
+            spinner_gd.setVisibility(View.VISIBLE);
+
+            TextView al = (TextView) findViewById(R.id.txt_charlist_alignment);
+            al.setVisibility(View.GONE);
+
+            TextView cl = (TextView) findViewById(R.id.txt_charlist_class);
+            cl.setVisibility(View.GONE);
+
+            if (char_o.class_name.equals("Жрец")) {
+                TextView gd = (TextView) findViewById(R.id.txt_charlist_gods);
+                gd.setVisibility(View.GONE);
+            }
+        }
     }
 
     private void mark_checkboxes( String name, int id, int pic ) {

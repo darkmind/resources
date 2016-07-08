@@ -126,6 +126,15 @@
     </string-array>
 
     <string name="charlist_alignment_hint">Мировоззрение</string>
+    <string name="alignment_LG">Законопослушный-Добрый</string>
+    <string name="alignment_NG">Нейтральный-Добрый</string>
+    <string name="alignment_CG">Хаотичный-Добрый</string>
+    <string name="alignment_LN">Законопослушный-Нейтральный</string>
+    <string name="alignment_NN">Нейтральный</string>
+    <string name="alignment_CN">Хаотичный-Нейтральный</string>
+    <string name="alignment_LE">Законопослушный-Злой</string>
+    <string name="alignment_NE">Нейтральный-Злой</string>
+    <string name="alignment_CE">Хаотичный-Злой</string>
 
     <string name="charlist_class_hint">Класс</string>
 
@@ -237,10 +246,16 @@
     <string name="gft_mageslayer">Убийца магов</string>
     <string name="gft_shapeshifter">Оборотень</string>
 
-    <string name="go_to_free">Перейти к распределению Свободных Очков?</string>
+    <string name="generation">Генерация</string>
+    <string name="go_to_free">Перейти к распределению Свободных Очков?
+Нельзя будет поменять: Мировоззрение, Класс и Бог</string>
+    <string name="ok">Да</string>
+    <string name="cancel">Нет</string>
     <string name="finish_gen">Завершить генерацию?</string>
 
     <string name="hide_zero">Убрать нулевые параметры</string>
     <string name="show_zero">Показать нулевые параметры</string>
+
+
 
 </resources>
