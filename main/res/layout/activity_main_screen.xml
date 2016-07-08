@@ -19,6 +19,7 @@
             <include layout="@layout/faith"/>
             <include layout="@layout/willpower"/>
             <include layout="@layout/health"/>
+            <include layout="@layout/summary"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -403,6 +403,8 @@ public class full_char_list extends AppCompatActivity {
             update_helpers();
             fp_complete();
         }
+
+        update_summary( group, name );
     }
 
     private void generation_complete() {
@@ -454,6 +456,81 @@ public class full_char_list extends AppCompatActivity {
         gft_helper.setVisibility(View.GONE);
         char_o.store_values();
         lock_unlock_names();
+    }
+
+    private void update_summary( String group, String name ) {
+        if ( group.equals("attr") ) {
+            if (name.equals("strength")) {
+                Integer atk = char_o.phis_attr.get("strength") + char_o.tal_abl.get("brawl");
+                TextView atk_v = (TextView) findViewById(R.id.atk_hands);
+                atk_v.setText(getResources().getString(R.string.atk_hands) + atk );
+
+                Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
+                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                atk_v = (TextView) findViewById(R.id.atk_melee);
+                atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
+
+            } else if (name.equals("dexterity")) {
+                Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
+                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                TextView atk_v = (TextView) findViewById(R.id.atk_melee);
+                atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
+
+                atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
+                atk_v = (TextView) findViewById(R.id.atk_range);
+                atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
+
+                atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
+                atk_v = (TextView) findViewById(R.id.atk_throw);
+                atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
+
+                atk_d = char_o.phis_attr.get("dexterity");
+                if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
+                    atk_d = char_o.men_attr.get("wits");
+                }
+                atk_v = (TextView) findViewById(R.id.def);
+                atk_v.setText(getResources().getString(R.string.def) + atk_d);
+
+                atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
+                atk_v = (TextView) findViewById(R.id.init);
+                atk_v.setText(getResources().getString(R.string.init) + atk_d);
+            } else if (name.equals("wits")) {
+                Integer atk_d = char_o.phis_attr.get("dexterity");
+                if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
+                    atk_d = char_o.men_attr.get("wits");
+                }
+                TextView atk_v = (TextView) findViewById(R.id.def);
+                atk_v.setText(getResources().getString(R.string.def) + atk_d);
+
+                atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
+                atk_v = (TextView) findViewById(R.id.init);
+                atk_v.setText(getResources().getString(R.string.init) + atk_d);
+            }
+        }
+        else if ( group.equals("abl") ) {
+            if (name.equals("brawl")) {
+                Integer atk = char_o.phis_attr.get("strength") + char_o.tal_abl.get("brawl");
+                TextView atk_v = (TextView) findViewById(R.id.atk_hands);
+                atk_v.setText(getResources().getString(R.string.atk_hands) + atk);
+            }
+            else if (name.equals("melee")) {
+                Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
+                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                TextView atk_v = (TextView) findViewById(R.id.atk_melee);
+                atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
+            }
+            else if (name.equals("firearms")) {
+                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
+                TextView atk_v = (TextView) findViewById(R.id.atk_range);
+                atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
+            }
+            else if (name.equals("athletics")) {
+                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
+                TextView atk_v = (TextView) findViewById(R.id.atk_throw);
+                atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
+            }
+        }
+
     }
 
     private void set_range( String group, String name, Integer number ) {
@@ -682,6 +759,7 @@ public class full_char_list extends AppCompatActivity {
             val = char_o.phis_attr.get(resource);
             set_range( "attr", resource, val );
             unset_upper_range( "attr", resource, val );
+            update_summary( "attr", resource );
         }
         for ( String resource : char_o.soc_attr.keySet() ) {
             val = char_o.soc_attr.get(resource);
@@ -692,32 +770,23 @@ public class full_char_list extends AppCompatActivity {
             val = char_o.men_attr.get(resource);
             set_range( "attr", resource, val );
             unset_upper_range( "attr", resource, val );
+            update_summary( "attr", resource );
         }
 
         // abilities
         for ( String resource : char_o.tal_abl.keySet() ) {
-            if ( resource.equals("gen_points") ) {
-                continue;
-            }
-
             val = char_o.tal_abl.get(resource);
             set_range( "abl", resource, val );
             unset_upper_range( "abl", resource, val );
+            update_summary( "abl", resource );
         }
         for ( String resource : char_o.skl_abl.keySet() ) {
-            if ( resource.equals("gen_points") ) {
-                continue;
-            }
-
             val = char_o.skl_abl.get(resource);
             set_range( "abl", resource, val );
             unset_upper_range( "abl", resource, val );
+            update_summary( "abl", resource );
         }
         for ( String resource : char_o.kng_abl.keySet() ) {
-            if ( resource.equals("gen_points") ) {
-                continue;
-            }
-
             val = char_o.kng_abl.get(resource);
             set_range( "abl", resource, val );
             unset_upper_range( "abl", resource, val );

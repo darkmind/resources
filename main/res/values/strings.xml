@@ -246,6 +246,15 @@
     <string name="hide_zero">Убрать нулевые параметры</string>
     <string name="show_zero">Показать нулевые параметры</string>
 
+    <string name="atk_hands">Атака без оружия: </string>
+    <string name="atk_melee">Атака холодным оружием Сила/Ловкость : </string>
+    <string name="atk_range">Атака стрельба: </string>
+    <string name="atk_throw">Атака метание: </string>
+    <string name="def">Защита: </string>
+    <string name="init">Инициатива: </string>
+    <string name="armor">Броня: </string>
+
+
 
 
 </resources>
