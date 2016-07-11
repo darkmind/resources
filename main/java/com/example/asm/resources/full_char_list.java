@@ -550,11 +550,13 @@ public class full_char_list extends AppCompatActivity {
     }
 
     private void mark_dots( String group, String name, Integer number, int pic ) {
-        String id_ref = String.format(Locale.getDefault(), "rb_%s_%s%d", group,  name, number);
-        int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
-        ImageView img = (ImageView) findViewById(resID);
-        assert img != null;
-        img.setImageResource(pic);
+        if ( number > 0 ) {
+            String id_ref = String.format(Locale.getDefault(), "rb_%s_%s%d", group, name, number);
+            int resID = getResources().getIdentifier(id_ref, "id", getPackageName());
+            ImageView img = (ImageView) findViewById(resID);
+            assert img != null;
+            img.setImageResource(pic);
+        }
     }
 
     private void fix_gods_list( String algmnt ) {
