@@ -10,13 +10,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -115,6 +118,17 @@ public class full_char_list extends AppCompatActivity {
         TextView chronic = (TextView) findViewById(R.id.charlist_chronic_name);
         chronic.setText( String.format(Locale.getDefault(), "Хроника: %s", cr_name) );
 
+        final EditText exp = (EditText) findViewById(R.id.exp);
+        exp.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    char_o.Exp = Integer.parseInt(exp.getText().toString());
+                }
+                return false;
+            }
+        });
+
         gifts       = findViewById(R.id.gifts);
         spheres     = findViewById(R.id.spheres);
         disciplines = findViewById(R.id.disciplines);
@@ -197,9 +211,9 @@ public class full_char_list extends AppCompatActivity {
                 spheres.setVisibility(View.GONE);
                 disciplines.setVisibility(View.GONE);
                 spinner_gd.setVisibility(View.GONE);
-                findViewById( R.id.enlightenment ).setVisibility(View.GONE);
-                findViewById( R.id.concentration ).setVisibility(View.GONE);
                 if ( char_o.Generated == 0 ) {
+                    findViewById( R.id.enlightenment ).setVisibility(View.GONE);
+                    findViewById( R.id.concentration ).setVisibility(View.GONE);
                     if (char_o.tal_abl.get("enlightenment") == 1) {
                         set_range("abl", "enlightenment", 0);
                         unset_upper_range("abl", "enlightenment", 0);
@@ -219,9 +233,9 @@ public class full_char_list extends AppCompatActivity {
                 spheres.setVisibility(View.VISIBLE);
                 disciplines.setVisibility(View.GONE);
                 spinner_gd.setVisibility(View.GONE);
-                findViewById( R.id.enlightenment ).setVisibility(View.VISIBLE);
-                findViewById( R.id.concentration ).setVisibility(View.VISIBLE);
                 if ( char_o.Generated == 0 ) {
+                    findViewById( R.id.enlightenment ).setVisibility(View.VISIBLE);
+                    findViewById( R.id.concentration ).setVisibility(View.VISIBLE);
                     init_sp_points( "wp", 1 );
                     if (char_o.tal_abl.get("enlightenment") == 0) {
                         set_range("abl", "enlightenment", 1);
@@ -244,9 +258,9 @@ public class full_char_list extends AppCompatActivity {
                 spheres.setVisibility(View.GONE);
                 disciplines.setVisibility(View.VISIBLE);
                 spinner_gd.setVisibility(View.VISIBLE);
-                findViewById( R.id.enlightenment ).setVisibility(View.GONE);
-                findViewById( R.id.concentration ).setVisibility(View.GONE);
                 if ( char_o.Generated == 0 ) {
+                    findViewById( R.id.enlightenment ).setVisibility(View.GONE);
+                    findViewById( R.id.concentration ).setVisibility(View.GONE);
                     if (char_o.kng_abl.get("religion") == 0) {
                         set_range("abl", "religion", 1);
                         unset_upper_range("abl", "religion", 1);
@@ -314,6 +328,15 @@ public class full_char_list extends AppCompatActivity {
                     char_o.free_points));
             wp_show_helper.setText(String.format(Locale.getDefault(), "Очков [%d], цена 2",
                     char_o.free_points));
+        }
+        else if ( char_o.Generated == 2 ) {
+            attr_helper.setText( getResources().getString(R.string.price_attr_exp) );
+            abl_helper.setText( getResources().getString(R.string.price_abl_exp) );
+            bkg_helper.setText( getResources().getString(R.string.price_bkg_exp) );
+            sph_helper.setText( getResources().getString(R.string.price_class_feature_exp) );
+            dis_helper.setText( getResources().getString(R.string.price_class_feature_exp) );
+            gft_helper.setText( getResources().getString(R.string.price_gft_exp) );
+            wp_show_helper.setText( getResources().getString(R.string.price_wp_exp) );
         }
     }
 
@@ -403,8 +426,23 @@ public class full_char_list extends AppCompatActivity {
             update_helpers();
             fp_complete();
         }
+        else if ( char_o.Generated == 2 ) {
+            if ( char_o.upping ) {
+                number = char_o.save_exp_values( group, name, number );
+                change_exp_value();
+                set_range( group, name, number );
+                unset_upper_range( group, name, number );
+                exp_complete();
+            }
+        }
 
         update_summary( group, name );
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void change_exp_value() {
+        EditText w_exp = (EditText) findViewById( R.id.exp );
+        w_exp.setText( char_o.Exp.toString() );
     }
 
     private void generation_complete() {
@@ -448,86 +486,128 @@ public class full_char_list extends AppCompatActivity {
 
     private void finish_fp_points() {
         char_o.Generated = 2;
-        attr_helper.setVisibility(View.GONE);
-        abl_helper.setVisibility(View.GONE);
-        bkg_helper.setVisibility(View.GONE);
-        sph_helper.setVisibility(View.GONE);
-        dis_helper.setVisibility(View.GONE);
-        gft_helper.setVisibility(View.GONE);
+        update_helpers();
         char_o.store_values();
         lock_unlock_names();
+
+        change_exp_value();
+        View exp = findViewById(R.id.exp_section);
+        exp.setVisibility(View.VISIBLE);
+
+        MenuItem up_exp = menu_bar.findItem(R.id.up_by_exp);
+        up_exp.setVisible(true);
+        up_exp = menu_bar.findItem(R.id.finish_up_by_exp);
+        up_exp.setVisible(false);
     }
 
-    private void update_summary( String group, String name ) {
+    private void exp_complete() {
+        Integer wp = char_o.sp_resources.get("perm_wp");
+        if ( char_o.Exp < wp ) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(full_char_list.this);
+            builder.setTitle(R.string.exp_title);
+            builder.setMessage(R.string.exp_msg);
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish_exp_points();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, null);
+            builder.show();
+        }
+    }
+
+    private void finish_exp_points() {
+        char_o.store_values();
+        MenuItem up_exp = menu_bar.findItem(R.id.up_by_exp);
+        up_exp.setVisible(true);
+        up_exp = menu_bar.findItem(R.id.finish_up_by_exp);
+        up_exp.setVisible(false);
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void update_summary(String group, String name ) {
         if ( group.equals("attr") ) {
-            if (name.equals("strength")) {
-                Integer atk = char_o.phis_attr.get("strength") + char_o.tal_abl.get("brawl");
-                TextView atk_v = (TextView) findViewById(R.id.atk_hands);
-                atk_v.setText(getResources().getString(R.string.atk_hands) + atk );
+            switch (name) {
+                case "strength": {
+                    Integer atk = char_o.phis_attr.get("strength") + char_o.tal_abl.get("brawl");
+                    TextView atk_v = (TextView) findViewById(R.id.atk_hands);
+                    atk_v.setText(getResources().getString(R.string.atk_hands) + atk);
 
-                Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
-                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
-                atk_v = (TextView) findViewById(R.id.atk_melee);
-                atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
+                    Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
+                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                    atk_v = (TextView) findViewById(R.id.atk_melee);
+                    atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
 
-            } else if (name.equals("dexterity")) {
-                Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
-                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
-                TextView atk_v = (TextView) findViewById(R.id.atk_melee);
-                atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
-
-                atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
-                atk_v = (TextView) findViewById(R.id.atk_range);
-                atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
-
-                atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
-                atk_v = (TextView) findViewById(R.id.atk_throw);
-                atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
-
-                atk_d = char_o.phis_attr.get("dexterity");
-                if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
-                    atk_d = char_o.men_attr.get("wits");
+                    break;
                 }
-                atk_v = (TextView) findViewById(R.id.def);
-                atk_v.setText(getResources().getString(R.string.def) + atk_d);
+                case "dexterity": {
+                    Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
+                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                    TextView atk_v = (TextView) findViewById(R.id.atk_melee);
+                    atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
 
-                atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
-                atk_v = (TextView) findViewById(R.id.init);
-                atk_v.setText(getResources().getString(R.string.init) + atk_d);
-            } else if (name.equals("wits")) {
-                Integer atk_d = char_o.phis_attr.get("dexterity");
-                if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
-                    atk_d = char_o.men_attr.get("wits");
+                    atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
+                    atk_v = (TextView) findViewById(R.id.atk_range);
+                    atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
+
+                    atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
+                    atk_v = (TextView) findViewById(R.id.atk_throw);
+                    atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
+
+                    atk_d = char_o.phis_attr.get("dexterity");
+                    if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
+                        atk_d = char_o.men_attr.get("wits");
+                    }
+                    atk_v = (TextView) findViewById(R.id.def);
+                    atk_v.setText(getResources().getString(R.string.def) + atk_d);
+
+                    atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
+                    atk_v = (TextView) findViewById(R.id.init);
+                    atk_v.setText(getResources().getString(R.string.init) + atk_d);
+                    break;
                 }
-                TextView atk_v = (TextView) findViewById(R.id.def);
-                atk_v.setText(getResources().getString(R.string.def) + atk_d);
+                case "wits": {
+                    Integer atk_d = char_o.phis_attr.get("dexterity");
+                    if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
+                        atk_d = char_o.men_attr.get("wits");
+                    }
+                    TextView atk_v = (TextView) findViewById(R.id.def);
+                    atk_v.setText(getResources().getString(R.string.def) + atk_d);
 
-                atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
-                atk_v = (TextView) findViewById(R.id.init);
-                atk_v.setText(getResources().getString(R.string.init) + atk_d);
+                    atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
+                    atk_v = (TextView) findViewById(R.id.init);
+                    atk_v.setText(getResources().getString(R.string.init) + atk_d);
+                    break;
+                }
             }
         }
         else if ( group.equals("abl") ) {
-            if (name.equals("brawl")) {
-                Integer atk = char_o.phis_attr.get("strength") + char_o.tal_abl.get("brawl");
-                TextView atk_v = (TextView) findViewById(R.id.atk_hands);
-                atk_v.setText(getResources().getString(R.string.atk_hands) + atk);
-            }
-            else if (name.equals("melee")) {
-                Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
-                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
-                TextView atk_v = (TextView) findViewById(R.id.atk_melee);
-                atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
-            }
-            else if (name.equals("firearms")) {
-                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
-                TextView atk_v = (TextView) findViewById(R.id.atk_range);
-                atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
-            }
-            else if (name.equals("athletics")) {
-                Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
-                TextView atk_v = (TextView) findViewById(R.id.atk_throw);
-                atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
+            switch (name) {
+                case "brawl": {
+                    Integer atk = char_o.phis_attr.get("strength") + char_o.tal_abl.get("brawl");
+                    TextView atk_v = (TextView) findViewById(R.id.atk_hands);
+                    atk_v.setText(getResources().getString(R.string.atk_hands) + atk);
+                    break;
+                }
+                case "melee": {
+                    Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
+                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                    TextView atk_v = (TextView) findViewById(R.id.atk_melee);
+                    atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
+                    break;
+                }
+                case "firearms": {
+                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
+                    TextView atk_v = (TextView) findViewById(R.id.atk_range);
+                    atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
+                    break;
+                }
+                case "athletics": {
+                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
+                    TextView atk_v = (TextView) findViewById(R.id.atk_throw);
+                    atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
+                    break;
+                }
             }
         }
 
@@ -863,7 +943,6 @@ public class full_char_list extends AppCompatActivity {
         else {
             spinner_al.setVisibility(View.VISIBLE);
             spinner_cl.setVisibility(View.VISIBLE);
-            spinner_gd.setVisibility(View.VISIBLE);
 
             TextView al = (TextView) findViewById(R.id.txt_charlist_alignment);
             al.setVisibility(View.GONE);
@@ -872,6 +951,7 @@ public class full_char_list extends AppCompatActivity {
             cl.setVisibility(View.GONE);
 
             if (char_o.class_name.equals("Жрец")) {
+                spinner_gd.setVisibility(View.VISIBLE);
                 TextView gd = (TextView) findViewById(R.id.txt_charlist_gods);
                 gd.setVisibility(View.GONE);
             }
@@ -1251,4 +1331,21 @@ public class full_char_list extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("unused")
+    public void run_up_by_exp(MenuItem item) {
+
+        MenuItem show_params =  menu_bar.findItem(R.id.finish_up_by_exp);
+        show_params.setVisible(true);
+        show_params =  menu_bar.findItem(R.id.up_by_exp);
+        show_params.setVisible(false);
+
+        char_o.upping = true;
+        char_o.store_values();
+    }
+
+    @SuppressWarnings("unused")
+    public void finish_run_up_by_exp(MenuItem item) {
+        char_o.upping = false;
+        finish_exp_points();
+    }
 }

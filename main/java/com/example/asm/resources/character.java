@@ -22,6 +22,8 @@ class character implements Serializable {
     public String god;
 
     public Integer Generated;
+    public Integer Exp;
+    public boolean upping;
 
     public  final Map<String, Integer> phis_attr;
     public  final Map<String, Integer> soc_attr;
@@ -85,6 +87,8 @@ class character implements Serializable {
         god        = "Акади";
 
         Generated = 0;
+        Exp       = 0;
+        upping    = false;
 
         phis_attr = new HashMap<String, Integer>() {{
             put("strength", 1);
@@ -771,6 +775,204 @@ class character implements Serializable {
         }
 
         return number;
+    }
+
+    public Integer save_exp_values(String group, String name, Integer number ) {
+        if (group.equals("attr")) {
+            number = exp_attr_values( name);
+        }
+
+        if (group.equals("abl")) {
+            number = exp_abl_values( name);
+        }
+
+        if (group.equals("bkg")) {
+            number = exp_bkg_values( name);
+        }
+
+        if (group.equals("sph")) {
+            number = exp_class_feature_values( name);
+        }
+
+        if (group.equals("dis")) {
+            number = exp_class_feature_values( name);
+        }
+
+        if (group.equals("gft")) {
+            number = exp_gft_values( name);
+        }
+
+        if (group.equals("button")) {
+            if (! name.equals("wp")) {
+                return 0;
+            }
+            else {
+                number = exp_wp_values();
+            }
+        }
+
+        return number;
+    }
+
+    private Integer exp_attr_values(String name) {
+        Integer prev_num;
+        if ( phis_attr.get(name) != null ) {
+            prev_num = phis_attr.get(name);
+        }
+        else if ( soc_attr.get(name) != null ) {
+            prev_num = soc_attr.get(name);
+        }
+        else {
+            prev_num = men_attr.get(name);
+        }
+
+        Integer price = prev_num * 4;
+        Integer num;
+        if ( price <= Exp ) {
+            Exp -= price;
+            num = prev_num + 1;
+        }
+        else {
+            num = prev_num;
+        }
+
+        if ( phis_attr.get(name) != null ) {
+            phis_attr.put(name, num);
+        }
+        else if ( soc_attr.get(name) != null ) {
+            soc_attr.put(name, num);
+        }
+        else {
+            men_attr.put(name, num);
+        }
+
+        return num;
+    }
+
+    private Integer exp_abl_values(String name) {
+        Integer prev_num;
+        if ( tal_abl.get(name) != null ) {
+            prev_num = tal_abl.get(name);
+        }
+        else if ( skl_abl.get(name) != null ) {
+            prev_num = skl_abl.get(name);
+        }
+        else {
+            prev_num = kng_abl.get(name);
+        }
+
+        Integer price = prev_num * 2;
+        if ( price == 0 ) {
+            price = 2;
+        }
+        Integer num;
+        if ( price <= Exp ) {
+            Exp -= price;
+            num = prev_num + 1;
+        }
+        else {
+            num = prev_num;
+        }
+
+        if ( tal_abl.get(name) != null ) {
+            tal_abl.put(name, num);
+        }
+        else if ( skl_abl.get(name) != null ) {
+            skl_abl.put(name, num);
+        }
+        else {
+            kng_abl.put(name, num);
+        }
+
+        return num;
+    }
+
+    private Integer exp_bkg_values(String name) {
+        Integer prev_num = bkg.get(name);
+        Integer price = prev_num * 3;
+        if ( price == 0 ) {
+            price = 3;
+        }
+        Integer num;
+        if ( price <= Exp ) {
+            Exp -= price;
+            num = prev_num + 1;
+        }
+        else {
+            num = prev_num;
+        }
+        bkg.put(name, num);
+
+        return num;
+    }
+
+    private Integer exp_class_feature_values(String name) {
+        Integer prev_num = 0;
+        if ( dis.get(name) != null ) {
+            prev_num = dis.get(name);
+        }
+        else if ( sph.get(name) != null ) {
+            prev_num = sph.get(name);
+        }
+
+        Integer price = prev_num * 5;
+        if ( price == 0 ) {
+            price = 10;
+        }
+        Integer num;
+        if ( price <= Exp ) {
+            Exp -= price;
+            num = prev_num + 1;
+        }
+        else {
+            num = prev_num;
+        }
+
+        if ( dis.get(name) != null ) {
+            dis.put(name, num);
+        }
+        else if ( sph.get(name) != null ) {
+            sph.put(name, num);
+        }
+
+        return num;
+    }
+
+    private Integer exp_gft_values(String name) {
+        Integer prev_num = gft.get(name);
+        Integer price = (prev_num + 1) * 4;
+
+        Integer num;
+        if ( price <= Exp ) {
+            Exp -= price;
+            num = prev_num + 1;
+        }
+        else {
+            num = prev_num;
+        }
+        gft.put(name, num);
+
+        return num;
+    }
+
+    private Integer exp_wp_values() {
+        Integer num;
+        Integer prev_num = sp_resources.get("perm_wp");
+        Integer price = prev_num;
+        if ( price == 0 ) {
+            price = 1;
+        }
+
+        if ( price <= Exp ) {
+            Exp -= price;
+            num = prev_num + 1;
+        }
+        else {
+            num = prev_num;
+        }
+        sp_resources.put("perm_wp", num);
+
+        return num;
     }
 
     public void store_values() {

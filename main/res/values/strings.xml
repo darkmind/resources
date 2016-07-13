@@ -126,6 +126,18 @@
     </string-array>
 
     <string name="charlist_alignment_hint">Мировоззрение</string>
+    <string name="exp">Опыт</string>
+    <string name="up_by_exp">Повысить параметры за опыт</string>
+    <string name="finish_up_by_exp">Завершить вкладывать опыт</string>
+    <string name="price_attr_exp">Цена: текущее значение х4</string>
+    <string name="price_abl_exp">Цена: текущее значение х2</string>
+    <string name="price_bkg_exp">Цена: текущее значение х3</string>
+    <string name="price_class_feature_exp">Цена: текущее значение х5, новое 10</string>
+    <string name="price_wp_exp">Цена: текущее значение х1</string>
+    <string name="price_gft_exp">Цена: уровень целевого Дара х4</string>
+    <string name="exp_title">Трата опыта</string>
+    <string name="exp_msg">Сохранить изменения и завершить вкладывать опыт?</string>
+
     <string name="charlist_class_hint">Класс</string>
 
     <string name="attrs">Атрибуты</string>

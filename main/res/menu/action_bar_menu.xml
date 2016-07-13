@@ -21,4 +21,14 @@
         android:title="@string/show_zero"
         android:onClick="run_show_zero"
         android:visible="false"/>
+    <item
+        android:id="@+id/up_by_exp"
+        android:title="@string/up_by_exp"
+        android:onClick="run_up_by_exp"
+        android:visible="false"/>
+    <item
+        android:id="@+id/finish_up_by_exp"
+        android:title="@string/finish_up_by_exp"
+        android:onClick="finish_run_up_by_exp"
+        android:visible="false"/>
 </menu>
