@@ -288,8 +288,8 @@ public class full_char_list extends AppCompatActivity {
                 }
                 break;
             case "wp":
-                if (char_o.sp_resources.get("perm_" + res) == 0) {
-                    char_o.sp_resources.put("perm_" + res, num);
+                if (char_o.wp == 0) {
+                    char_o.wp = num;
                     set_range("button", res, 1);
                     unset_upper_range("button", res, 1);
                 }
@@ -501,7 +501,7 @@ public class full_char_list extends AppCompatActivity {
     }
 
     private void exp_complete() {
-        Integer wp = char_o.sp_resources.get("perm_wp");
+        Integer wp = char_o.wp;
         if ( char_o.Exp < wp ) {
             AlertDialog.Builder builder = new AlertDialog.Builder(full_char_list.this);
             builder.setTitle(R.string.exp_title);
@@ -897,6 +897,9 @@ public class full_char_list extends AppCompatActivity {
             set_range( "dis", resource, val );
             unset_upper_range( "dis", resource, val );
         }
+
+        set_range( "button", "wp", char_o.wp );
+        unset_upper_range( "button", "wp", char_o.wp );
 
         // special parameters
         Pattern p = Pattern.compile("perm_(\\p{Lower}+)");

@@ -55,13 +55,16 @@ class character implements Serializable {
     public Integer class_feature_gen_points;
     private final Integer class_feature_gen_limit;
 
-    public  final Map<String, Integer> sph;
-    public  final Map<String, Integer> gft;
-    public  final Map<String, Integer> dis;
+    public final Map<String, Integer> sph;
+    public final Map<String, Integer> gft;
+    public final Map<String, Integer> dis;
+    public Integer wp;
 
     private final Map<String, Integer> stored_sph;
     private final Map<String, Integer> stored_gft;
     private final Map<String, Integer> stored_dis;
+
+    private Integer stored_wp;
 
     public final Map<String, Integer> sp_resources;
 
@@ -228,13 +231,14 @@ class character implements Serializable {
         stored_dis = new HashMap<>();
         stored_gft = new HashMap<>();
 
+        wp = 0;
+
         sp_resources = new HashMap<String, Integer>() {{
             put("rage", 0);
             put("faith", 0);
             put("wp", 0);
             put("health", 0);
             put("perm_faith", 0);
-            put("perm_wp", 0);
         }};
 
         postponed_payments = new HashMap<>();
@@ -754,13 +758,13 @@ class character implements Serializable {
                     return 0;
                 }
                 price = 2;
-                prev  = sp_resources.get("perm_" + name);
+                prev  = wp;
 
                 if ( number == 1 && prev == 1 && !class_name.equals("Маг") ) {
                     number = 0;
                 }
 
-                diff  = number - prev;
+                diff = number - prev;
 
                 if ((free_points - (price * diff)) >= 0) {
                     free_points -= (price * diff);
@@ -769,7 +773,7 @@ class character implements Serializable {
                     free_points -= available;
                     number = prev + available;
                 }
-                sp_resources.put("perm_" + name, number);
+                wp = number;
 
                 break;
         }
@@ -778,62 +782,73 @@ class character implements Serializable {
     }
 
     public Integer save_exp_values(String group, String name, Integer number ) {
-        if (group.equals("attr")) {
-            number = exp_attr_values( name);
-        }
-
-        if (group.equals("abl")) {
-            number = exp_abl_values( name);
-        }
-
-        if (group.equals("bkg")) {
-            number = exp_bkg_values( name);
-        }
-
-        if (group.equals("sph")) {
-            number = exp_class_feature_values( name);
-        }
-
-        if (group.equals("dis")) {
-            number = exp_class_feature_values( name);
-        }
-
-        if (group.equals("gft")) {
-            number = exp_gft_values( name);
-        }
-
-        if (group.equals("button")) {
-            if (! name.equals("wp")) {
-                return 0;
-            }
-            else {
-                number = exp_wp_values();
-            }
+        switch (group) {
+            case "attr":
+                number = exp_attr_values(name, number);
+                break;
+            case "abl":
+                number = exp_abl_values(name, number);
+                break;
+            case "bkg":
+                number = exp_bkg_values(name, number);
+                break;
+            case "sph":
+                number = exp_class_feature_values(name, number);
+                break;
+            case "dis":
+                number = exp_class_feature_values(name, number);
+                break;
+            case "gft":
+                number = exp_gft_values(name, number);
+                break;
+            case "button":
+                if (!name.equals("wp")) {
+                    return 0;
+                } else {
+                    number = exp_wp_values(number);
+                }
+                break;
         }
 
         return number;
     }
 
-    private Integer exp_attr_values(String name) {
+    private Integer exp_attr_values( String name, Integer num ) {
         Integer prev_num;
         if ( phis_attr.get(name) != null ) {
             prev_num = phis_attr.get(name);
+            if ( num < stored_phis_attr.get(name) ) {
+                num = stored_phis_attr.get(name);
+            }
         }
         else if ( soc_attr.get(name) != null ) {
             prev_num = soc_attr.get(name);
+            if ( num < stored_soc_attr.get(name) ) {
+                num = stored_soc_attr.get(name);
+            }
         }
         else {
             prev_num = men_attr.get(name);
+            if ( num < stored_men_attr.get(name) ) {
+                num = stored_men_attr.get(name);
+            }
         }
 
-        Integer price = prev_num * 4;
-        Integer num;
-        if ( price <= Exp ) {
-            Exp -= price;
-            num = prev_num + 1;
+        Integer price;
+        if ( num < prev_num ) {
+            num = prev_num - 1;
+            price = num * 4;
+            Exp += price;
         }
-        else {
-            num = prev_num;
+        else if ( num > prev_num ) {
+            price = prev_num * 4;
+            if ( price <= Exp ) {
+                Exp -= price;
+                num = prev_num + 1;
+            }
+            else {
+                num = prev_num;
+            }
         }
 
         if ( phis_attr.get(name) != null ) {
@@ -849,29 +864,48 @@ class character implements Serializable {
         return num;
     }
 
-    private Integer exp_abl_values(String name) {
+    private Integer exp_abl_values(String name, Integer num) {
         Integer prev_num;
         if ( tal_abl.get(name) != null ) {
             prev_num = tal_abl.get(name);
+            if ( num < stored_tal_abl.get(name) ) {
+                num = stored_tal_abl.get(name);
+            }
         }
         else if ( skl_abl.get(name) != null ) {
             prev_num = skl_abl.get(name);
+            if ( num < stored_skl_abl.get(name) ) {
+                num = stored_skl_abl.get(name);
+            }
         }
         else {
             prev_num = kng_abl.get(name);
+            if ( num < stored_kng_abl.get(name) ) {
+                num = stored_kng_abl.get(name);
+            }
         }
 
-        Integer price = prev_num * 2;
-        if ( price == 0 ) {
-            price = 2;
+        Integer price;
+        if ( num < prev_num ) {
+            num = prev_num - 1;
+            price = num * 2;
+            if ( price == 0 ) {
+                price = 2;
+            }
+            Exp += price;
         }
-        Integer num;
-        if ( price <= Exp ) {
-            Exp -= price;
-            num = prev_num + 1;
-        }
-        else {
-            num = prev_num;
+        else if ( num > prev_num ) {
+            price = prev_num * 2;
+            if ( price == 0 ) {
+                price = 2;
+            }
+            if ( price <= Exp ) {
+                Exp -= price;
+                num = prev_num + 1;
+            }
+            else {
+                num = prev_num;
+            }
         }
 
         if ( tal_abl.get(name) != null ) {
@@ -887,45 +921,76 @@ class character implements Serializable {
         return num;
     }
 
-    private Integer exp_bkg_values(String name) {
+    private Integer exp_bkg_values(String name, Integer num) {
         Integer prev_num = bkg.get(name);
-        Integer price = prev_num * 3;
-        if ( price == 0 ) {
-            price = 3;
+        if ( num < stored_bkg.get(name) ) {
+            num = stored_bkg.get(name);
         }
-        Integer num;
-        if ( price <= Exp ) {
-            Exp -= price;
-            num = prev_num + 1;
+
+        Integer price;
+        if ( num < prev_num ) {
+            num = prev_num - 1;
+            price = num * 3;
+            if ( price == 0 ) {
+                price = 3;
+            }
+            Exp += price;
         }
-        else {
-            num = prev_num;
+        else if ( num > prev_num ) {
+            price = prev_num * 3;
+            if ( price == 0 ) {
+                price = 3;
+            }
+            if ( price <= Exp ) {
+                Exp -= price;
+                num = prev_num + 1;
+            }
+            else {
+                num = prev_num;
+            }
         }
+
         bkg.put(name, num);
 
         return num;
     }
 
-    private Integer exp_class_feature_values(String name) {
+    private Integer exp_class_feature_values(String name, Integer num) {
         Integer prev_num = 0;
         if ( dis.get(name) != null ) {
             prev_num = dis.get(name);
+            if ( num < stored_dis.get(name) ) {
+                num = stored_dis.get(name);
+            }
         }
         else if ( sph.get(name) != null ) {
             prev_num = sph.get(name);
+            if ( num < stored_sph.get(name) ) {
+                num = stored_sph.get(name);
+            }
         }
 
-        Integer price = prev_num * 5;
-        if ( price == 0 ) {
-            price = 10;
+        Integer price;
+        if ( num < prev_num ) {
+            num = prev_num - 1;
+            price = num * 5;
+            if ( price == 0 ) {
+                price = 10;
+            }
+            Exp += price;
         }
-        Integer num;
-        if ( price <= Exp ) {
-            Exp -= price;
-            num = prev_num + 1;
-        }
-        else {
-            num = prev_num;
+        else if ( num > prev_num ) {
+            price = prev_num * 5;
+            if ( price == 0 ) {
+                price = 5;
+            }
+            if ( price <= Exp ) {
+                Exp -= price;
+                num = prev_num + 1;
+            }
+            else {
+                num = prev_num;
+            }
         }
 
         if ( dis.get(name) != null ) {
@@ -938,39 +1003,63 @@ class character implements Serializable {
         return num;
     }
 
-    private Integer exp_gft_values(String name) {
+    private Integer exp_gft_values(String name, Integer num) {
         Integer prev_num = gft.get(name);
-        Integer price = (prev_num + 1) * 4;
+        if ( num < stored_gft.get(name) ) {
+            num = stored_gft.get(name);
+        }
 
-        Integer num;
-        if ( price <= Exp ) {
-            Exp -= price;
-            num = prev_num + 1;
+        Integer price;
+        if ( num < prev_num ) {
+            price = prev_num * 4;
+            num   = prev_num - 1;
+            Exp  += price;
         }
-        else {
-            num = prev_num;
+        else if ( num > prev_num ) {
+            price = (prev_num + 1) * 4;
+            if ( price <= Exp ) {
+                Exp -= price;
+                num = prev_num + 1;
+            }
+            else {
+                num = prev_num;
+            }
         }
+
         gft.put(name, num);
 
         return num;
     }
 
-    private Integer exp_wp_values() {
-        Integer num;
-        Integer prev_num = sp_resources.get("perm_wp");
-        Integer price = prev_num;
-        if ( price == 0 ) {
-            price = 1;
+    private Integer exp_wp_values( Integer num ) {
+        Integer prev_num = wp;
+        if ( num < stored_wp ) {
+            num = stored_wp;
         }
 
-        if ( price <= Exp ) {
-            Exp -= price;
-            num = prev_num + 1;
+        Integer price;
+        if ( num < prev_num ) {
+            num   = prev_num - 1;
+            //noinspection PointlessArithmeticExpression
+            price = num * 1;
+            if ( price == 0 ) {
+                price = 1;
+            }
+            Exp  += price;
         }
-        else {
-            num = prev_num;
+        else if ( num > prev_num ) {
+            //noinspection PointlessArithmeticExpression
+            price = prev_num * 1;
+            if ( price <= Exp ) {
+                Exp -= price;
+                num = prev_num + 1;
+            }
+            else {
+                num = prev_num;
+            }
         }
-        sp_resources.put("perm_wp", num);
+
+        wp = num;
 
         return num;
     }
@@ -989,6 +1078,7 @@ class character implements Serializable {
         stored_sph.putAll( sph );
         stored_dis.putAll( dis );
         stored_gft.putAll( gft );
+        stored_wp = wp;
     }
 
     private boolean isExternalStorageWritable() {
