@@ -528,255 +528,181 @@ class character implements Serializable {
     }
 
     public Integer save_fp_values( String group, String name, Integer number ) {
-        Integer prev;
-        Integer price;
-        Integer diff;
         switch (group) {
             case "attr":
-                price = 5;
-                if (phis_attr.get(name) != null) {
-                    prev = phis_attr.get(name);
-                    diff = number - prev;
-                    if (number < stored_phis_attr.get(name)) {
-                        Integer st = prev - stored_phis_attr.get(name);
-                        diff = -st;
-                        number = stored_phis_attr.get(name);
-                    }
-
-                    if ((free_points - (price * diff)) >= 0) {
-                        free_points -= (price * diff);
-                    } else {
-                        Integer available = free_points / price;
-                        free_points -= available;
-                        number = prev + available;
-                    }
-                    phis_attr.put(name, number);
-                } else if (soc_attr.get(name) != null) {
-                    prev = soc_attr.get(name);
-                    diff = number - prev;
-                    if (number < stored_soc_attr.get(name)) {
-                        Integer st = prev - stored_soc_attr.get(name);
-                        diff = -st;
-                        number = stored_soc_attr.get(name);
-                    }
-
-                    if ((free_points - (price * diff)) >= 0) {
-                        free_points -= (price * diff);
-                    } else {
-                        Integer available = free_points / price;
-                        free_points -= available;
-                        number = prev + available;
-                    }
-                    soc_attr.put(name, number);
-                } else if (men_attr.get(name) != null) {
-                    prev = men_attr.get(name);
-                    diff = number - prev;
-                    if (number < stored_men_attr.get(name)) {
-                        Integer st = prev - stored_men_attr.get(name);
-                        diff = -st;
-                        number = stored_men_attr.get(name);
-                    }
-
-                    if ((free_points - (price * diff)) >= 0) {
-                        free_points -= (price * diff);
-                    } else {
-                        Integer available = free_points / price;
-                        free_points -= available;
-                        number = prev + available;
-                    }
-                    men_attr.put(name, number);
-                }
+                number = save_fp_attr( name, number );
                 break;
             case "abl":
-                price = 2;
-                if (tal_abl.get(name) != null) {
-                    prev = tal_abl.get(name);
-
-                    if ( number == 1 && prev == 1 && stored_tal_abl.get(name) == 0 ) {
-                        number = 0;
-                    }
-
-                    diff = number - prev;
-                    if (number < stored_tal_abl.get(name)) {
-                        Integer st = prev - stored_tal_abl.get(name);
-                        diff = -st;
-                        number = stored_tal_abl.get(name);
-                    }
-
-                    if ((free_points - (price * diff)) >= 0) {
-                        free_points -= (price * diff);
-                    } else {
-                        Integer available = free_points / price;
-                        free_points -= available;
-                        number = prev + available;
-                    }
-                    tal_abl.put(name, number);
-                } else if (skl_abl.get(name) != null) {
-                    prev = skl_abl.get(name);
-
-                    if ( number == 1 && prev == 1 && stored_skl_abl.get(name) == 0 ) {
-                        number = 0;
-                    }
-
-                    diff = number - prev;
-                    if (number < stored_skl_abl.get(name)) {
-                        Integer st = prev - stored_skl_abl.get(name);
-                        diff = -st;
-                        number = stored_skl_abl.get(name);
-                    }
-
-                    if ((free_points - (price * diff)) >= 0) {
-                        free_points -= (price * diff);
-                    } else {
-                        Integer available = free_points / price;
-                        free_points -= available;
-                        number = prev + available;
-                    }
-                    skl_abl.put(name, number);
-                } else if (kng_abl.get(name) != null) {
-                    prev = kng_abl.get(name);
-
-                    if ( number == 1 && prev == 1 && stored_kng_abl.get(name) == 0 ) {
-                        number = 0;
-                    }
-
-                    diff = number - prev;
-                    if (number < stored_kng_abl.get(name)) {
-                        Integer st = prev - stored_kng_abl.get(name);
-                        diff = -st;
-                        number = stored_kng_abl.get(name);
-                    }
-
-                    if ((free_points - (price * diff)) >= 0) {
-                        free_points -= (price * diff);
-                    } else {
-                        Integer available = free_points / price;
-                        free_points -= available;
-                        number = prev + available;
-                    }
-                    kng_abl.put(name, number);
-                }
+                number = save_fp_abl( name, number );
                 break;
             case "bkg":
-                price = 1;
-                prev = bkg.get(name);
-
-                if ( number == 1 && prev == 1 && stored_bkg.get(name) == 0 ) {
-                    number = 0;
-                }
-
-                diff = number - prev;
-                if (number < stored_bkg.get(name)) {
-                    Integer st = prev - stored_bkg.get(name);
-                    diff = -st;
-                    number = stored_bkg.get(name);
-                }
-
-                if ((free_points - (price * diff)) >= 0) {
-                    free_points -= (price * diff);
-                } else {
-                    Integer available = free_points / price;
-                    free_points -= available;
-                    number = prev + available;
-                }
-                bkg.put(name, number);
+                number = save_fp_bkg( name, number );
                 break;
             case "sph":
-                price = 7;
-                prev = sph.get(name);
-
-                if ( number == 1 && prev == 1 && stored_sph.get(name) == 0 ) {
-                    number = 0;
-                }
-
-                diff = number - prev;
-                if (number < stored_sph.get(name)) {
-                    Integer st = prev - stored_sph.get(name);
-                    diff = -st;
-                    number = stored_sph.get(name);
-                }
-
-                if ((free_points - (price * diff)) >= 0) {
-                    free_points -= (price * diff);
-                } else {
-                    Integer available = free_points / price;
-                    free_points -= available;
-                    number = prev + available;
-                }
-                sph.put(name, number);
+                number = save_fp_class_features( name, number );
                 break;
             case "dis":
-                price = 7;
-                prev = dis.get(name);
-
-                if ( number == 1 && prev == 1 && stored_dis.get(name) == 0 ) {
-                    number = 0;
-                }
-
-                diff = number - prev;
-                if (number < stored_dis.get(name)) {
-                    Integer st = prev - stored_dis.get(name);
-                    diff = -st;
-                    number = stored_dis.get(name);
-                }
-
-                if ((free_points - (price * diff)) >= 0) {
-                    free_points -= (price * diff);
-                } else {
-                    Integer available = free_points / price;
-                    free_points -= available;
-                    number = prev + available;
-                }
-                dis.put(name, number);
+                number = save_fp_class_features( name, number );
                 break;
             case "gft":
-                price = 7;
-                prev = gft.get(name);
-
-                if ( number == 1 && prev == 1 && stored_gft.get(name) == 0 ) {
-                    number = 0;
-                }
-
-                diff = number - prev;
-                if (number < stored_gft.get(name)) {
-                    Integer st = prev - stored_gft.get(name);
-                    diff = -st;
-                    number = stored_gft.get(name);
-                }
-
-                if ((free_points - (price * diff)) >= 0) {
-                    free_points -= (price * diff);
-                } else {
-                    Integer available = free_points / price;
-                    free_points -= available;
-                    number = prev + available;
-                }
-                gft.put(name, number);
+                number = save_fp_class_features( name, number );
                 break;
             case "button":
                 if (! name.equals("wp")) {
                     return 0;
                 }
-                price = 2;
-                prev  = wp;
-
-                if ( number == 1 && prev == 1 && !class_name.equals("Маг") ) {
-                    number = 0;
-                }
-
-                diff = number - prev;
-
-                if ((free_points - (price * diff)) >= 0) {
-                    free_points -= (price * diff);
-                } else {
-                    Integer available = free_points / price;
-                    free_points -= available;
-                    number = prev + available;
-                }
-                wp = number;
-
+                number = save_fp_wp( number );
                 break;
         }
+
+        return number;
+    }
+
+    private Integer save_fp_common ( Integer price, Integer number, Integer prev, Integer stored) {
+        Integer diff = number - prev;
+        if (number < stored) {
+            Integer st = prev - stored;
+            diff = -st;
+            number = stored;
+        }
+
+        if ((free_points - (price * diff)) >= 0) {
+            free_points -= (price * diff);
+        } else {
+            Integer available = free_points / price;
+            free_points -= available;
+            number = prev + available;
+        }
+
+        return number;
+    }
+
+    private Integer save_fp_attr ( String name, Integer number ) {
+        Integer price = 5;
+        Integer prev;
+        Integer stored;
+        if (phis_attr.get(name) != null) {
+            prev   = phis_attr.get(name);
+            stored = stored_phis_attr.get(name);
+            number = save_fp_common( price, number, prev, stored );
+
+            phis_attr.put(name, number);
+        } else if (soc_attr.get(name) != null) {
+            prev   = soc_attr.get(name);
+            stored = stored_soc_attr.get(name);
+            number = save_fp_common( price, number, prev, stored );
+
+            soc_attr.put(name, number);
+        } else if (men_attr.get(name) != null) {
+            prev   = men_attr.get(name);
+            stored = stored_men_attr.get(name);
+            number = save_fp_common( price, number, prev, stored );
+
+            men_attr.put(name, number);
+        }
+
+        return number;
+    }
+
+    private Integer save_fp_abl ( String name, Integer number ) {
+        Integer price = 2;
+        Integer prev;
+        Integer stored;
+
+        if (tal_abl.get(name) != null) {
+            prev   = tal_abl.get(name);
+            stored = stored_tal_abl.get(name);
+            if ( number == 1 && prev == 1 && stored == 0 ) {
+                number = 0;
+            }
+            number = save_fp_common( price, number, prev, stored );
+
+            tal_abl.put(name, number);
+        } else if (skl_abl.get(name) != null) {
+            prev   = skl_abl.get(name);
+            stored = stored_skl_abl.get(name);
+            if ( number == 1 && prev == 1 && stored == 0 ) {
+                number = 0;
+            }
+            number = save_fp_common( price, number, prev, stored );
+
+            skl_abl.put(name, number);
+        } else if (kng_abl.get(name) != null) {
+            prev = kng_abl.get(name);
+            stored = stored_kng_abl.get(name);
+            if (number == 1 && prev == 1 && stored == 0) {
+                number = 0;
+            }
+            number = save_fp_common(price, number, prev, stored);
+
+            tal_abl.put(name, number);
+        }
+
+        return number;
+    }
+
+    private Integer save_fp_bkg ( String name, Integer number ) {
+        Integer price = 1;
+        Integer prev = bkg.get(name);
+        Integer stored = stored_bkg.get(name);
+
+        number = save_fp_common(price, number, prev, stored);
+
+        bkg.put(name, number);
+
+        return number;
+    }
+
+    private Integer save_fp_class_features ( String name, Integer number ) {
+        Integer price = 7;
+        Integer prev;
+        Integer stored;
+        if ( sph.get(name) != null ) {
+            prev   = sph.get(name);
+            stored = stored_sph.get(name);
+            if ( number == 1 && prev == 1 && stored == 0 ) {
+                number = 0;
+            }
+
+            number = save_fp_common(price, number, prev, stored);
+            sph.put(name, number);
+        }
+        else if ( dis.get(name) != null ) {
+            prev   = dis.get(name);
+            stored = stored_dis.get(name);
+            if ( number == 1 && prev == 1 && stored == 0 ) {
+                number = 0;
+            }
+
+            number = save_fp_common(price, number, prev, stored);
+            dis.put(name, number);
+        }
+        else if ( gft.get(name) != null ) {
+            prev   = gft.get(name);
+            stored = stored_gft.get(name);
+            if ( number == 1 && prev == 1 && stored == 0 ) {
+                number = 0;
+            }
+
+            number = save_fp_common(price, number, prev, stored);
+            gft.put(name, number);
+        }
+
+
+        return number;
+    }
+
+    private Integer save_fp_wp ( Integer number ) {
+        Integer price  = 2;
+        Integer prev   = wp;
+        Integer stored = stored_wp;
+
+        if ( number == 1 && prev == 1 && !class_name.equals("Маг") ) {
+            number = 0;
+        }
+
+        number = save_fp_common(price, number, prev, stored);
+        wp = number;
 
         return number;
     }

@@ -4,7 +4,6 @@
     android:id="@+id/sp_faith"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:onClick="switch_screen"
     android:orientation="vertical">
     <TextView
         android:id="@+id/special_faith"

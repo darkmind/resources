@@ -2,8 +2,6 @@ package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
-import android.os.Build;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Context;
@@ -32,8 +30,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class full_char_list extends AppCompatActivity {
-    private boolean mVisible;
-
     private Menu menu_bar;
 
     private View gifts;
@@ -66,48 +62,11 @@ public class full_char_list extends AppCompatActivity {
 
     private final String[] resources = { "rage", "faith", "wp" };
 
-    @SuppressWarnings({"UnusedParameters", "unused"})
-    public void switch_screen(View view) {
-        if (mVisible) {
-            hide();
-        } else {
-            show();
-        }
-    }
-
-    private void hide() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LOW_PROFILE
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        }
-        mVisible = false;
-    }
-
-    @SuppressLint("InlinedApi")
-    private void show() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.show();
-        }
-        mVisible = true;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_char_list);
-
-        mVisible = true;
 
         char_o = (character) getIntent().getSerializableExtra("CHAR");
 
@@ -1131,8 +1090,7 @@ public class full_char_list extends AppCompatActivity {
                 }
                 break;
             default:
-                Integer perm_val = char_o.sp_resources.get("perm_" + name);
-                char_o.sp_resources.put(name, perm_val);
+                Integer perm_val = char_o.wp;
                 for (Integer i = 1; i <= perm_val; i++) {
                     mark_checkboxes(name, i, R.drawable.ic_check_box_black_24dp);
                 }
