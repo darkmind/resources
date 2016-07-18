@@ -80,6 +80,8 @@ class character implements Serializable {
     private String scnd_abl;
     private String thrd_abl;
 
+    public final Integer[] armor;
+
 
     public character( String name, String chronic ) {
         char_name    = name;
@@ -92,6 +94,8 @@ class character implements Serializable {
         Generated = 0;
         Exp       = 0;
         upping    = false;
+
+        armor = new Integer[]{ 0, 0 };
 
         phis_attr = new HashMap<String, Integer>() {{
             put("strength", 1);

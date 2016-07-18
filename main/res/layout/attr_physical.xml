@@ -25,35 +25,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_strength1"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_strength2"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_strength3"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_strength4"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_strength5"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
@@ -74,35 +74,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_dexterity1"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_dexterity2"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_dexterity3"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_dexterity4"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_dexterity5"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
@@ -124,35 +124,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_stamina1"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_stamina2"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_stamina3"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_stamina4"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/rb_attr_stamina5"
-                android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+                android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
                 tools:ignore="ContentDescription" />
         </LinearLayout>

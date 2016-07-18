@@ -48,4 +48,20 @@
             android:inputType="number"
             android:imeOptions="actionDone"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/armor_pen"
+            android:text="@string/armor_pen"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/armor_pen_val"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
+    </LinearLayout>
 </LinearLayout>

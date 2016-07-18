@@ -151,6 +151,19 @@ public class full_char_list extends AppCompatActivity {
                 // your code here
             }
         });
+
+        final EditText armor_pen = (EditText) findViewById(R.id.armor_pen_val);
+        armor_pen.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    char_o.armor[1] = Integer.parseInt(armor_pen.getText().toString());
+                    update_summary( "attr", "dexterity" );
+                    remark_params();
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -485,6 +498,12 @@ public class full_char_list extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void update_summary(String group, String name ) {
+        Integer dexterity = char_o.phis_attr.get("dexterity");
+        Integer penalty = 5 - char_o.armor[1];
+        if ( dexterity > penalty) {
+            dexterity = penalty;
+        }
+
         if ( group.equals("attr") ) {
             switch (name) {
                 case "strength": {
@@ -493,7 +512,7 @@ public class full_char_list extends AppCompatActivity {
                     atk_v.setText(getResources().getString(R.string.atk_hands) + atk);
 
                     Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
-                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                    Integer atk_d = dexterity + char_o.skl_abl.get("melee");
                     atk_v = (TextView) findViewById(R.id.atk_melee);
                     atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
 
@@ -501,39 +520,39 @@ public class full_char_list extends AppCompatActivity {
                 }
                 case "dexterity": {
                     Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
-                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                    Integer atk_d = dexterity + char_o.skl_abl.get("melee");
                     TextView atk_v = (TextView) findViewById(R.id.atk_melee);
                     atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
 
-                    atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
+                    atk_d = dexterity + char_o.skl_abl.get("firearms");
                     atk_v = (TextView) findViewById(R.id.atk_range);
                     atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
 
-                    atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
+                    atk_d = dexterity + char_o.tal_abl.get("athletics");
                     atk_v = (TextView) findViewById(R.id.atk_throw);
                     atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
 
-                    atk_d = char_o.phis_attr.get("dexterity");
-                    if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
+                    atk_d = dexterity;
+                    if (dexterity > char_o.men_attr.get("wits")) {
                         atk_d = char_o.men_attr.get("wits");
                     }
                     atk_v = (TextView) findViewById(R.id.def);
                     atk_v.setText(getResources().getString(R.string.def) + atk_d);
 
-                    atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
+                    atk_d = dexterity + char_o.men_attr.get("wits");
                     atk_v = (TextView) findViewById(R.id.init);
                     atk_v.setText(getResources().getString(R.string.init) + atk_d);
                     break;
                 }
                 case "wits": {
-                    Integer atk_d = char_o.phis_attr.get("dexterity");
-                    if (char_o.phis_attr.get("dexterity") > char_o.men_attr.get("wits")) {
+                    Integer atk_d = dexterity;
+                    if (dexterity > char_o.men_attr.get("wits")) {
                         atk_d = char_o.men_attr.get("wits");
                     }
                     TextView atk_v = (TextView) findViewById(R.id.def);
                     atk_v.setText(getResources().getString(R.string.def) + atk_d);
 
-                    atk_d = char_o.phis_attr.get("dexterity") + char_o.men_attr.get("wits");
+                    atk_d = dexterity + char_o.men_attr.get("wits");
                     atk_v = (TextView) findViewById(R.id.init);
                     atk_v.setText(getResources().getString(R.string.init) + atk_d);
                     break;
@@ -550,19 +569,19 @@ public class full_char_list extends AppCompatActivity {
                 }
                 case "melee": {
                     Integer atk_s = char_o.phis_attr.get("strength") + char_o.skl_abl.get("melee");
-                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("melee");
+                    Integer atk_d = dexterity + char_o.skl_abl.get("melee");
                     TextView atk_v = (TextView) findViewById(R.id.atk_melee);
                     atk_v.setText(getResources().getString(R.string.atk_melee) + atk_s + "/" + atk_d);
                     break;
                 }
                 case "firearms": {
-                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.skl_abl.get("firearms");
+                    Integer atk_d = dexterity + char_o.skl_abl.get("firearms");
                     TextView atk_v = (TextView) findViewById(R.id.atk_range);
                     atk_v.setText(getResources().getString(R.string.atk_range) + atk_d);
                     break;
                 }
                 case "athletics": {
-                    Integer atk_d = char_o.phis_attr.get("dexterity") + char_o.tal_abl.get("athletics");
+                    Integer atk_d = dexterity + char_o.tal_abl.get("athletics");
                     TextView atk_v = (TextView) findViewById(R.id.atk_throw);
                     atk_v.setText(getResources().getString(R.string.atk_throw) + atk_d);
                     break;
@@ -572,9 +591,23 @@ public class full_char_list extends AppCompatActivity {
 
     }
 
+    private void remark_params() {
+        set_range("attr", "dexterity", char_o.phis_attr.get("dexterity"));
+
+    }
+
     private void set_range( String group, String name, Integer number ) {
         for ( Integer i = 1; i <= number; i++ ){
-            mark_dots( group, name, i, R.drawable.ic_fiber_manual_record_black_24dp );
+            mark_dots( group, name, i, R.drawable.filled );
+        }
+
+        if ( group.equals("attr") && name.equals("dexterity") ) {
+            Integer penalty = 5 - char_o.armor[1];
+            if (number > penalty) {
+                for (Integer i = (penalty + 1); i <= number; i++) {
+                    mark_dots(group, name, i, R.drawable.pen);
+                }
+            }
         }
     }
 
@@ -584,7 +617,7 @@ public class full_char_list extends AppCompatActivity {
             limit = 10;
         }
         for ( Integer i = (number + 1); i <= limit; i++ ){
-            mark_dots( group, name, i, R.drawable.ic_radio_button_unchecked_black_24dp );
+            mark_dots( group, name, i, R.drawable.empty );
         }
     }
 
