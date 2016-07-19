@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"
@@ -35,50 +35,51 @@
             android:visibility="gone"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/exp_section"
-        android:visibility="gone">
-        <TextView
-            android:id="@+id/txt_exp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/exp" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:id="@+id/exp"
-            android:inputType="number"
-            android:imeOptions="actionDone"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
         <Spinner
             android:id="@+id/charlist_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".3"/>
         <Spinner
             android:id="@+id/charlist_gods"
             android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".3"/>
         <TextView
             android:id="@+id/txt_charlist_class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".3"
             android:text="@string/charlist_class_hint"
             android:visibility="gone"/>
         <TextView
             android:id="@+id/txt_charlist_gods"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight=".3"
             android:text="@string/charlist_gods_hint"
             android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/exp_section"
+            android:layout_weight=".3"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/txt_exp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/exp"
+                android:inputType="number"
+                android:imeOptions="actionDone"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -19,9 +19,14 @@
     <string name="char_plus">+</string>
     <string name="title_activity_enter_name">enter_name</string>
     <string name="name_hint">Введите имя персонажа</string>
+    <string name="chronic_hint">Введите имя хроники</string>
     <string name="title_activity_load_char">load_char</string>
 
-    <string name="charlist_chronic_name_hint">Хроника</string>
+    <string name="charlist_char_name_hint">Имя персонажа %1$s</string>
+    <string name="charlist_chronic_name_hint">Хроника %1$s</string>
+
+    <string name="gen_points_helper"> [%1$d]</string>
+    <string name="free_points_helper">Очков [%1$d], цена %2$d</string>
 
     <string-array name="alignments_array">
         <item>Законопослушный-Добрый</item>
@@ -41,7 +46,7 @@
         <item>Жрец</item>
     </string-array>
 
-    <string name="charlist_gods_hint">Бог</string>
+    <string name="charlist_gods_hint">Бог %1$s</string>
 
     <string-array name="gods_lg_array">
         <item>Келемвор</item>
@@ -125,7 +130,7 @@
         <item>Шар</item>
     </string-array>
 
-    <string name="charlist_alignment_hint">Мировоззрение</string>
+    <string name="charlist_alignment_hint">Мировоззрение %1$s</string>
     <string name="exp">Опыт</string>
     <string name="up_by_exp">Повысить параметры за опыт</string>
     <string name="finish_up_by_exp">Завершить вкладывать опыт</string>
@@ -138,7 +143,7 @@
     <string name="exp_title">Трата опыта</string>
     <string name="exp_msg">Сохранить изменения и завершить вкладывать опыт?</string>
 
-    <string name="charlist_class_hint">Класс</string>
+    <string name="charlist_class_hint">Класс %1$s</string>
 
     <string name="attrs">Атрибуты</string>
 
@@ -258,12 +263,12 @@
     <string name="hide_zero">Убрать нулевые параметры</string>
     <string name="show_zero">Показать нулевые параметры</string>
 
-    <string name="atk_hands">Атака без оружия: </string>
-    <string name="atk_melee">Атака холодным оружием Сила/Ловкость : </string>
-    <string name="atk_range">Атака стрельба: </string>
-    <string name="atk_throw">Атака метание: </string>
-    <string name="def">Защита: </string>
-    <string name="init">Инициатива: </string>
+    <string name="atk_hands">Атака без оружия: %1$d</string>
+    <string name="atk_melee">Атака холодным оружием Сила/Ловкость: %1$d/%2$d</string>
+    <string name="atk_range">Атака стрельба: %1$d</string>
+    <string name="atk_throw">Атака метание: %1$d</string>
+    <string name="def">Защита: %1$d</string>
+    <string name="init">Инициатива: %1$d</string>
     <string name="armor">Броня: </string>
     <string name="armor_pen">Штраф брони: </string>
 

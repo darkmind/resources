@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/atk_hands"
+        android:textColor="@android:color/white"
         android:text="@string/atk_hands"/>
     <TextView
         android:layout_width="match_parent"
@@ -40,11 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/armor"
+            android:textColor="@android:color/white"
             android:text="@string/armor"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/armor_val"
+            android:textColor="@android:color/white"
             android:inputType="number"
             android:imeOptions="actionDone"/>
     </LinearLayout>
@@ -56,12 +59,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/armor_pen"
+            android:textColor="@android:color/white"
             android:text="@string/armor_pen"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/armor_pen_val"
             android:inputType="number"
+            android:textColor="@android:color/white"
             android:imeOptions="actionDone"/>
     </LinearLayout>
 </LinearLayout>

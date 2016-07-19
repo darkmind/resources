@@ -4,11 +4,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/disciplines"
+    android:layout_weight=".3"
     android:visibility="gone">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,10 +14,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="start"
             android:id="@+id/dis_show_helper"
             android:text=""/>
-    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -507,7 +503,7 @@
                 android:id="@+id/rb_dis_obfuscate2"
                 android:src="@drawable/empty"
                 android:onClick="radio_button_clicked"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,TooManyViews" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
