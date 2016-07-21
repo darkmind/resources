@@ -18,6 +18,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_alchemistry"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_alchemistry"
             android:gravity="start"/>
         <LinearLayout
@@ -69,6 +72,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_logic"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_logic"
             android:gravity="start"/>
         <LinearLayout
@@ -120,6 +126,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_investigation"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_investigation"
             android:gravity="start"/>
         <LinearLayout
@@ -171,6 +180,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_religion"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_religion"
             android:gravity="start"/>
         <LinearLayout
@@ -222,6 +234,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_linguistics"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_linguistics"
             android:gravity="start"/>
         <LinearLayout
@@ -273,6 +288,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_medicine"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_medicine"
             android:gravity="start"/>
         <LinearLayout
@@ -324,6 +342,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_occult"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_occult"
             android:gravity="start"/>
         <LinearLayout
@@ -375,6 +396,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_politics"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_politics"
             android:gravity="start"/>
         <LinearLayout
@@ -426,6 +450,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_science"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_science"
             android:gravity="start"/>
         <LinearLayout

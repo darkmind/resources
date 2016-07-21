@@ -14,8 +14,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/attr_strength"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/attr_strength"/>
         <LinearLayout
             android:orientation="horizontal"
@@ -65,6 +68,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/attr_dexterity"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/attr_dexterity"/>
         <LinearLayout
             android:orientation="horizontal"
@@ -115,6 +121,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/attr_stamina"
+            android:id="@+id/attr_stamina"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"

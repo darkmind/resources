@@ -23,6 +23,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bkg_allies"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/bkg_allies"
             android:gravity="start"/>
         <LinearLayout
@@ -74,6 +77,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bkg_contacts"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/bkg_contacts"
             android:gravity="start"/>
         <LinearLayout
@@ -125,6 +131,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bkg_fame"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/bkg_fame"
             android:gravity="start"/>
         <LinearLayout
@@ -176,6 +185,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bkg_resources"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/bkg_resources"
             android:gravity="start"/>
         <LinearLayout
@@ -227,6 +239,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bkg_dignity"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/bkg_dignity"
             android:gravity="start"/>
         <LinearLayout
@@ -278,6 +293,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/bkg_artifact"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/bkg_artifact"
             android:gravity="start"/>
         <LinearLayout

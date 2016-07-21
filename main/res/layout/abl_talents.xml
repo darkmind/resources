@@ -18,6 +18,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_alertness"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_alertness"
             android:gravity="start"/>
         <LinearLayout
@@ -69,6 +72,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_athletics"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_athletics"
             android:gravity="start"/>
         <LinearLayout
@@ -120,6 +126,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_brawl"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_brawl"
             android:gravity="start"/>
         <LinearLayout
@@ -171,6 +180,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_subterfuge"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_subterfuge"
             android:gravity="start"/>
         <LinearLayout
@@ -222,6 +234,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_ambidexter"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_ambidexter"
             android:gravity="start"/>
         <LinearLayout
@@ -273,6 +288,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_leadership"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_leadership"
             android:gravity="start"/>
         <LinearLayout
@@ -324,6 +342,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_intimidation"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_intimidation"
             android:gravity="start"/>
         <LinearLayout
@@ -375,6 +396,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_persuasion"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_persuasion"
             android:gravity="start"/>
         <LinearLayout
@@ -427,6 +451,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/abl_streetwise"
+            android:id="@+id/abl_streetwise"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:gravity="start"/>
         <LinearLayout
             android:orientation="horizontal"
@@ -478,6 +505,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_enlightenment"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_enlightenment"
             android:gravity="start"/>
         <LinearLayout

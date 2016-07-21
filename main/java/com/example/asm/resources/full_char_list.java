@@ -1,6 +1,7 @@
 package com.example.asm.resources;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -1378,5 +1379,33 @@ public class full_char_list extends AppCompatActivity {
     public void finish_run_up_by_exp(MenuItem item) {
         char_o.upping = false;
         finish_exp_points();
+    }
+
+    @SuppressWarnings("unused")
+    public void helper_clicked(View view) {
+        String IdAsString = view.getResources().getResourceName(view.getId());
+        Pattern p = Pattern.compile("(\\p{Lower}+)_(\\p{Lower}+)$");
+        Matcher m = p.matcher(IdAsString);
+        String group;
+        String name;
+        if( m.find() ){
+            group = m.group(1);
+            name  = m.group(2);
+        }
+        else {
+            throw new RuntimeException( "Can't fine resource and value in " + IdAsString );
+        }
+
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.help);
+        TextView txt = (TextView) dialog.findViewById(R.id.help_text);
+
+        String id_ref = String.format(Locale.getDefault(), "help_%s_%s", group, name);
+        int resID = getResources().getIdentifier(id_ref, "string", getPackageName());
+
+        if ( resID != 0 ) {
+            txt.setText(getString(resID));
+            dialog.show();
+        }
     }
 }

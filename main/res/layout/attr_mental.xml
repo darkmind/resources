@@ -16,6 +16,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/attr_perception"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/attr_perception"/>
         <LinearLayout
             android:orientation="horizontal"
@@ -65,6 +68,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/attr_intelligence"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/attr_intelligence"/>
         <LinearLayout
             android:orientation="horizontal"
@@ -114,6 +120,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/attr_wits"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/attr_wits"
             android:gravity="start"/>
         <LinearLayout

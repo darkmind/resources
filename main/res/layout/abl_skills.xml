@@ -18,6 +18,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_security"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_security"
             android:gravity="start"/>
         <LinearLayout
@@ -69,6 +72,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_craft"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_craft"
             android:gravity="start"/>
         <LinearLayout
@@ -120,6 +126,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_blindfight"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_blindfight"
             android:gravity="start"/>
         <LinearLayout
@@ -171,6 +180,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_etiquette"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_etiquette"
             android:gravity="start"/>
         <LinearLayout
@@ -222,6 +234,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_firearms"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_firearms"
             android:gravity="start"/>
         <LinearLayout
@@ -273,6 +288,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_survival"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_survival"
             android:gravity="start"/>
         <LinearLayout
@@ -324,6 +342,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_melee"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_melee"
             android:gravity="start"/>
         <LinearLayout
@@ -375,6 +396,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_herbalism"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_herbalism"
             android:gravity="start"/>
         <LinearLayout
@@ -426,6 +450,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_stealth"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_stealth"
             android:gravity="start"/>
         <LinearLayout
@@ -478,6 +505,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/abl_concentration"
+            android:onClick="helper_clicked"
+            android:clickable="true"
             android:text="@string/abl_concentration"
             android:gravity="start"/>
         <LinearLayout
